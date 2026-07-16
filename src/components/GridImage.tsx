@@ -44,7 +44,7 @@ const GridImageTarget = ({
       aria-labelledby={titleId}
       className="max-h-full max-w-full"
     />
-    <div className="absolute top-0 left-[0.3em] text-[11cqw]">
+    <div className="absolute top-0 left-3 text-[11cqw]">
       <DoubleElement
         frontClassName="text-sky-300"
         backClassName="text-glow-grid"
@@ -52,7 +52,7 @@ const GridImageTarget = ({
         #{number}
       </DoubleElement>
     </div>
-    <div className="absolute bottom-0 left-[0.3em] ml-[0.3em] text-[10cqw]">
+    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]">
       <DoubleElement backClassName="text-glow-grid">
         {title && (
           <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
@@ -66,7 +66,7 @@ const GridImageTarget = ({
         {subtitle && <p className="text-rose-200">{subtitle}</p>}
       </DoubleElement>
     </div>
-    <div className="absolute right-[0.3em] bottom-[0.2em] text-[10cqw]">
+    <div className="absolute right-3 bottom-2 text-[10cqw]">
       {soldOut ? (
         <DoubleElement
           className="italic"

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { copyEmail, INSTAGRAM_USERNAME } from '../contants'
 
 const LINK_BUTTON_CLASSES =
-  'box-border block w-48 min-w-0 rounded-xl border-4 border-black p-2 hover:border-yellow-300 hover:shadow-[0_0_10px,0_0_40px] hover:shadow-purple-900'
+  'box-border block w-48 min-w-0 rounded-xl border-4 border-black p-2 hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-purple-900'
 
 export const OrderDialog = ({
   subtitle,
