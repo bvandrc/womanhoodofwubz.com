@@ -35,9 +35,9 @@ export const Dialog = ({
       <Modal
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
-        overlayClassName="fixed inset-0 z-5 bg-[rgba(60,60,60,0.7)]"
+        overlayClassName="fixed inset-0 z-5 bg-neutral-700/70"
         className={classNames(
-          'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-[1em] border-2 border-[indigo] bg-[gold] p-[1em] font-outfit outline-none',
+          'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-[1em] border-2 border-purple-900 bg-amber-300 p-[1em] font-outfit outline-none',
           className,
         )}
         aria={{ labelledby: titleId }}

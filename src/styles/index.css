@@ -6,31 +6,27 @@
   /* Brand colors */
   --color-soundcloud: rgb(242 111 35);
   --color-instagram: rgb(193 53 132);
-  --color-email: deepskyblue;
-
-  /* Dark purple used for the header glow effects */
-  --color-header-glow: rgb(47 0 80);
 }
 
 /* Layered glow shadows — too long to inline as arbitrary values */
 
 @utility text-glow-header {
   text-shadow:
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
+    0 0 0.8em var(--color-purple-950),
     0 0 1em black,
     0 0 1em black,
     0 0 1em black,
@@ -40,59 +36,59 @@
 
 @utility shadow-glow-header {
   box-shadow:
-    0 0 5px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 30px var(--color-header-glow),
-    0 0 50px var(--color-header-glow);
+    0 0 5px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 30px var(--color-purple-950),
+    0 0 50px var(--color-purple-950);
 }
 
 @utility shadow-glow-icon {
   box-shadow:
-    0 0 5px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow);
+    0 0 5px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950);
 }
 
 @utility text-glow-grid {
   text-shadow:
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 12px purple,
-    0 0 12px purple,
-    0 0 12px purple;
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 8px var(--color-purple-900),
+    0 0 12px var(--color-fuchsia-900),
+    0 0 12px var(--color-fuchsia-900),
+    0 0 12px var(--color-fuchsia-900);
 }
 
 @utility shadow-glow-grid-item {
   box-shadow:
     0 0 5px black,
-    0 0 5px indigo,
-    0 0 10px indigo,
-    0 0 15px indigo,
-    0 0 30px indigo,
-    0 0 50px indigo;
+    0 0 5px var(--color-purple-900),
+    0 0 10px var(--color-purple-900),
+    0 0 15px var(--color-purple-900),
+    0 0 30px var(--color-purple-900),
+    0 0 50px var(--color-purple-900);
 }
 
 @layer base {
@@ -112,7 +108,7 @@
   }
 
   body {
-    background-color: rgb(63 42 68);
+    background-color: var(--color-mauve-700);
     font-family: tahoma, sans-serif;
     line-height: normal;
     padding: 0.5em;

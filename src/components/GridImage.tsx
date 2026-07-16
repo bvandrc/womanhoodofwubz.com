@@ -46,7 +46,7 @@ const GridImageTarget = ({
     />
     <div className="absolute top-0 left-[0.3em] text-[11cqw]">
       <DoubleElement
-        frontClassName="text-[lightskyblue]"
+        frontClassName="text-sky-300"
         backClassName="text-glow-grid"
       >
         #{number}
@@ -55,7 +55,7 @@ const GridImageTarget = ({
     <div className="absolute bottom-0 left-[0.3em] ml-[0.3em] text-[10cqw]">
       <DoubleElement backClassName="text-glow-grid">
         {title && (
-          <p className="font-bold text-[violet] leading-[1em]" id={titleId}>
+          <p className="font-bold text-fuchsia-400 leading-[1em]" id={titleId}>
             {title}
             <br />
             <span className="font-normal text-[80%]" id={titleId}>
@@ -63,14 +63,14 @@ const GridImageTarget = ({
             </span>
           </p>
         )}
-        {subtitle && <p className="text-[pink]">{subtitle}</p>}
+        {subtitle && <p className="text-rose-200">{subtitle}</p>}
       </DoubleElement>
     </div>
     <div className="absolute right-[0.3em] bottom-[0.2em] text-[10cqw]">
       {soldOut ? (
         <DoubleElement
           className="italic"
-          frontClassName="text-[orange]"
+          frontClassName="text-amber-500"
           backClassName="text-glow-grid"
         >
           Sold!
@@ -78,7 +78,7 @@ const GridImageTarget = ({
       ) : (
         price && (
           <DoubleElement
-            frontClassName="text-[lightskyblue]"
+            frontClassName="text-sky-300"
             backClassName="text-glow-grid"
           >
             ${price}
@@ -101,7 +101,7 @@ export const GridImage = (props: GridImageProps) => {
           <span className="font-black text-[1.5em]">{props.title}</span>
           <br />
           <span className="text-[90%]">{props.type}</span>
-          <span className="ml-[0.4em] text-[0.8em] text-[grey] italic">
+          <span className="ml-[0.4em] text-[0.8em] text-neutral-500 italic">
             (#{props.number})
           </span>
         </>

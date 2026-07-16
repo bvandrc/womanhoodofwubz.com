@@ -23,7 +23,7 @@ export const SoundcloudPlayer = ({
       aria-label="soundcloud player"
     >
       <a
-        className="inline-flex rounded-t-[20px] bg-black px-[1em] pt-[0.3em] pb-0 font-bold text-[hotpink] italic group-hover:[text-shadow:0_0_5px_blue,0_0_10px_blue,0_0_15px_blue]"
+        className="inline-flex rounded-t-[20px] bg-black px-[1em] pt-[0.3em] pb-0 font-bold text-pink-400 italic group-hover:[text-shadow:0_0_5px_var(--color-blue-700),0_0_10px_var(--color-blue-700),0_0_15px_var(--color-blue-700)]"
         href={href}
         target="_blank"
         title="SoundCloud playlist"

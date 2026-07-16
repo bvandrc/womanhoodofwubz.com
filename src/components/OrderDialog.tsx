@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { copyEmail, INSTAGRAM_USERNAME } from '../contants'
 
 const LINK_BUTTON_CLASSES =
-  'box-border block w-[8em] min-w-0 rounded-[0.5em] border-4 border-black p-[0.3em] hover:border-[yellow] hover:shadow-[0_0_10px_indigo,0_0_40px_indigo]'
+  'box-border block w-[8em] min-w-0 rounded-[0.5em] border-4 border-black p-[0.3em] hover:border-yellow-300 hover:shadow-[0_0_10px,0_0_40px] hover:shadow-purple-900'
 
 export const OrderDialog = ({
   subtitle,
@@ -39,7 +39,7 @@ export const OrderDialog = ({
           Instagram <FontAwesomeIcon icon={faInstagramSquare} size="xl" />
         </a>
         <button
-          className={`bg-email ${LINK_BUTTON_CLASSES}`}
+          className={`bg-sky-400 ${LINK_BUTTON_CLASSES}`}
           type="button"
           onClick={copyEmail}
         >

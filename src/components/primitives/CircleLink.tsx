@@ -13,7 +13,7 @@ export const CircleLink = ({
     tabIndex={0}
     {...props}
     className={classNames(
-      'group flex size-[3em] items-center justify-center rounded-full border-[5px] border-black shadow-[0_0_30px_black] transition-all duration-100 hover:shadow-[0_0_40px_yellow]',
+      'group flex size-[3em] items-center justify-center rounded-full border-[5px] border-black shadow-[0_0_30px] shadow-black transition-all duration-100 hover:shadow-[0_0_40px] hover:shadow-yellow-300',
       className,
     )}
   >
