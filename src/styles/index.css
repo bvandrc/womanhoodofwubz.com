@@ -8,6 +8,12 @@
   --color-instagram: rgb(193 53 132);
 }
 
+/* Glow shadow: `shadow-glow-<blur-px>`, colored via the standard shadow-* color utilities */
+@utility shadow-glow-* {
+  box-shadow: 0 0 calc(--value(number) * 1px)
+    var(--tw-shadow-color, currentcolor);
+}
+
 /* Layered glow shadows — too long to inline as arbitrary values */
 
 @utility text-glow-header {

@@ -15,7 +15,7 @@ import { DoubleElement } from './primitives/DoubleElement'
 
 const BUTTON_CLASSES = 'w-32 rounded-lg border-2 p-2'
 const BUTTON_FRONT_CLASSES =
-  'bg-black hover:border-yellow-300 hover:shadow-[0_0_40px] hover:shadow-yellow-300'
+  'bg-black hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-yellow-300'
 
 export const Header = ({
   scrollToGrid,
