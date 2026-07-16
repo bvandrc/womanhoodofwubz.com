@@ -1,11 +1,22 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: tahoma, sans-serif;
   --font-outfit: "Outfit", sans-serif;
 
   /* Brand colors */
   --color-soundcloud: rgb(242 111 35);
   --color-instagram: rgb(193 53 132);
+
+  /* Purple halo behind the header logo, backed by black. A plain var (used
+     via `filter-(--filter-logo)`) because drop-shadow() can't take a comma
+     list, so multi-shadow --drop-shadow-* theme tokens compile broken. */
+  --filter-logo: drop-shadow(0 0 30px var(--color-purple-950))
+    drop-shadow(0 0 50px black) drop-shadow(0 0 30px black);
+
+  /* SoundCloud player title hover glow */
+  --text-shadow-glow-blue: 0 0 5px var(--color-blue-700),
+    0 0 10px var(--color-blue-700), 0 0 15px var(--color-blue-700);
 }
 
 /* Style the back/front copy of a DoubleElement from within its children */
@@ -117,11 +128,9 @@
     content: "";
     position: fixed;
     inset: 0;
-    height: 100%;
-    width: 100%;
     z-index: -1;
     background-image: url("/public/background.jpg");
-    background-position: center center;
+    background-position: center;
     background-repeat: repeat;
     background-size: min(200vw, 80em);
     background-attachment: fixed;
@@ -130,7 +139,6 @@
 
   body {
     background-color: var(--color-mauve-700);
-    font-family: tahoma, sans-serif;
     line-height: normal;
     padding: 0.5em;
   }

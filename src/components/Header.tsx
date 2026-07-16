@@ -28,7 +28,7 @@ export const Header = ({
         <img
           src="/Logo.png"
           alt="Womanhood of Wubz"
-          className="mx-auto -mb-2 max-h-45 max-w-[calc(100%-20px)] pt-1.25 filter-[drop-shadow(0_0_30px_var(--color-purple-950))_drop-shadow(0_0_50px_black)_drop-shadow(0_0_30px_black)] max-2xl:max-w-[85%]"
+          className="mx-auto -mb-2 max-h-45 px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
         />
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
           <DoubleElement backClassName="text-glow-header">
