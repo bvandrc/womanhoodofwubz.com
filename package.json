@@ -48,12 +48,11 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-modal": "^3.16",
-    "@vitejs/plugin-react": "^4",
+    "@vitejs/plugin-react": "^6",
     "dotenv": "^16",
     "tailwindcss": "^4.3.2",
     "type-fest": "^4",
-    "typescript": "^5",
-    "vite": "^5",
-    "vite-plugin-fs": "^1"
+    "typescript": "^7",
+    "vite": "^8"
   }
 }
