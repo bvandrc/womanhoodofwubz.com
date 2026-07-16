@@ -26,9 +26,18 @@ jobs:
       - name: Linting
         run: yarn lint
 
-  e2e:
-    name: E2E Tests
+  playwright:
+    name: Playwright (${{ matrix.suite }})
     runs-on: ubuntu-latest
+
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - suite: e2e
+            command: yarn test:e2e
+          - suite: a11y
+            command: yarn test:a11y
 
     env:
       CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
@@ -74,12 +83,12 @@ jobs:
         run: npx playwright install --with-deps chromium
 
       - name: Run Playwright tests
-        run: yarn pw:run
+        run: ${{ matrix.command }}
 
       - name: Upload results on failure
         uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: playwright-results
+          name: playwright-results-${{ matrix.suite }}
           path: playwright/results
           if-no-files-found: ignore

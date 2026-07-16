@@ -18,8 +18,8 @@
     "ts:check": "tsc",
     "pw:ts:check": "tsc --project playwright/tsconfig.json",
     "__c2": "====================[ Playwright Testing ]=======================",
-    "test:e2e": "yarn pw:run",
-    "test:a11y": "yarn pw:run --project=a11y",
+    "test:e2e": "yarn pw:run --project=e2e",
+    "test:a11y": "yarn pw:run --project=a11y --project=a11y:mobile",
     "pw:run": "playwright test",
     "pw:open": "playwright test --ui",
     "pw:report": "playwright show-report playwright/results/html"
