@@ -16,28 +16,40 @@
 
 /* Layered glow shadows — too long to inline as arbitrary values */
 
-@utility text-glow-header {
+/*
+ * Text glow template: 15 layers of the main color stacked to intensify,
+ * plus 5 outer halo layers. Wrappers set the four --text-glow-* vars.
+ */
+@utility text-glow {
   text-shadow:
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 0.8em var(--color-purple-950),
-    0 0 1em black,
-    0 0 1em black,
-    0 0 1em black,
-    0 0 1em black,
-    0 0 1em black;
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color);
+}
+
+@utility text-glow-header {
+  @apply text-glow;
+  --text-glow-size: 0.8em;
+  --text-glow-color: var(--color-purple-950);
+  --text-glow-outer-size: 1em;
+  --text-glow-outer-color: black;
 }
 
 @utility shadow-glow-header {
@@ -68,23 +80,11 @@
 }
 
 @utility text-glow-grid {
-  text-shadow:
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 8px var(--color-purple-900),
-    0 0 12px var(--color-fuchsia-900),
-    0 0 12px var(--color-fuchsia-900),
-    0 0 12px var(--color-fuchsia-900);
+  @apply text-glow;
+  --text-glow-size: 8px;
+  --text-glow-color: var(--color-purple-900);
+  --text-glow-outer-size: 12px;
+  --text-glow-outer-color: var(--color-fuchsia-900);
 }
 
 @utility shadow-glow-grid-item {
