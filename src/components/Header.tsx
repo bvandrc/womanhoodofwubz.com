@@ -13,9 +13,9 @@ import { CircleLink } from './primitives/CircleLink'
 import { Dialog } from './primitives/Dialog'
 import { DoubleElement } from './primitives/DoubleElement'
 
-const BUTTON_CLASSES = 'w-[8em] rounded-[0.5em] border-2 p-[0.5em]'
+const BUTTON_CLASSES = 'w-32 rounded-lg border-2 p-2'
 const BUTTON_FRONT_CLASSES =
-  'bg-black hover:border-[yellow] hover:shadow-[0_0_40px_yellow]'
+  'bg-black hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-yellow-300'
 
 export const Header = ({
   scrollToGrid,
@@ -23,36 +23,36 @@ export const Header = ({
   scrollToGrid: HTMLAttributes<HTMLButtonElement>['onClick']
 }) => {
   return (
-    <header className="relative w-full">
+    <header className="relative">
       <div id="header-center">
         <img
           src="/Logo.png"
           alt="Womanhood of Wubz"
-          className="mx-auto -mb-2 block max-h-45 max-w-[calc(100%-20px)] pt-1.25 filter-[drop-shadow(0_0_30px_var(--color-header-glow))_drop-shadow(0_0_50px_black)_drop-shadow(0_0_30px_black)] max-[1500px]:max-w-[85%]"
+          className="mx-auto -mb-2 max-h-45 px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
         />
-        <div className="my-[0.5em] flex flex-col items-center justify-center text-balance text-center font-outfit text-[1.2em]">
+        <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
           <DoubleElement backClassName="text-glow-header">
-            <p className="mb-[0.2em] translate-x-[-0.25em] text-[1em] in-[.el-front]:text-[lightskyblue]">
-              <span className="in-[.el-back]:rounded-[20px] in-[.el-back]:bg-header-glow in-[.el-back]:shadow-glow-icon">
+            <p className="mb-1 -translate-x-1 el-front:text-sky-300">
+              <span className="el-back:rounded-full el-back:bg-purple-950 el-back:shadow-glow-icon">
                 <FontAwesomeIcon
                   icon={faLocationDot}
                   size="sm"
-                  className="pr-[0.4em]"
+                  className="pr-2"
                 />
               </span>
               Denver, CO
             </p>
-            <p className="in-[.el-front]:text-[violet]">
+            <p className="el-front:text-fuchsia-400">
               Bringing you the accessories that celebrate the magic of good
               music and the power of connection
             </p>
           </DoubleElement>
         </div>
-        <div className="flex items-center justify-center gap-2.5 pt-[0.1em] text-center">
+        <div className="flex items-center justify-center gap-2.5 pt-0.5 text-center">
           <button type="button" onClick={scrollToGrid}>
             <DoubleElement
               className={BUTTON_CLASSES}
-              frontClassName={`${BUTTON_FRONT_CLASSES} border-[cyan] text-[cyan]`}
+              frontClassName={`${BUTTON_FRONT_CLASSES} border-cyan-300 text-cyan-300`}
               backClassName="shadow-glow-header"
             >
               Designed Hats <FontAwesomeIcon icon={faCircleArrowDown} />
@@ -63,7 +63,7 @@ export const Header = ({
               <button type="button">
                 <DoubleElement
                   className={BUTTON_CLASSES}
-                  frontClassName={`${BUTTON_FRONT_CLASSES} border-[orange] text-[orange]`}
+                  frontClassName={`${BUTTON_FRONT_CLASSES} border-amber-500 text-amber-500`}
                   backClassName="shadow-glow-header"
                 >
                   Custom Hats{' '}
@@ -72,13 +72,13 @@ export const Header = ({
               </button>
             }
             title="Custom Designs"
-            className="w-75 leading-[2em]"
+            className="w-75 leading-loose"
           >
             Custom designs page is in the works! For now, see our{' '}
             <b>
               <a
                 href="https://www.instagram.com/p/DDr601Wx6sF/?img_index=1"
-                className="rounded-[1em] bg-[indigo] px-[0.5em] py-[0.2em] text-[lime] hover:bg-[purple]"
+                className="rounded-2xl bg-purple-900 px-2 py-1 text-lime-400 hover:bg-fuchsia-900"
               >
                 Instagram post{' '}
                 <FontAwesomeIcon icon={faExternalLink} size="xs" />
@@ -89,9 +89,9 @@ export const Header = ({
           </Dialog>
         </div>
       </div>
-      <div className="absolute right-25 bottom-0 text-right max-[1500px]:relative max-[1500px]:right-auto max-[1500px]:mx-auto max-[1500px]:my-[0.7em] max-[1500px]:text-center max-[1500px]:leading-[1em]">
+      <div className="absolute right-25 bottom-0 text-right max-2xl:relative max-2xl:right-auto max-2xl:mx-auto max-2xl:my-3 max-2xl:text-center max-2xl:leading-none">
         <section className="text-center" aria-label="links and social media">
-          <span className="mb-[0.3em] inline-block text-[aquamarine] italic max-[1500px]:absolute max-[1500px]:left-1/2 max-[1500px]:m-0 max-[1500px]:max-w-[4em] max-[1500px]:translate-x-[-10.1em] max-[1500px]:translate-y-[0.75em] max-[1500px]:text-right">
+          <span className="mb-1 inline-block text-emerald-200 italic max-2xl:absolute max-2xl:left-1/2 max-2xl:m-0 max-2xl:max-w-16 max-2xl:-translate-x-40 max-2xl:translate-y-3 max-2xl:text-right">
             <DoubleElement
               className="flex items-center justify-center"
               backClassName="text-glow-header"
@@ -107,7 +107,7 @@ export const Header = ({
               href={`https://www.instagram.com/${INSTAGRAM_USERNAME}/`}
             />
             <CircleLink
-              className="bg-email"
+              className="bg-sky-400"
               title="Email"
               icon={faEnvelope}
               onClick={copyEmail}

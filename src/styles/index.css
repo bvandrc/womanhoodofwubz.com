@@ -1,98 +1,126 @@
 @import "tailwindcss";
 
 @theme {
+  --font-sans: tahoma, sans-serif;
   --font-outfit: "Outfit", sans-serif;
 
   /* Brand colors */
   --color-soundcloud: rgb(242 111 35);
   --color-instagram: rgb(193 53 132);
-  --color-email: deepskyblue;
 
-  /* Dark purple used for the header glow effects */
-  --color-header-glow: rgb(47 0 80);
+  /* Purple halo behind the header logo, backed by black. A plain var (used
+     via `filter-(--filter-logo)`) because drop-shadow() can't take a comma
+     list, so multi-shadow --drop-shadow-* theme tokens compile broken. */
+  --filter-logo: drop-shadow(0 0 30px var(--color-purple-950))
+    drop-shadow(0 0 50px black) drop-shadow(0 0 30px black);
+
+  /* SoundCloud player title hover glow */
+  --text-shadow-glow-blue: 0 0 5px var(--color-blue-700),
+    0 0 10px var(--color-blue-700), 0 0 15px var(--color-blue-700);
+}
+
+/* Style the back/front copy of a DoubleElement from within its children */
+@custom-variant el-back (:where(.el-back) &);
+@custom-variant el-front (:where(.el-front) &);
+
+/*
+ * Auto-fitting grid columns: `grid-cols-fit-<min-width-px>`. Fits as many
+ * columns as possible; the 40% cap keeps at least two columns on phones.
+ */
+@utility grid-cols-fit-* {
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(min(calc(--value(number) * 1px), 40%), 1fr)
+  );
+}
+
+/* Glow shadow: `shadow-glow-<blur-px>`, colored via the standard shadow-* color utilities */
+@utility shadow-glow-* {
+  box-shadow: 0 0 calc(--value(number) * 1px)
+    var(--tw-shadow-color, currentcolor);
 }
 
 /* Layered glow shadows — too long to inline as arbitrary values */
 
-@utility text-glow-header {
+/*
+ * Text glow template: 15 layers of the main color stacked to intensify,
+ * plus 5 outer halo layers. Wrappers set the four --text-glow-* vars.
+ */
+@utility text-glow {
   text-shadow:
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 0.8em var(--color-header-glow),
-    0 0 1em black,
-    0 0 1em black,
-    0 0 1em black,
-    0 0 1em black,
-    0 0 1em black;
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-size) var(--text-glow-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color),
+    0 0 var(--text-glow-outer-size) var(--text-glow-outer-color);
+}
+
+@utility text-glow-header {
+  @apply text-glow;
+  --text-glow-size: 0.8em;
+  --text-glow-color: var(--color-purple-950);
+  --text-glow-outer-size: 1em;
+  --text-glow-outer-color: black;
 }
 
 @utility shadow-glow-header {
   box-shadow:
-    0 0 5px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 15px var(--color-header-glow),
-    0 0 30px var(--color-header-glow),
-    0 0 50px var(--color-header-glow);
+    0 0 5px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950),
+    0 0 30px var(--color-purple-950),
+    0 0 50px var(--color-purple-950);
 }
 
 @utility shadow-glow-icon {
   box-shadow:
-    0 0 5px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow),
-    0 0 10px var(--color-header-glow);
+    0 0 5px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950);
 }
 
 @utility text-glow-grid {
-  text-shadow:
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 8px indigo,
-    0 0 12px purple,
-    0 0 12px purple,
-    0 0 12px purple;
+  @apply text-glow;
+  --text-glow-size: 8px;
+  --text-glow-color: var(--color-purple-900);
+  --text-glow-outer-size: 12px;
+  --text-glow-outer-color: var(--color-fuchsia-900);
 }
 
 @utility shadow-glow-grid-item {
   box-shadow:
     0 0 5px black,
-    0 0 5px indigo,
-    0 0 10px indigo,
-    0 0 15px indigo,
-    0 0 30px indigo,
-    0 0 50px indigo;
+    0 0 5px var(--color-purple-900),
+    0 0 10px var(--color-purple-900),
+    0 0 15px var(--color-purple-900),
+    0 0 30px var(--color-purple-900),
+    0 0 50px var(--color-purple-900);
 }
 
 @layer base {
@@ -100,11 +128,9 @@
     content: "";
     position: fixed;
     inset: 0;
-    height: 100%;
-    width: 100%;
     z-index: -1;
     background-image: url("/public/background.jpg");
-    background-position: center center;
+    background-position: center;
     background-repeat: repeat;
     background-size: min(200vw, 80em);
     background-attachment: fixed;
@@ -112,13 +138,13 @@
   }
 
   body {
-    background-color: rgb(63 42 68);
-    font-family: tahoma, sans-serif;
+    background-color: var(--color-mauve-700);
     line-height: normal;
     padding: 0.5em;
   }
 
-  @media (max-width: 800px) {
+  /* biome-ignore lint/correctness/noUnknownFunction: theme() is resolved by Tailwind at build time */
+  @media (width < theme(--breakpoint-md)) {
     html,
     body {
       overflow-x: hidden;

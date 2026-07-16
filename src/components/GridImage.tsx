@@ -39,23 +39,19 @@ const GridImageTarget = ({
     aria-labelledby={titleId}
     {...rest}
   >
-    <img
-      src={src}
-      aria-labelledby={titleId}
-      className="max-h-full max-w-full"
-    />
-    <div className="absolute top-0 left-[0.3em] text-[11cqw]">
+    <img src={src} aria-labelledby={titleId} className="max-h-full" />
+    <div className="absolute top-0 left-3 text-[11cqw]">
       <DoubleElement
-        frontClassName="text-[lightskyblue]"
+        frontClassName="text-sky-300"
         backClassName="text-glow-grid"
       >
         #{number}
       </DoubleElement>
     </div>
-    <div className="absolute bottom-0 left-[0.3em] ml-[0.3em] text-[10cqw]">
+    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]">
       <DoubleElement backClassName="text-glow-grid">
         {title && (
-          <p className="font-bold text-[violet] leading-[1em]" id={titleId}>
+          <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
             {title}
             <br />
             <span className="font-normal text-[80%]" id={titleId}>
@@ -63,14 +59,14 @@ const GridImageTarget = ({
             </span>
           </p>
         )}
-        {subtitle && <p className="text-[pink]">{subtitle}</p>}
+        {subtitle && <p className="text-rose-200">{subtitle}</p>}
       </DoubleElement>
     </div>
-    <div className="absolute right-[0.3em] bottom-[0.2em] text-[10cqw]">
+    <div className="absolute right-3 bottom-2 text-[10cqw]">
       {soldOut ? (
         <DoubleElement
           className="italic"
-          frontClassName="text-[orange]"
+          frontClassName="text-amber-500"
           backClassName="text-glow-grid"
         >
           Sold!
@@ -78,7 +74,7 @@ const GridImageTarget = ({
       ) : (
         price && (
           <DoubleElement
-            frontClassName="text-[lightskyblue]"
+            frontClassName="text-sky-300"
             backClassName="text-glow-grid"
           >
             ${price}
@@ -98,16 +94,16 @@ export const GridImage = (props: GridImageProps) => {
     <Dialog
       title={
         <>
-          <span className="font-black text-[1.5em]">{props.title}</span>
+          <span className="font-black text-3xl">{props.title}</span>
           <br />
-          <span className="text-[90%]">{props.type}</span>
-          <span className="ml-[0.4em] text-[0.8em] text-[grey] italic">
+          <span className="text-base">{props.type}</span>
+          <span className="ml-2 text-neutral-500 text-sm italic">
             (#{props.number})
           </span>
         </>
       }
       target={<GridImageTarget {...props} titleId={titleId} />}
-      className="w-75 text-[1.2em]"
+      className="w-75 text-xl"
       headerClassName="items-start"
     >
       <OrderDialog

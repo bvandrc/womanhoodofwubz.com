@@ -13,13 +13,13 @@ export const CircleLink = ({
     tabIndex={0}
     {...props}
     className={classNames(
-      'group flex size-[3em] items-center justify-center rounded-full border-[5px] border-black shadow-[0_0_30px_black] transition-all duration-100 hover:shadow-[0_0_40px_yellow]',
+      'group flex size-12 items-center justify-center rounded-full border-3 border-black shadow-glow-30 shadow-black transition-shadow duration-100 hover:shadow-glow-40 hover:shadow-yellow-300',
       className,
     )}
   >
     <FontAwesomeIcon
       icon={icon}
-      className="text-[2em] group-hover:text-[2.2em]"
+      className="text-2xl group-hover:text-3xl"
       aria-label={props['aria-label'] ?? props.title}
     />
   </a>
