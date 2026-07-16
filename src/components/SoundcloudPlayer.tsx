@@ -18,7 +18,7 @@ export const SoundcloudPlayer = ({
   return (
     // biome-ignore lint/a11y/useSemanticElements: group is fine here
     <div
-      className="group -mt-3 mb-2.5 max-[1500px]:-mt-1.5"
+      className="group -mt-3 mb-2.5 max-2xl:-mt-1.5"
       role="group"
       aria-label="soundcloud player"
     >

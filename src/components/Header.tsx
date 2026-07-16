@@ -28,7 +28,7 @@ export const Header = ({
         <img
           src="/Logo.png"
           alt="Womanhood of Wubz"
-          className="mx-auto -mb-2 block max-h-45 max-w-[calc(100%-20px)] pt-1.25 filter-[drop-shadow(0_0_30px_var(--color-purple-950))_drop-shadow(0_0_50px_black)_drop-shadow(0_0_30px_black)] max-[1500px]:max-w-[85%]"
+          className="mx-auto -mb-2 block max-h-45 max-w-[calc(100%-20px)] pt-1.25 filter-[drop-shadow(0_0_30px_var(--color-purple-950))_drop-shadow(0_0_50px_black)_drop-shadow(0_0_30px_black)] max-2xl:max-w-[85%]"
         />
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
           <DoubleElement backClassName="text-glow-header">
@@ -89,9 +89,9 @@ export const Header = ({
           </Dialog>
         </div>
       </div>
-      <div className="absolute right-25 bottom-0 text-right max-[1500px]:relative max-[1500px]:right-auto max-[1500px]:mx-auto max-[1500px]:my-3 max-[1500px]:text-center max-[1500px]:leading-none">
+      <div className="absolute right-25 bottom-0 text-right max-2xl:relative max-2xl:right-auto max-2xl:mx-auto max-2xl:my-3 max-2xl:text-center max-2xl:leading-none">
         <section className="text-center" aria-label="links and social media">
-          <span className="mb-1 inline-block text-emerald-200 italic max-[1500px]:absolute max-[1500px]:left-1/2 max-[1500px]:m-0 max-[1500px]:max-w-16 max-[1500px]:-translate-x-40 max-[1500px]:translate-y-3 max-[1500px]:text-right">
+          <span className="mb-1 inline-block text-emerald-200 italic max-2xl:absolute max-2xl:left-1/2 max-2xl:m-0 max-2xl:max-w-16 max-2xl:-translate-x-40 max-2xl:translate-y-3 max-2xl:text-right">
             <DoubleElement
               className="flex items-center justify-center"
               backClassName="text-glow-header"

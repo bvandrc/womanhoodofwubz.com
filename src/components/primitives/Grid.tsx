@@ -11,7 +11,7 @@ export const Grid = ({
     <div
       {...props}
       className={classNames(
-        'grid grid-cols-[repeat(auto-fit,minmax(min(280px,40%),1fr))] justify-center gap-6 max-[800px]:mx-2 max-[800px]:gap-2',
+        'grid grid-cols-[repeat(auto-fit,minmax(min(280px,40%),1fr))] justify-center gap-6 max-md:mx-2 max-md:gap-2',
         className,
       )}
     >
