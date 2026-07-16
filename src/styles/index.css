@@ -15,8 +15,9 @@
     drop-shadow(0 0 50px black) drop-shadow(0 0 30px black);
 
   /* SoundCloud player title hover glow */
-  --text-shadow-glow-blue: 0 0 5px var(--color-blue-700),
-    0 0 10px var(--color-blue-700), 0 0 15px var(--color-blue-700);
+  --text-shadow-glow-blue:
+    0 0 5px var(--color-blue-700), 0 0 10px var(--color-blue-700),
+    0 0 15px var(--color-blue-700);
 }
 
 /* Style the back/front copy of a DoubleElement from within its children */
@@ -29,9 +30,9 @@
  */
 @utility grid-cols-fit-* {
   grid-template-columns: repeat(
-    auto-fit,
-    minmax(min(calc(--value(number) * 1px), 40%), 1fr)
-  );
+      auto-fit,
+      minmax(min(calc(--value(number) * 1px), 40%), 1fr)
+    );
 }
 
 /* Glow shadow: `shadow-glow-<blur-px>`, colored via the standard shadow-* color utilities */
