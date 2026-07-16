@@ -19,7 +19,7 @@ export const CircleLink = ({
   >
     <FontAwesomeIcon
       icon={icon}
-      className="text-3xl group-hover:text-4xl"
+      className="text-2xl group-hover:text-3xl"
       aria-label={props['aria-label'] ?? props.title}
     />
   </a>
