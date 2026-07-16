@@ -32,17 +32,17 @@ if (!CONTENTFUL_SPACE || !CONTENTFUL_ACCESS_TOKEN) {
 
 Modal.setAppElement('#root')
 
+const contentfulClient = contentful.createClient({
+  space: CONTENTFUL_SPACE,
+  accessToken: CONTENTFUL_ACCESS_TOKEN,
+})
+
+type ContentfulResponse = Awaited<
+  ReturnType<typeof contentfulClient.getEntries<Product>>
+>
+
 export const App = () => {
   const [data, setData] = useState<ContentfulResponse>()
-
-  const contentfulClient = contentful.createClient({
-    space: CONTENTFUL_SPACE,
-    accessToken: CONTENTFUL_ACCESS_TOKEN,
-  })
-
-  type ContentfulResponse = Awaited<
-    ReturnType<typeof contentfulClient.getEntries<Product>>
-  >
 
   useEffect(() => {
     contentfulClient
@@ -54,7 +54,7 @@ export const App = () => {
         setData(d)
       })
       .catch((error) => alert(error))
-  }, [contentfulClient])
+  }, [])
 
   return (
     <>
@@ -82,7 +82,7 @@ export const App = () => {
             return (
               <GridImage
                 key={`grid-image-${number}-title-${title}`}
-                src={url}
+                src={url.replace(/^\/\//, 'https://')} // Contentful asset URLs are protocol-relative; force https
                 title={title}
                 type={type}
                 subtitle={subtitle}
