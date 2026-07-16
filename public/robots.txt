@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://womanhoodofwubz.neocities.org/sitemap.xml

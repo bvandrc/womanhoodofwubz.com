@@ -29,7 +29,9 @@ export const Header = ({
           <img
             src="/Logo.png"
             alt="Womanhood of Wubz"
-            className="mx-auto -mb-2 max-h-45 px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
+            width={422}
+            height={423}
+            className="mx-auto -mb-2 h-auto max-h-45 w-auto px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
           />
         </h1>
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
