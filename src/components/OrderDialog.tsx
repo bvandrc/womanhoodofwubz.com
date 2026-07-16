@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { copyEmail, INSTAGRAM_USERNAME } from '../contants'
 
 const LINK_BUTTON_CLASSES =
-  'box-border block w-[8em] min-w-0 rounded-[0.5em] border-4 border-black p-[0.3em] hover:border-yellow-300 hover:shadow-[0_0_10px,0_0_40px] hover:shadow-purple-900'
+  'box-border block w-48 min-w-0 rounded-xl border-4 border-black p-2 hover:border-yellow-300 hover:shadow-[0_0_10px,0_0_40px] hover:shadow-purple-900'
 
 export const OrderDialog = ({
   subtitle,
@@ -20,14 +20,14 @@ export const OrderDialog = ({
     <img
       src={src}
       aria-labelledby={titleId}
-      className="max-w-full rounded-[1em]"
+      className="max-w-full rounded-2xl"
     />
     <div>
       <p>Order form is in the works! For now, send us a message to order:</p>
 
       {/** biome-ignore lint/a11y/useSemanticElements: group is fine here */}
       <div
-        className="mt-[0.5em] grid justify-center gap-0.5 font-bold text-[1.2em]"
+        className="mt-3 grid justify-center gap-0.5 font-bold text-2xl"
         role="group"
         aria-label="send links"
       >

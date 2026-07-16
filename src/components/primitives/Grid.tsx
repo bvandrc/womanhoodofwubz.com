@@ -11,12 +11,12 @@ export const Grid = ({
     <div
       {...props}
       className={classNames(
-        'grid grid-cols-[repeat(auto-fit,minmax(min(280px,40%),1fr))] justify-center gap-[1.5em] max-[800px]:mx-[0.5em] max-[800px]:gap-[0.5em]',
+        'grid grid-cols-[repeat(auto-fit,minmax(min(280px,40%),1fr))] justify-center gap-6 max-[800px]:mx-2 max-[800px]:gap-2',
         className,
       )}
     >
       {Children.map(children, (child) => (
-        <div className="@container z-1 aspect-square overflow-hidden rounded-[1.5em] border-[5px] border-purple-900 hover:border-yellow-300 hover:shadow-glow-grid-item">
+        <div className="@container z-1 aspect-square overflow-hidden rounded-3xl border-[5px] border-purple-900 hover:border-yellow-300 hover:shadow-glow-grid-item">
           {child}
         </div>
       ))}

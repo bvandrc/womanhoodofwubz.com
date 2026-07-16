@@ -55,7 +55,7 @@ const GridImageTarget = ({
     <div className="absolute bottom-0 left-[0.3em] ml-[0.3em] text-[10cqw]">
       <DoubleElement backClassName="text-glow-grid">
         {title && (
-          <p className="font-bold text-fuchsia-400 leading-[1em]" id={titleId}>
+          <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
             {title}
             <br />
             <span className="font-normal text-[80%]" id={titleId}>
@@ -98,16 +98,16 @@ export const GridImage = (props: GridImageProps) => {
     <Dialog
       title={
         <>
-          <span className="font-black text-[1.5em]">{props.title}</span>
+          <span className="font-black text-3xl">{props.title}</span>
           <br />
-          <span className="text-[90%]">{props.type}</span>
-          <span className="ml-[0.4em] text-[0.8em] text-neutral-500 italic">
+          <span className="text-base">{props.type}</span>
+          <span className="ml-2 text-neutral-500 text-sm italic">
             (#{props.number})
           </span>
         </>
       }
       target={<GridImageTarget {...props} titleId={titleId} />}
-      className="w-75 text-[1.2em]"
+      className="w-75 text-xl"
       headerClassName="items-start"
     >
       <OrderDialog

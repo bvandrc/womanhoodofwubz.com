@@ -37,7 +37,7 @@ export const Dialog = ({
         onRequestClose={() => setIsOpen(false)}
         overlayClassName="fixed inset-0 z-5 bg-neutral-700/70"
         className={classNames(
-          'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-[1em] border-2 border-purple-900 bg-amber-300 p-[1em] font-outfit outline-none',
+          'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-2xl border-2 border-purple-900 bg-amber-300 p-4 font-outfit outline-none',
           className,
         )}
         aria={{ labelledby: titleId }}
@@ -45,11 +45,11 @@ export const Dialog = ({
       >
         <div
           className={classNames(
-            'mb-[0.5em] flex justify-between gap-[1em]',
+            'mb-2 flex justify-between gap-4',
             headerClassName ?? 'items-center',
           )}
         >
-          <h3 id={titleId} className="text-[1.17em] font-bold">
+          <h3 id={titleId} className="text-lg font-bold">
             {title}
           </h3>
           <button
@@ -57,7 +57,7 @@ export const Dialog = ({
             type="button"
             aria-controls={dialogId}
             onClick={() => setIsOpen(false)}
-            className="rounded-[0.5em] border-2 bg-transparent p-[0.5em] hover:bg-black/15"
+            className="rounded-lg border-2 bg-transparent p-2 hover:bg-black/15"
           >
             <FontAwesomeIcon icon={faXmark} size="xl" />
           </button>
