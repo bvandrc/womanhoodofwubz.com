@@ -6,13 +6,22 @@
   "description": "Womanhood of Wubz",
   "homepage": "https://WomanhoodOfWubz.neocities.org/",
   "scripts": {
+    "__c0": "====================[ Build & Development ]======================",
     "start": "yarn dev",
     "dev": "vite --open",
     "build": "vite build",
     "preview": "yarn build && vite preview --open",
-    "lint": "yarn lint:fix && yarn ts:check",
+    "preview:ci": "vite preview --strictPort",
+    "__c1": "====================[ Linting & Type Checking ]==================",
+    "lint": "yarn lint:fix && yarn ts:check && yarn pw:ts:check",
     "lint:fix": "npx biome check . --fix",
-    "ts:check": "tsc"
+    "ts:check": "tsc",
+    "pw:ts:check": "tsc --project playwright/tsconfig.json",
+    "__c2": "====================[ Playwright Testing ]=======================",
+    "test:e2e": "yarn pw:run",
+    "pw:run": "playwright test",
+    "pw:open": "playwright test --ui",
+    "pw:report": "playwright show-report playwright/results/html"
   },
   "repository": {
     "type": "git",
@@ -43,6 +52,7 @@
   },
   "devDependencies": {
     "@biomejs/biome": "^2.3",
+    "@playwright/test": "^1.61",
     "@types/node": "^22",
     "@types/react": "^18",
     "@types/react-dom": "^18",
