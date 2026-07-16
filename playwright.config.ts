@@ -39,6 +39,10 @@ export default defineConfig({
   projects: [
     getProject({ name: 'e2e', testMatch: E2E_TEST_REGEX }),
     getProject({ name: 'a11y', testMatch: A11Y_TEST_REGEX }),
-    getProject({ name: 'a11y:mobile', testMatch: A11Y_TEST_REGEX, mobile: true, }),
+    getProject({
+      name: 'a11y:mobile',
+      testMatch: A11Y_TEST_REGEX,
+      mobile: true,
+    }),
   ],
 })
