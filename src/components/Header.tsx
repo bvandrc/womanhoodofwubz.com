@@ -25,11 +25,13 @@ export const Header = ({
   return (
     <header className="relative">
       <div id="header-center">
-        <img
-          src="/Logo.png"
-          alt="Womanhood of Wubz"
-          className="mx-auto -mb-2 max-h-45 px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
-        />
+        <h1>
+          <img
+            src="/Logo.png"
+            alt="Womanhood of Wubz"
+            className="mx-auto -mb-2 max-h-45 px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
+          />
+        </h1>
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
           <DoubleElement backClassName="text-glow-header">
             <p className="mb-1 -translate-x-1 el-front:text-sky-300">
