@@ -8,6 +8,10 @@
   --color-instagram: rgb(193 53 132);
 }
 
+/* Style the back/front copy of a DoubleElement from within its children */
+@custom-variant el-back (:where(.el-back) &);
+@custom-variant el-front (:where(.el-front) &);
+
 /* Glow shadow: `shadow-glow-<blur-px>`, colored via the standard shadow-* color utilities */
 @utility shadow-glow-* {
   box-shadow: 0 0 calc(--value(number) * 1px)

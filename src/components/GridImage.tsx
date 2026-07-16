@@ -39,11 +39,7 @@ const GridImageTarget = ({
     aria-labelledby={titleId}
     {...rest}
   >
-    <img
-      src={src}
-      aria-labelledby={titleId}
-      className="max-h-full max-w-full"
-    />
+    <img src={src} aria-labelledby={titleId} className="max-h-full" />
     <div className="absolute top-0 left-3 text-[11cqw]">
       <DoubleElement
         frontClassName="text-sky-300"

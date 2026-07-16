@@ -23,17 +23,17 @@ export const Header = ({
   scrollToGrid: HTMLAttributes<HTMLButtonElement>['onClick']
 }) => {
   return (
-    <header className="relative w-full">
+    <header className="relative">
       <div id="header-center">
         <img
           src="/Logo.png"
           alt="Womanhood of Wubz"
-          className="mx-auto -mb-2 block max-h-45 max-w-[calc(100%-20px)] pt-1.25 filter-[drop-shadow(0_0_30px_var(--color-purple-950))_drop-shadow(0_0_50px_black)_drop-shadow(0_0_30px_black)] max-2xl:max-w-[85%]"
+          className="mx-auto -mb-2 max-h-45 max-w-[calc(100%-20px)] pt-1.25 filter-[drop-shadow(0_0_30px_var(--color-purple-950))_drop-shadow(0_0_50px_black)_drop-shadow(0_0_30px_black)] max-2xl:max-w-[85%]"
         />
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
           <DoubleElement backClassName="text-glow-header">
-            <p className="mb-1 -translate-x-1 in-[.el-front]:text-sky-300">
-              <span className="in-[.el-back]:rounded-full in-[.el-back]:bg-purple-950 in-[.el-back]:shadow-glow-icon">
+            <p className="mb-1 -translate-x-1 el-front:text-sky-300">
+              <span className="el-back:rounded-full el-back:bg-purple-950 el-back:shadow-glow-icon">
                 <FontAwesomeIcon
                   icon={faLocationDot}
                   size="sm"
@@ -42,7 +42,7 @@ export const Header = ({
               </span>
               Denver, CO
             </p>
-            <p className="in-[.el-front]:text-fuchsia-400">
+            <p className="el-front:text-fuchsia-400">
               Bringing you the accessories that celebrate the magic of good
               music and the power of connection
             </p>

@@ -16,7 +16,7 @@ export const Grid = ({
       )}
     >
       {Children.map(children, (child) => (
-        <div className="@container z-1 aspect-square overflow-hidden rounded-3xl border-[5px] border-purple-900 hover:border-yellow-300 hover:shadow-glow-grid-item">
+        <div className="@container z-1 aspect-square overflow-hidden rounded-3xl border-4 border-purple-900 hover:border-yellow-300 hover:shadow-glow-grid-item">
           {child}
         </div>
       ))}

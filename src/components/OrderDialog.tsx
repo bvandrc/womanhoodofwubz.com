@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { copyEmail, INSTAGRAM_USERNAME } from '../contants'
 
 const LINK_BUTTON_CLASSES =
-  'box-border block w-48 min-w-0 rounded-xl border-4 border-black p-2 hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-purple-900'
+  'w-48 min-w-0 rounded-xl border-4 border-black p-2 hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-purple-900'
 
 export const OrderDialog = ({
   subtitle,
@@ -17,11 +17,7 @@ export const OrderDialog = ({
 }) => (
   <div className="text-center">
     {subtitle}
-    <img
-      src={src}
-      aria-labelledby={titleId}
-      className="max-w-full rounded-2xl"
-    />
+    <img src={src} aria-labelledby={titleId} className="rounded-2xl" />
     <div>
       <p>Order form is in the works! For now, send us a message to order:</p>
 
