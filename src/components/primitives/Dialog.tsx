@@ -10,12 +10,14 @@ export const Dialog = ({
   title,
   target,
   className,
-  headerClassName,
+  headerClassName = 'items-center',
 }: PropsWithChildren<
   {
     title: React.ReactNode
     target: React.ReactElement
-    /** Overrides the header's default `items-center` alignment */
+    /**
+     * @default 'items-center'
+     */
     headerClassName?: string
   } & Pick<React.HTMLAttributes<HTMLElement>, 'className'>
 >) => {
@@ -37,7 +39,7 @@ export const Dialog = ({
         onRequestClose={() => setIsOpen(false)}
         overlayClassName="fixed inset-0 z-5 bg-neutral-700/70"
         className={classNames(
-          'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-x-1/2 -translate-y-1/2 overflow-auto rounded-2xl border-2 border-purple-900 bg-amber-300 p-4 font-outfit outline-none',
+          'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-1/2 overflow-auto rounded-2xl border-2 border-purple-900 bg-amber-300 p-4 font-outfit outline-none',
           className,
         )}
         aria={{ labelledby: titleId }}
@@ -46,7 +48,7 @@ export const Dialog = ({
         <div
           className={classNames(
             'mb-2 flex justify-between gap-4',
-            headerClassName ?? 'items-center',
+            headerClassName,
           )}
         >
           <h3 id={titleId} className="text-lg font-bold">

@@ -114,6 +114,7 @@
     padding: 0.5em;
   }
 
+  /* biome-ignore lint/correctness/noUnknownFunction: theme() is resolved by Tailwind at build time */
   @media (width < theme(--breakpoint-md)) {
     html,
     body {
