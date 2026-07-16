@@ -783,7 +783,7 @@
     "@tailwindcss/oxide-win32-arm64-msvc" "4.3.2"
     "@tailwindcss/oxide-win32-x64-msvc" "4.3.2"
 
-"@tailwindcss/vite@^4.3.2":
+"@tailwindcss/vite@^4.3":
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/@tailwindcss/vite/-/vite-4.3.2.tgz#35787e4d450a6b2430693245483441cfd78bf612"
   integrity sha512-eHpMeX4JXfVNJDEcsouTeCBubJBTcTLigeaw/NTUW6PB5ATKKXdyonnXgTBX2VuRbjz1hjfz6C5XAhr52ImQXA==
@@ -1058,7 +1058,7 @@ atomically@^2.0.3:
     stubborn-fs "^2.0.0"
     when-exit "^2.1.4"
 
-axe-core@^4.12.0, axe-core@^4.12.1, axe-core@~4.12.1:
+axe-core@^4.12, axe-core@^4.12.0, axe-core@~4.12.1:
   version "4.12.1"
   resolved "https://registry.yarnpkg.com/axe-core/-/axe-core-4.12.1.tgz#69fe2bf6dfc0b24973af91b1d8e945f79e1b7c44"
   integrity sha512-s7iGf5GaVMxEG0ENN9x+xTr7GFZCb1ZP/1uATUpCEK2X78nDB3RwbtFCo9pGAf9ru+VwoQ464DkaLEeRM08wJA==
@@ -1587,7 +1587,7 @@ lighthouse-stack-packs@1.12.3:
   resolved "https://registry.yarnpkg.com/lighthouse-stack-packs/-/lighthouse-stack-packs-1.12.3.tgz#6019a89fc73e0da9bc365a3a48629a193fbebf00"
   integrity sha512-d8IsOpE83kbANgnM+Tp8+x6HcMpX9o2ITBiUERssgzAIFdZCQzs/f4k6D0DLQTE59enml9mbAOU52Wu35exWtg==
 
-lighthouse@^13.4.0:
+lighthouse@^13.4:
   version "13.4.0"
   resolved "https://registry.yarnpkg.com/lighthouse/-/lighthouse-13.4.0.tgz#81ac4e2ff3053589515711e0200a0039c2b645d5"
   integrity sha512-QumN5pLuQvLLGWpIeUe7+LBH7oHgd0BdD3wIIncVTXe+5wiLBiO2E7pQjNDUWu1si1r0iPKtXOPTZ0sUPXHivA==
@@ -1841,7 +1841,7 @@ playwright-core@1.61.1:
   resolved "https://registry.npmjs.org/playwright-core/-/playwright-core-1.61.1.tgz"
   integrity sha512-h7Qlt6m4REp25qvIdvbDtVmD4LqVXfpRxhORv9L0jzETM05p4fuPJ3dKyuSXQxDSbXnmS79HAgi9589lGSpLkg==
 
-playwright-lighthouse@^4.0.0:
+playwright-lighthouse@^4.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/playwright-lighthouse/-/playwright-lighthouse-4.0.0.tgz#29e1cda066308d007fd1be6f7887dde867972a61"
   integrity sha512-8sLhKLYD9k08UjKMSPzYBCZZ6Ct+wZPUe+K58hZEHIdyyXHg+jniWgd+C2W57B+MDstHiYSbyBiN9S8mzUH82w==
@@ -2142,7 +2142,7 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
-tailwindcss@4.3.2, tailwindcss@^4.3.2:
+tailwindcss@4.3.2, tailwindcss@^4.3:
   version "4.3.2"
   resolved "https://registry.yarnpkg.com/tailwindcss/-/tailwindcss-4.3.2.tgz#408ee67d767a0fef7b174674bb9c5ce136a5ace1"
   integrity sha512-WtctNNSH8A9jlMIqxzuYumOHU5uGZyRv0Q5svQl+oEPy5w84YpBxdb7MdqyiSPQge5jTJ6zFQLq0PFygdccSBA==
