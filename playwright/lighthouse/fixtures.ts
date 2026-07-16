@@ -10,9 +10,8 @@ import {
 
 const BASE_LIGHTHOUSE_PORT = 9222
 
-// Manually set to values that are passing as of initial commit.
 const BASE_THRESHOLDS = {
-  performance: 80,
+  performance: 65, // The SoundCloud widget's scripting dominates Total Blocking Time-- not ours to fix.
   accessibility: 100,
   'best-practices': 100,
   seo: 100,
