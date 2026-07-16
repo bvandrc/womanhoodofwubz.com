@@ -1,126 +1,141 @@
-@import "double-element.css";
-@import "header.css";
-@import "grid.css";
-@import "grid-image.css";
-@import "modal.css";
-@import "order-dialog.css";
-@import "sc-player.css";
+@import "tailwindcss";
 
-/* General */
+@theme {
+  --font-outfit: "Outfit", sans-serif;
 
-:root {
-  /* Colors */
-  --soundcloud: rgb(242, 111, 35);
-  --twitter: rgb(29, 161, 242);
-  --instagram: rgb(193, 53, 132);
-  --reddit: rgb(255, 86, 0);
-  --facebook: rgb(66, 103, 178);
+  /* Brand colors */
+  --color-soundcloud: rgb(242 111 35);
+  --color-instagram: rgb(193 53 132);
+  --color-email: deepskyblue;
+
+  /* Dark purple used for the header glow effects */
+  --color-header-glow: rgb(47 0 80);
 }
 
-body::before {
-  content: "";
-  position: fixed;
-  left: 0;
-  right: 0;
-  top: 0;
-  height: 100%;
-  width: 100%;
-  z-index: -1;
-  background-image: url("/public/background.jpg");
-  background-position: center center;
-  background-repeat: repeat;
-  background-size: min(200vw, 80em);
-  background-attachment: fixed;
-  filter: contrast(0.3) saturate(0.7) brightness(1.2);
+/* Layered glow shadows — too long to inline as arbitrary values */
+
+@utility text-glow-header {
+  text-shadow:
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 0.8em var(--color-header-glow),
+    0 0 1em black,
+    0 0 1em black,
+    0 0 1em black,
+    0 0 1em black,
+    0 0 1em black;
 }
 
-body {
-  background-color: rgb(63, 42, 68);
-  color: black;
-  font-family: tahoma, sans-serif;
-  margin: 0;
-  padding: 0.5em;
+@utility shadow-glow-header {
+  box-shadow:
+    0 0 5px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 15px var(--color-header-glow),
+    0 0 15px var(--color-header-glow),
+    0 0 15px var(--color-header-glow),
+    0 0 15px var(--color-header-glow),
+    0 0 15px var(--color-header-glow),
+    0 0 30px var(--color-header-glow),
+    0 0 50px var(--color-header-glow);
 }
 
-@media (max-width: 800px) {
-  html,
-  body {
-    overflow-x: hidden;
-    padding: 0;
+@utility shadow-glow-icon {
+  box-shadow:
+    0 0 5px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 10px var(--color-header-glow),
+    0 0 10px var(--color-header-glow);
+}
+
+@utility text-glow-grid {
+  text-shadow:
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 8px indigo,
+    0 0 12px purple,
+    0 0 12px purple,
+    0 0 12px purple;
+}
+
+@utility shadow-glow-grid-item {
+  box-shadow:
+    0 0 5px black,
+    0 0 5px indigo,
+    0 0 10px indigo,
+    0 0 15px indigo,
+    0 0 30px indigo,
+    0 0 50px indigo;
+}
+
+@layer base {
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background-image: url("/public/background.jpg");
+    background-position: center center;
+    background-repeat: repeat;
+    background-size: min(200vw, 80em);
+    background-attachment: fixed;
+    filter: contrast(0.3) saturate(0.7) brightness(1.2);
   }
-}
 
-p {
-  margin-top: 0;
-  margin-bottom: 0;
-  line-height: 1.2em;
-}
+  body {
+    background-color: rgb(63 42 68);
+    font-family: tahoma, sans-serif;
+    line-height: normal;
+    padding: 0.5em;
+  }
 
-a {
-  text-decoration: none;
-  cursor: alias;
-}
+  @media (max-width: 800px) {
+    html,
+    body {
+      overflow-x: hidden;
+      padding: 0;
+    }
+  }
 
-h1,
-h2,
-h3,
-h4,
-h5 {
-  margin: 0;
-}
+  p {
+    line-height: 1.2em;
+  }
 
-button,
-.button {
-  appearance: none;
-  font: inherit;
-  color: inherit;
-  border-radius: 0.5em;
-  border-width: 2px;
-  border-style: solid;
-  padding: 0.5em;
-}
+  a {
+    cursor: alias;
+  }
 
-button,
-.button,
-[role="button"] {
-  &:not(a) {
+  button,
+  [role="button"]:not(a) {
     cursor: pointer;
   }
-}
-
-a:link,
-a:visited {
-  color: inherit;
-}
-
-.circle {
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.hidden {
-  max-height: 0px;
-}
-
-.display-none {
-  display: none;
-}
-
-.soundcloud {
-  background-color: var(--soundcloud);
-}
-
-.instagram {
-  background-color: var(--instagram);
-}
-
-.email {
-  background-color: DeepSkyBlue;
-}
-
-#main-body {
-  margin: auto;
-  width: 100%;
 }

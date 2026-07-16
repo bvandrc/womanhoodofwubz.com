@@ -65,7 +65,7 @@ export const App = () => {
             ?.scrollIntoView({ behavior: 'smooth' })
         }
       />
-      <div id="main-body">
+      <div id="main-body" className="mx-auto w-full">
         <SoundcloudPlayer
           href="https://soundcloud.com/marisa-kerstanski/sets/womanhood-of-wubz-vol-3"
           src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1922773207&color=%23FF69B4&auto_play=true&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"

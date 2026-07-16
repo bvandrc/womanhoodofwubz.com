@@ -32,33 +32,58 @@ const GridImageTarget = ({
   // biome-ignore lint/a11y/useSemanticElements: group is fine here
   <div
     role="group"
-    className={classNames('grid-image', className)}
+    className={classNames(
+      'relative flex items-center justify-center overflow-hidden',
+      className,
+    )}
     aria-labelledby={titleId}
     {...rest}
   >
-    <img src={src} aria-labelledby={titleId} />
-    <div className="top-left">
-      <DoubleElement className="number">#{number}</DoubleElement>
+    <img
+      src={src}
+      aria-labelledby={titleId}
+      className="max-h-full max-w-full"
+    />
+    <div className="absolute top-0 left-[0.3em] text-[11cqw]">
+      <DoubleElement
+        frontClassName="text-[lightskyblue]"
+        backClassName="text-glow-grid"
+      >
+        #{number}
+      </DoubleElement>
     </div>
-    <div className="bottom-left caption">
-      <DoubleElement>
+    <div className="absolute bottom-0 left-[0.3em] ml-[0.3em] text-[10cqw]">
+      <DoubleElement backClassName="text-glow-grid">
         {title && (
-          <p className="title" id={titleId}>
+          <p className="font-bold text-[violet] leading-[1em]" id={titleId}>
             {title}
             <br />
-            <span className="type" id={titleId}>
+            <span className="font-normal text-[80%]" id={titleId}>
               {type}
             </span>
           </p>
         )}
-        {subtitle && <p className="subtitle">{subtitle}</p>}
+        {subtitle && <p className="text-[pink]">{subtitle}</p>}
       </DoubleElement>
     </div>
-    <div className="bottom-right">
+    <div className="absolute right-[0.3em] bottom-[0.2em] text-[10cqw]">
       {soldOut ? (
-        <DoubleElement className="sold-out">Sold!</DoubleElement>
+        <DoubleElement
+          className="italic"
+          frontClassName="text-[orange]"
+          backClassName="text-glow-grid"
+        >
+          Sold!
+        </DoubleElement>
       ) : (
-        price && <DoubleElement className="price">${price}</DoubleElement>
+        price && (
+          <DoubleElement
+            frontClassName="text-[lightskyblue]"
+            backClassName="text-glow-grid"
+          >
+            ${price}
+          </DoubleElement>
+        )
       )}
     </div>
   </div>
@@ -73,14 +98,17 @@ export const GridImage = (props: GridImageProps) => {
     <Dialog
       title={
         <>
-          <span className="title">{props.title}</span>
+          <span className="font-black text-[1.5em]">{props.title}</span>
           <br />
-          <span className="type">{props.type}</span>
-          <span className="number">(#{props.number})</span>
+          <span className="text-[90%]">{props.type}</span>
+          <span className="ml-[0.4em] text-[0.8em] text-[grey] italic">
+            (#{props.number})
+          </span>
         </>
       }
       target={<GridImageTarget {...props} titleId={titleId} />}
-      className="order-dialog"
+      className="w-75 text-[1.2em]"
+      headerClassName="items-start"
     >
       <OrderDialog
         subtitle={props.subtitle}
