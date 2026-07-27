@@ -18,6 +18,9 @@ jobs:
   build:
     name: Build
     runs-on: ubuntu-latest
+    env:
+      CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
+      CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
 
     steps:
       - name: Checkout repo
@@ -32,10 +35,13 @@ jobs:
       - name: Lint & Type Check
         run: yarn run check
 
+      - name: Verify Contentful credentials
+        run: |
+          curl --fail --silent --show-error \
+            "https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE}?access_token=${CONTENTFUL_ACCESS_TOKEN}" \
+            > /dev/null
+
       - name: Build project
-        env:
-          CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
-          CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
         run: yarn build
 
       - name: Upload production-ready build files
