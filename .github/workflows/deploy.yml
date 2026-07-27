@@ -38,7 +38,7 @@ jobs:
       - name: Verify Contentful credentials
         run: |
           curl --fail --silent --show-error \
-            "https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE}?access_token=${CONTENTFUL_ACCESS_TOKEN}" \
+            "https://cdn.contentful.com/spaces/${CONTENTFUL_SPACE}/environments/master/entries?limit=1&access_token=${CONTENTFUL_ACCESS_TOKEN}" \
             > /dev/null
 
       - name: Build project
