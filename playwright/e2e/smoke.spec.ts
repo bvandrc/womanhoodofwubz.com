@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { SELECTORS } from '../constants'
 
 test('home page loads', async ({ page }) => {
   await page.goto('/')
@@ -12,6 +13,6 @@ test('home page loads', async ({ page }) => {
   ).toBeVisible()
 
   // product grid populates from Contentful
-  const gridImages = page.locator('#main-grid img')
+  const gridImages = page.locator(SELECTORS.MAIN_GRID_IMAGES)
   await expect(gridImages.first()).toBeVisible({ timeout: 15_000 })
 })

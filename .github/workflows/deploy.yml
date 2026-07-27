@@ -29,8 +29,8 @@ jobs:
       - name: Install dependencies
         run: yarn install --frozen-lockfile
 
-      - name: Linting
-        run: yarn lint
+      - name: Lint & Type Check
+        run: yarn run check
 
       - name: Build project
         env:
