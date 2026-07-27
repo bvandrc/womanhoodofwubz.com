@@ -13,6 +13,7 @@ test('home page loads', async ({ page }) => {
   ).toBeVisible()
 
   // product grid populates from Contentful
-  const gridImages = page.locator(SELECTORS.MAIN_GRID_IMAGES)
-  await expect(gridImages.first()).toBeVisible({ timeout: 15_000 })
+  await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES).first()).toBeVisible({
+    timeout: 15_000,
+  })
 })
