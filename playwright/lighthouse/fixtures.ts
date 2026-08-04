@@ -25,6 +25,6 @@ export const lighthouseTest = withLighthouse({
     accessibility: 100,
     'best-practices': 100,
     seo: 100,
-    'agentic-browsing': 65, // TODO: improve
+    'agentic-browsing': 100,
   },
 })

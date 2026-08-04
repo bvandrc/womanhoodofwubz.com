@@ -8,16 +8,18 @@ const LINK_BUTTON_CLASSES =
 
 export const OrderDialog = ({
   subtitle,
-  src,
   titleId,
+  imgProps,
 }: {
-  subtitle: React.ReactNode
-  src: string
+  subtitle?: React.ReactNode
   titleId: string
+  imgProps: Required<
+    Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'width' | 'height'>
+  >
 }) => (
   <div className="text-center">
     {subtitle}
-    <img src={src} aria-labelledby={titleId} className="rounded-2xl" />
+    <img {...imgProps} aria-labelledby={titleId} className="rounded-2xl" />
     <div>
       <p>Order form is in the works! For now, send us a message to order:</p>
 

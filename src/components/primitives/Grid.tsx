@@ -1,17 +1,25 @@
 import classNames from 'classnames'
-import type { HTMLAttributes, PropsWithChildren } from 'react'
+import type { CSSProperties, HTMLAttributes, PropsWithChildren } from 'react'
 import { Children } from 'react'
+import { GRID_MIN_COLUMN_WIDTH } from '../../contants'
 
 export const Grid = ({
   children,
   className,
+  style,
   ...props
 }: PropsWithChildren<HTMLAttributes<HTMLDivElement>>) => {
   return (
     <div
       {...props}
+      style={
+        {
+          '--grid-min-column': `${GRID_MIN_COLUMN_WIDTH}px`,
+          ...style,
+        } as CSSProperties
+      }
       className={classNames(
-        'grid grid-cols-fit-280 justify-center gap-6 max-md:mx-2 max-md:gap-2',
+        'grid grid-cols-fit justify-center gap-6 max-md:mx-2 max-md:gap-2',
         className,
       )}
     >

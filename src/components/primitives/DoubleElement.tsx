@@ -26,7 +26,7 @@ export const DoubleElement = ({
         className,
         backClassName,
       )}
-      aria-hidden
+      aria-hidden={true}
     >
       {children}
     </span>

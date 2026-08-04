@@ -11,10 +11,11 @@ import {
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { SANITY_DATASET, SANITY_PROJECT_ID } from '../sanity-constants'
-import { GridImage } from './components/GridImage'
 import { Header } from './components/Header'
+import { ProductListing } from './components/ProductListing'
 import { Grid } from './components/primitives/Grid'
 import { SoundcloudPlayer } from './components/SoundcloudPlayer'
+import { GRID_MIN_COLUMN_WIDTH } from './contants'
 
 interface Product {
   _id: string
@@ -41,7 +42,25 @@ const sanityClient = createClient({
 })
 
 const builder = createImageUrlBuilder(sanityClient)
-const urlFor = (source: SanityImageSource) => builder.image(source).url()
+
+/**
+ * Product shots are square, and `auto-fit` adds columns rather than stretching
+ * them, so cells stay near their minimum width — 2x covers retina. Without this
+ * the originals ship at full camera resolution. Doubles as the `width`/`height`
+ * the browser reserves space with, so the grid doesn't reflow as images arrive.
+ */
+const GRID_IMAGE_SIZE = GRID_MIN_COLUMN_WIDTH * 2
+
+const gridImage = ({ image }: Product) => ({
+  src: builder
+    .image(image)
+    .size(GRID_IMAGE_SIZE, GRID_IMAGE_SIZE)
+    .fit('max')
+    .auto('format')
+    .url(),
+  width: GRID_IMAGE_SIZE,
+  height: GRID_IMAGE_SIZE,
+})
 
 const getProducts = (): Promise<Product[]> =>
   sanityClient.fetch<Product[]>(
@@ -84,13 +103,13 @@ export const App = () => {
           title="Womanhood Of Wubz - Volume 3"
         />
         <Grid id={GRID_ID}>
-          {data?.map((item) => {
-            const url = urlFor(item.image)
-            if (!url) return null
-            return (
-              <GridImage key={`griditem-${item._id}`} {...item} src={url} />
-            )
-          })}
+          {data?.map((item) => (
+            <ProductListing
+              key={`griditem-${item._id}`}
+              {...item}
+              {...gridImage(item)}
+            />
+          ))}
         </Grid>
       </main>
     </>

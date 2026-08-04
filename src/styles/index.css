@@ -25,13 +25,15 @@
 @custom-variant el-front (:where(.el-front) &);
 
 /*
- * Auto-fitting grid columns: `grid-cols-fit-<min-width-px>`. Fits as many
- * columns as possible; the 40% cap keeps at least two columns on phones.
+ * Auto-fitting grid columns, sized by the `--grid-min-column` set on the
+ * element. Fits as many columns as possible; the 40% cap keeps at least two
+ * columns on phones. The min width comes from TS (GRID_MIN_COLUMN_WIDTH) so the
+ * layout and the resolution images are requested at stay in step.
  */
-@utility grid-cols-fit-* {
+@utility grid-cols-fit {
   grid-template-columns: repeat(
       auto-fit,
-      minmax(min(calc(--value(number) * 1px), 40%), 1fr)
+      minmax(min(var(--grid-min-column), 40%), 1fr)
     );
 }
 
