@@ -14,7 +14,7 @@ test('Home page', async ({ page, runAudit }) => {
     await runAudit({ name: 'initial-mobile' })
   })
 
-  // product grid populates from Contentful
+  // product grid populates from Sanity
   await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES).first()).toBeVisible({
     timeout: 15_000,
   })

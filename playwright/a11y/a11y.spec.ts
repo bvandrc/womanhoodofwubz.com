@@ -9,7 +9,7 @@ test('Home page', async ({ page }) => {
 
   await checkA11y(page)
 
-  // product grid populates from Contentful
+  // product grid populates from Sanity
   await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES).first()).toBeVisible({
     timeout: 15_000,
   })
@@ -26,7 +26,7 @@ test('Home page', async ({ page }) => {
     await page.locator(SELECTORS.MAIN_GRID_IMAGES).first().click()
     const dialog = page.getByRole('dialog')
     await dialog.waitFor()
-    // dialog image loads from Contentful
+    // dialog image loads from Sanity
     await expect(dialog.locator('img')).toBeVisible({ timeout: 15_000 })
     await checkA11y(page)
     await page.keyboard.press('Escape')
