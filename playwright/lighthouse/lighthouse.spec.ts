@@ -14,7 +14,7 @@ test('Home page', async ({ page, runAudit }) => {
     await runAudit({
       name: 'initial-mobile',
       thresholds: {
-        'agentic-browsing': 85, // TODO: improve
+        'agentic-browsing': 85, // TODO: improve (is 100 on desktop)
       },
     })
   })
@@ -29,6 +29,11 @@ test('Home page', async ({ page, runAudit }) => {
       name: 'loaded-desktop',
       lighthouseArgs: { config: desktopConfig },
     })
-    await runAudit({ name: 'loaded-mobile' })
+    await runAudit({
+      name: 'loaded-mobile',
+      thresholds: {
+        'agentic-browsing': 85, // TODO: improve (is 100 on desktop)
+      },
+    })
   })
 })
