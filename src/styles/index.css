@@ -25,10 +25,9 @@
 @custom-variant el-front (:where(.el-front) &);
 
 /*
- * Auto-fitting grid columns, sized by the `--grid-min-column` set on the
- * element. Fits as many columns as possible; the 40% cap keeps at least two
- * columns on phones. The min width comes from TS (GRID_MIN_COLUMN_WIDTH) so the
- * layout and the resolution images are requested at stay in step.
+ * Auto-fitting grid columns, sized by the `--grid-min-column` the Grid
+ * primitive sets from its `minColumnWidth` prop. Fits as many columns as
+ * possible; the 40% cap keeps at least two columns on phones.
  */
 @utility grid-cols-fit {
   grid-template-columns: repeat(

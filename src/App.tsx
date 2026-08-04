@@ -12,10 +12,9 @@ import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { SANITY_DATASET, SANITY_PROJECT_ID } from '../sanity-constants'
 import { Header } from './components/Header'
+import { PRODUCT_IMAGE_SIZE, ProductGrid } from './components/ProductGrid'
 import { ProductListing } from './components/ProductListing'
-import { Grid } from './components/primitives/Grid'
 import { SoundcloudPlayer } from './components/SoundcloudPlayer'
-import { GRID_MIN_COLUMN_WIDTH } from './contants'
 
 interface Product {
   _id: string
@@ -43,23 +42,16 @@ const sanityClient = createClient({
 
 const builder = createImageUrlBuilder(sanityClient)
 
-/**
- * Product shots are square, and `auto-fit` adds columns rather than stretching
- * them, so cells stay near their minimum width — 2x covers retina. Without this
- * the originals ship at full camera resolution. Doubles as the `width`/`height`
- * the browser reserves space with, so the grid doesn't reflow as images arrive.
- */
-const GRID_IMAGE_SIZE = GRID_MIN_COLUMN_WIDTH * 2
-
+/** Sized to the grid rather than shipping the originals at full camera resolution. */
 const gridImage = ({ image }: Product) => ({
   src: builder
     .image(image)
-    .size(GRID_IMAGE_SIZE, GRID_IMAGE_SIZE)
+    .size(PRODUCT_IMAGE_SIZE, PRODUCT_IMAGE_SIZE)
     .fit('max')
     .auto('format')
     .url(),
-  width: GRID_IMAGE_SIZE,
-  height: GRID_IMAGE_SIZE,
+  width: PRODUCT_IMAGE_SIZE,
+  height: PRODUCT_IMAGE_SIZE,
 })
 
 const getProducts = (): Promise<Product[]> =>
@@ -102,7 +94,7 @@ export const App = () => {
           src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1922773207&color=%23FF69B4&auto_play=true&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"
           title="Womanhood Of Wubz - Volume 3"
         />
-        <Grid id={GRID_ID}>
+        <ProductGrid id={GRID_ID}>
           {data?.map((item) => (
             <ProductListing
               key={`griditem-${item._id}`}
@@ -110,7 +102,7 @@ export const App = () => {
               {...gridImage(item)}
             />
           ))}
-        </Grid>
+        </ProductGrid>
       </main>
     </>
   )
