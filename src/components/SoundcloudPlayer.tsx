@@ -1,6 +1,6 @@
 import { faSoundcloud } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useId, useRef } from 'react'
+import { useId } from 'react'
 
 export const SoundcloudPlayer = ({
   href,
@@ -13,7 +13,6 @@ export const SoundcloudPlayer = ({
 }) => {
   const id = useId()
   const titleId = useId()
-  const iFrameElement = useRef(null)
 
   return (
     // biome-ignore lint/a11y/useSemanticElements: group is fine here
@@ -48,7 +47,6 @@ export const SoundcloudPlayer = ({
           allow="autoplay; encrypted-media"
           src={src}
           id={id}
-          ref={iFrameElement}
           aria-labelledby={titleId}
           className="relative -top-1.25 invert hue-rotate-180"
         />
