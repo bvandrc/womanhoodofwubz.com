@@ -1,6 +1,6 @@
 import { expect, test } from '@playwright/test'
 import { SELECTORS } from '../constants'
-import { checkA11y } from '../support/accessibility'
+import { checkA11y } from './accessibility'
 
 // One "workflow" test: the page itself, plus every dialog reachable from it —
 // scanned once each.
