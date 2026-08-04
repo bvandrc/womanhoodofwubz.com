@@ -11,7 +11,7 @@ const MIN_COLUMN_WIDTH = 280
  * images at this size and give the `img` these dimensions, so the grid doesn't
  * reflow as they arrive.
  */
-export const PRODUCT_IMAGE_SIZE = MIN_COLUMN_WIDTH * 2
+export const PRODUCT_GRID_IMAGE_SIZE = MIN_COLUMN_WIDTH * 2
 
 export const ProductGrid = ({
   children,
