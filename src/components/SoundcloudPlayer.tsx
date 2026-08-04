@@ -28,6 +28,7 @@ export const SoundcloudPlayer = ({
         target="_blank"
         title="SoundCloud playlist"
         id={titleId}
+        rel="noopener"
       >
         <p>
           <FontAwesomeIcon
