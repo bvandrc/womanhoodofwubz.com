@@ -3,8 +3,11 @@ import './styles/index.css'
 
 import './api/soundcloudWidget'
 
-import * as contentful from 'contentful'
-import { isString } from 'es-toolkit'
+import { createClient } from '@sanity/client'
+import {
+  createImageUrlBuilder,
+  type SanityImageSource,
+} from '@sanity/image-url'
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { GridImage } from './components/GridImage'
@@ -12,44 +15,57 @@ import { Header } from './components/Header'
 import { Grid } from './components/primitives/Grid'
 import { SoundcloudPlayer } from './components/SoundcloudPlayer'
 
-type Product = contentful.EntrySkeletonType<{
-  image: contentful.EntryFieldTypes.AssetLink
-  title?: contentful.EntryFieldTypes.Text
-  subtitle?: contentful.EntryFieldTypes.Text
-  number?: contentful.EntryFieldTypes.Integer
-  price?: contentful.EntryFieldTypes.Number
-  soldOut?: contentful.EntryFieldTypes.Boolean
-  type?: contentful.EntryFieldTypes.Text
-}>
+interface Product {
+  _id: string
+  image: SanityImageSource
+  number?: number
+  title?: string
+  type?: string
+  subtitle?: string
+  price?: number
+  soldOut?: boolean
+}
 
 const GRID_ID = 'main-grid'
 
-const { CONTENTFUL_SPACE, CONTENTFUL_ACCESS_TOKEN } = process.env
-if (!CONTENTFUL_SPACE || !CONTENTFUL_ACCESS_TOKEN) {
+const { SANITY_PROJECT_ID, SANITY_DATASET, SANITY_TOKEN } = process.env
+if (!SANITY_PROJECT_ID || !SANITY_DATASET) {
   console.error(process.env)
   throw new Error('need env file')
 }
 
 Modal.setAppElement('#root')
 
-const contentfulClient = contentful.createClient({
-  space: CONTENTFUL_SPACE,
-  accessToken: CONTENTFUL_ACCESS_TOKEN,
+const sanityClient = createClient({
+  projectId: SANITY_PROJECT_ID,
+  dataset: SANITY_DATASET,
+  apiVersion: '2024-01-01',
+  useCdn: true,
+  ...(SANITY_TOKEN ? { token: SANITY_TOKEN } : {}),
 })
 
-type ContentfulResponse = Awaited<
-  ReturnType<typeof contentfulClient.getEntries<Product>>
->
+const builder = createImageUrlBuilder(sanityClient)
+const urlFor = (source: SanityImageSource) => builder.image(source).url()
+
+const getProducts = (): Promise<Product[]> =>
+  sanityClient.fetch<Product[]>(
+    `*[_type == "product"] | order(number desc) {
+          _id,
+          image,
+          number,
+          title,
+          type,
+          subtitle,
+          price,
+          soldOut
+        }`,
+  )
 
 export const App = () => {
-  const [data, setData] = useState<ContentfulResponse>()
+  const [data, setData] = useState<Product[]>()
 
   useEffect(() => {
-    contentfulClient
-      .getEntries<Product>({
-        content_type: 'product',
-        order: ['-fields.number'],
-      })
+    getProducts()
       .then((d) => {
         setData(d)
       })
@@ -72,24 +88,11 @@ export const App = () => {
           title="Womanhood Of Wubz - Volume 3"
         />
         <Grid id={GRID_ID}>
-          {data?.items.map((item) => {
-            const { image, title, subtitle, number, type, price, soldOut } =
-              item.fields
-
-            const url = (image as contentful.Asset)?.fields?.file?.url
-            if (!url || !isString(url)) return null
-
+          {data?.map((item) => {
+            const url = urlFor(item.image)
+            if (!url) return null
             return (
-              <GridImage
-                key={`grid-image-${number}-title-${title}`}
-                src={url.replace(/^\/\//, 'https://')} // Contentful asset URLs are protocol-relative; force https
-                title={title}
-                type={type}
-                subtitle={subtitle}
-                number={number}
-                price={price}
-                soldOut={soldOut}
-              />
+              <GridImage key={`griditem-${item._id}`} {...item} src={url} />
             )
           })}
         </Grid>

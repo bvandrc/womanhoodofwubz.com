@@ -1,5 +1,6 @@
 import { expect } from '@playwright/test'
 import { desktopConfig } from 'lighthouse'
+import { SELECTORS } from '../constants'
 import { lighthouseTest as test } from './fixtures'
 
 test('Home page', async ({ page, runAudit }) => {
@@ -14,7 +15,7 @@ test('Home page', async ({ page, runAudit }) => {
   })
 
   // product grid populates from Contentful
-  await expect(page.locator('#main-grid img').first()).toBeVisible({
+  await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES).first()).toBeVisible({
     timeout: 15_000,
   })
 

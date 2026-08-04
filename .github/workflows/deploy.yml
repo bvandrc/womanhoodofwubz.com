@@ -19,8 +19,8 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     env:
-      CONTENTFUL_SPACE: ${{ secrets.CONTENTFUL_SPACE }}
-      CONTENTFUL_ACCESS_TOKEN: ${{ secrets.CONTENTFUL_ACCESS_TOKEN }}
+      SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
+      SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
 
     steps:
       - name: Checkout repo
