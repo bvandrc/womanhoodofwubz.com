@@ -5,6 +5,10 @@ const SKIPPED_AUDITS = [
   'color-contrast',
   // the rest fail only because of the SoundCloud widget iframe (deprecated
   // APIs, third-party cookies, its own 404s) — not ours to fix
+  'deprecations',
+  'third-party-cookies',
+  'inspector-issues',
+  'errors-in-console',
 ]
 
 export const lighthouseTest = withLighthouse({
