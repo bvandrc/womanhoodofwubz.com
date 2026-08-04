@@ -102,6 +102,7 @@
       "!!**/dist",
       "!**/node_modules",
       "!**/playwright/results",
+      "!**/studio", // The Sanity Studio is its own package with its own eslint/prettier setup.
       "!!**/soundcloudWidget.js"
     ]
   }
