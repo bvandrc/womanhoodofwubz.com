@@ -10,6 +10,7 @@ import {
 } from '@sanity/image-url'
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
+import { SANITY_DATASET, SANITY_PROJECT_ID } from '../sanity-constants'
 import { GridImage } from './components/GridImage'
 import { Header } from './components/Header'
 import { Grid } from './components/primitives/Grid'
@@ -30,9 +31,11 @@ const GRID_ID = 'main-grid'
 
 Modal.setAppElement('#root')
 
+// No token: published content is world-readable, and an untokened client is what
+// lets `useCdn` actually serve from cache.
 const sanityClient = createClient({
-  projectId: 'g2gixocz',
-  dataset: 'production',
+  projectId: SANITY_PROJECT_ID,
+  dataset: SANITY_DATASET,
   apiVersion: '2024-01-01',
   useCdn: true,
 })
