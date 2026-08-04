@@ -1,18 +1,19 @@
 import { expect, test } from '@playwright/test'
-import { checkA11y } from '../support/accessibility'
+import { SELECTORS } from '../constants'
+import { checkA11y } from './accessibility'
 
 // One "workflow" test: the page itself, plus every dialog reachable from it —
 // scanned once each.
 test('Home page', async ({ page }) => {
   await page.goto('/')
 
-  await test.step('Page', async () => {
-    // product grid populates from Contentful
-    await expect(page.locator('#main-grid img').first()).toBeVisible({
-      timeout: 15_000,
-    })
-    await checkA11y(page)
+  await checkA11y(page)
+
+  // product grid populates from Sanity
+  await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES).first()).toBeVisible({
+    timeout: 15_000,
   })
+  await checkA11y(page)
 
   await test.step('Custom Hats Dialog', async () => {
     await page.getByRole('button', { name: 'Custom Hats' }).click()
@@ -22,10 +23,10 @@ test('Home page', async ({ page }) => {
   })
 
   await test.step('Order Dialog', async () => {
-    await page.locator('#main-grid img').first().click()
+    await page.locator(SELECTORS.MAIN_GRID_IMAGES).first().click()
     const dialog = page.getByRole('dialog')
     await dialog.waitFor()
-    // dialog image loads from Contentful
+    // dialog image loads from Sanity
     await expect(dialog.locator('img')).toBeVisible({ timeout: 15_000 })
     await checkA11y(page)
     await page.keyboard.press('Escape')

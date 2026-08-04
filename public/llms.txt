@@ -1,0 +1,15 @@
+# Womanhood of Wubz
+
+> Handmade hats and accessories for bass music fans, made in Denver, Colorado. Bringing you the accessories that celebrate the magic of good music and the power of connection.
+
+The site is a single page. Every designed hat is listed in the product grid, each with a name, a style, a price, and a sold-out flag.
+
+## Pages
+
+- [Home](https://womanhoodofwubz.neocities.org/): the full product grid, plus contact links and a SoundCloud mix player.
+- [Sitemap](https://womanhoodofwubz.neocities.org/sitemap.xml): canonical URL list.
+
+## Elsewhere
+
+- [Instagram](https://www.instagram.com/womanhoodofwubz/): new drops and custom work.
+- [SoundCloud](https://soundcloud.com/marisa-kerstanski): mixes by the artist behind the brand.

@@ -1,25 +1,30 @@
 import classNames from 'classnames'
-import type { HTMLAttributes, PropsWithChildren } from 'react'
-import { Children } from 'react'
+import type { CSSProperties, HTMLAttributes, PropsWithChildren } from 'react'
 
+/**
+ * Fits as many columns as will hold `minColumnWidth`, then shares the leftover
+ * space between them. Children are laid out as-is — wrap them yourself if the
+ * cells need chrome.
+ */
 export const Grid = ({
   children,
   className,
+  style,
+  minColumnWidth,
   ...props
-}: PropsWithChildren<HTMLAttributes<HTMLDivElement>>) => {
-  return (
-    <div
-      {...props}
-      className={classNames(
-        'grid grid-cols-fit-280 justify-center gap-6 max-md:mx-2 max-md:gap-2',
-        className,
-      )}
-    >
-      {Children.map(children, (child) => (
-        <div className="@container z-1 aspect-square overflow-hidden rounded-3xl border-4 border-purple-900 hover:border-yellow-300 hover:shadow-glow-grid-item">
-          {child}
-        </div>
-      ))}
-    </div>
-  )
-}
+}: PropsWithChildren<
+  HTMLAttributes<HTMLDivElement> & { minColumnWidth: number }
+>) => (
+  <div
+    {...props}
+    style={
+      {
+        '--grid-min-column': `${minColumnWidth}px`,
+        ...style,
+      } as CSSProperties
+    }
+    className={classNames('grid grid-cols-fit', className)}
+  >
+    {children}
+  </div>
+)

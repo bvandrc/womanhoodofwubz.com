@@ -1,15 +1,20 @@
 import classNames from 'classnames'
+import { pick } from 'es-toolkit'
 import type { ReactNode } from 'react'
 import { useId } from 'react'
 import { OrderDialog } from './OrderDialog'
 import { Dialog } from './primitives/Dialog'
 import { DoubleElement } from './primitives/DoubleElement'
 
-interface GridImageTargetProps
-  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
-  src: string
+export interface ProductImageLabeledProps
+  extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
+    Required<
+      Pick<
+        React.ImgHTMLAttributes<HTMLImageElement>,
+        'src' | 'width' | 'height'
+      >
+    > {
   title?: ReactNode
-  titleId: string
   type?: ReactNode
   subtitle?: ReactNode
   number?: ReactNode
@@ -17,8 +22,10 @@ interface GridImageTargetProps
   soldOut?: boolean
 }
 
-const GridImageTarget = ({
+const ProductImageLabeled = ({
   src,
+  width,
+  height,
   titleId,
   number,
   title,
@@ -28,7 +35,7 @@ const GridImageTarget = ({
   price,
   className,
   ...rest
-}: GridImageTargetProps) => (
+}: ProductImageLabeledProps & { titleId: string }) => (
   // biome-ignore lint/a11y/useSemanticElements: group is fine here
   <div
     role="group"
@@ -39,7 +46,13 @@ const GridImageTarget = ({
     aria-labelledby={titleId}
     {...rest}
   >
-    <img src={src} aria-labelledby={titleId} className="max-h-full" />
+    <img
+      src={src}
+      width={width}
+      height={height}
+      aria-labelledby={titleId}
+      className="max-h-full"
+    />
     <div className="absolute top-0 left-3 text-[11cqw]">
       <DoubleElement
         frontClassName="text-sky-300"
@@ -85,9 +98,7 @@ const GridImageTarget = ({
   </div>
 )
 
-interface GridImageProps extends Omit<GridImageTargetProps, 'titleId'> {}
-
-export const GridImage = (props: GridImageProps) => {
+export const ProductListing = (props: ProductImageLabeledProps) => {
   const titleId = useId()
 
   return (
@@ -102,13 +113,12 @@ export const GridImage = (props: GridImageProps) => {
           </span>
         </>
       }
-      target={<GridImageTarget {...props} titleId={titleId} />}
+      target={<ProductImageLabeled {...props} titleId={titleId} />}
       className="w-75 text-xl"
       headerClassName="items-start"
     >
       <OrderDialog
-        subtitle={props.subtitle}
-        src={props.src}
+        imgProps={pick(props, ['src', 'width', 'height'])}
         titleId={titleId}
       />
     </Dialog>

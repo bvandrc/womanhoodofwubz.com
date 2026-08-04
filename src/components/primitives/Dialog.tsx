@@ -33,7 +33,6 @@ export const Dialog = ({
         role: 'button',
         tabIndex: 0,
       } satisfies React.HTMLAttributes<HTMLElement>)}
-      {/* @ts-expect-error - react-modal's class type is incompatible with React 18's Component (refs) */}
       <Modal
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
