@@ -39,8 +39,6 @@ jobs:
         suite: [e2e, a11y, lighthouse]
 
     env:
-      SANITY_PROJECT_ID: ${{ secrets.SANITY_PROJECT_ID }}
-      SANITY_DATASET: ${{ secrets.SANITY_DATASET }}
       PORT: 4173
 
     steps:

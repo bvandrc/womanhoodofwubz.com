@@ -28,20 +28,13 @@ interface Product {
 
 const GRID_ID = 'main-grid'
 
-const { SANITY_PROJECT_ID, SANITY_DATASET, SANITY_TOKEN } = process.env
-if (!SANITY_PROJECT_ID || !SANITY_DATASET) {
-  console.error(process.env)
-  throw new Error('need env file')
-}
-
 Modal.setAppElement('#root')
 
 const sanityClient = createClient({
-  projectId: SANITY_PROJECT_ID,
-  dataset: SANITY_DATASET,
+  projectId: 'g2gixocz',
+  dataset: 'production',
   apiVersion: '2024-01-01',
   useCdn: true,
-  ...(SANITY_TOKEN ? { token: SANITY_TOKEN } : {}),
 })
 
 const builder = createImageUrlBuilder(sanityClient)

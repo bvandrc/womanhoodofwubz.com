@@ -1,19 +1,12 @@
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig } from 'vite'
 
-export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd(), '')
-
-  return {
-    base: '/',
-    define: {
-      'process.env': JSON.stringify(env),
-    },
-    plugins: [react(), tailwindcss()],
-    build: {
-      target: 'esnext',
-      modulePreload: false,
-    },
-  }
+export default defineConfig({
+  base: '/',
+  plugins: [react(), tailwindcss()],
+  build: {
+    target: 'esnext',
+    modulePreload: false,
+  },
 })
