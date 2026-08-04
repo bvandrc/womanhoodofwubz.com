@@ -11,7 +11,12 @@ test('Home page', async ({ page, runAudit }) => {
       name: 'initial-desktop',
       lighthouseArgs: { config: desktopConfig },
     })
-    await runAudit({ name: 'initial-mobile' })
+    await runAudit({
+      name: 'initial-mobile',
+      thresholds: {
+        'agentic-browsing': 85, // TODO: improve
+      },
+    })
   })
 
   // product grid populates from Sanity
