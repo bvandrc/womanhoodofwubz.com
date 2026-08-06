@@ -30,10 +30,10 @@
     <link rel="icon" type="image/svg+xml" href="/Logo.png" />
 
     <!-- Security Policy -->
-    <!-- <meta
+    <meta
       http-equiv="Content-Security-Policy"
-      content="connect-src 'self' data: blob: https://*.api.sanity.io https://*.apicdn.sanity.io; "
-    /> -->
+      content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: https://*.sanity.io https://cdn.sanity.io; connect-src 'self' https://*.api.sanity.io https://*.apicdn.sanity.io; frame-src https://w.soundcloud.com; base-uri 'self'; object-src 'none';"
+    />
   </head>
   <body>
     <div id="root"></div>

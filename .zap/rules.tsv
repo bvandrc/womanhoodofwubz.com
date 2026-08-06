@@ -1,0 +1,10 @@
+10020	IGNORE	(Missing Anti-clickjacking Header) — site is a static bundle served by Neocities, which doesn't let us set response headers (X-Frame-Options / CSP frame-ancestors); no server to add them to.
+10021	IGNORE	(X-Content-Type-Options Header Missing) — same static-hosting constraint as 10020, no server to set response headers on.
+10038	IGNORE	(CSP Header Not Set) — mitigated as a <meta http-equiv="Content-Security-Policy"> tag in index.html instead, since Neocities static hosting can't send a real CSP response header.
+10049	IGNORE	(Storable but Non-Cacheable Content) — Cache-Control here comes from vite preview's dev server, not the actual Neocities hosting; not representative of production headers.
+10063	IGNORE	(Permissions Policy Header Missing) — header only, static hosting has no server to set it on.
+10094	IGNORE	(Base64 Disclosure) — heuristic match on base64-looking strings in minified JS/CSS bundles; false-positive prone, not an actual secret leak.
+10096	IGNORE	(Timestamp Disclosure - Unix) — a numeric literal in a bundled third-party library, not an application-controlled timestamp.
+10109	IGNORE	(Modern Web Application) — informational only; confirms the app is an SPA, not a finding to act on.
+90004	IGNORE	(Cross-Origin-Embedder-Policy Header Missing or Invalid) — header only, static hosting has no server to set it on; would also risk blocking the cross-origin SoundCloud iframe embed.
+90005	IGNORE	(Sec-Fetch-Dest Header is Missing) — this is a request header the browser sends; not something the server can set.
