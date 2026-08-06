@@ -29,14 +29,20 @@ jobs:
       - name: Lint & Type Check
         run: pnpm run check
 
-  test:
-    name: Test (${{ matrix.suite }})
+  playwright:
+    name: ${{ matrix.name }}
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        suite: [e2e, a11y, lighthouse]
+        include:
+          - suite: e2e
+            name: E2E Tests
+          - suite: a11y
+            name: Accessibility Tests
+          - suite: lighthouse
+            name: Lighthouse Audit
 
     env:
       PORT: 4173
