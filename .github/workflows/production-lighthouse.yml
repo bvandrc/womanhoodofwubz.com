@@ -1,9 +1,13 @@
 name: Production Lighthouse
 
-# Triggered by wait-for-deploy.yml once it detects a new build is actually
-# live (since publishing does not occur in GitHub)
+# Polls for a live deploy after a push to master (since publishing does not
+# occur in GitHub), then runs the audit if one lands. If no deploy shows up,
+# the run is cancelled instead of failing.
 
 on:
+  push:
+    branches:
+      - master
   workflow_dispatch:
     inputs:
       target_url:
@@ -17,6 +21,7 @@ concurrency:
 
 permissions:
   contents: read
+  actions: write
 
 jobs:
   lighthouse:
@@ -28,16 +33,37 @@ jobs:
       PLAYWRIGHT_BASE_URL: ${{ github.event.inputs.target_url || 'https://womanhoodofwubz.neocities.org/' }}
 
     steps:
+      - name: Wait for deploy
+        id: poll
+        uses: bvandrc/poll-for-deploy@v1
+        with:
+          url: ${{ env.PLAYWRIGHT_BASE_URL }}
+
+      - name: Cancel run (no deploy detected)
+        if: steps.poll.outputs.deployed != 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.cancelWorkflowRun({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              run_id: context.runId,
+            });
+
       - name: Checkout repo
+        if: steps.poll.outputs.deployed == 'true'
         uses: actions/checkout@v7
 
       - name: Setup
+        if: steps.poll.outputs.deployed == 'true'
         uses: ./.github/actions/setup
 
       - name: Setup Playwright
+        if: steps.poll.outputs.deployed == 'true'
         uses: ./.github/actions/setup-playwright
 
       - name: Check target URL is reachable
+        if: steps.poll.outputs.deployed == 'true'
         uses: jtalk/url-health-check-action@v5
         with:
           url: ${{ env.PLAYWRIGHT_BASE_URL }}
@@ -46,11 +72,12 @@ jobs:
           retry-all: true
 
       - name: Run Lighthouse audits
+        if: steps.poll.outputs.deployed == 'true'
         run: pnpm test:lighthouse:production
 
       - name: Upload reports
+        if: always() && steps.poll.outputs.deployed == 'true'
         uses: actions/upload-artifact@v7
-        if: always()
         with:
           name: lighthouse-reports
           path: playwright/results
