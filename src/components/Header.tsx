@@ -8,7 +8,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { HTMLAttributes } from 'react'
-import { INSTAGRAM_USERNAME } from '../contants'
+import { INSTAGRAM_USERNAME } from '../constants'
 import { useCopyEmail } from '../hooks/useCopyEmail'
 import { CircleLink } from './primitives/CircleLink'
 import { Dialog } from './primitives/Dialog'

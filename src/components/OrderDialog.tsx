@@ -1,7 +1,7 @@
 import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { INSTAGRAM_USERNAME } from '../contants'
+import { INSTAGRAM_USERNAME } from '../constants'
 import { useCopyEmail } from '../hooks/useCopyEmail'
 
 const LINK_BUTTON_CLASSES =
