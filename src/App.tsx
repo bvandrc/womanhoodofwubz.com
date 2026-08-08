@@ -1,8 +1,14 @@
 import '@fontsource/outfit'
 // Sizing/layout styles for the inline SVGs FontAwesomeIcon renders. Without
 // this, icons fall back to their intrinsic viewBox size and blow up the page.
+// FontAwesome would otherwise inject these itself, into a <style> tag our CSP
+// (`style-src 'self'`) refuses — hence the import, and autoAddCss off below so
+// it stops trying.
+import { config } from '@fortawesome/fontawesome-svg-core'
 import '@fortawesome/fontawesome-svg-core/styles.css'
 import './styles/index.css'
+
+config.autoAddCss = false
 
 import './api/soundcloudWidget'
 
