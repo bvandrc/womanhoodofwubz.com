@@ -2,9 +2,8 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import classNames from 'classnames'
 import type { PropsWithChildren } from 'react'
-import { cloneElement, useId } from 'react'
+import { cloneElement, useId, useState } from 'react'
 import Modal from 'react-modal'
-import { useBoolean } from 'usehooks-ts'
 
 export const Dialog = ({
   children,
@@ -22,25 +21,21 @@ export const Dialog = ({
     headerClassName?: string
   } & Pick<React.HTMLAttributes<HTMLElement>, 'className'>
 >) => {
-  const {
-    value: isOpen,
-    setTrue: openDialog,
-    setFalse: closeDialog,
-  } = useBoolean(false)
+  const [isOpen, setIsOpen] = useState(false)
   const dialogId = useId()
   const titleId = useId()
 
   return (
     <>
       {cloneElement(target, {
-        onClick: openDialog,
+        onClick: () => setIsOpen(true),
         'aria-haspopup': 'dialog',
         role: 'button',
         tabIndex: 0,
       } satisfies React.HTMLAttributes<HTMLElement>)}
       <Modal
         isOpen={isOpen}
-        onRequestClose={closeDialog}
+        onRequestClose={() => setIsOpen(false)}
         overlayClassName="fixed inset-0 z-5 bg-neutral-700/70"
         className={classNames(
           'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-1/2 overflow-auto rounded-2xl border-2 border-purple-900 bg-amber-300 p-4 font-outfit outline-none',
@@ -62,7 +57,7 @@ export const Dialog = ({
             aria-label="close dialog"
             type="button"
             aria-controls={dialogId}
-            onClick={closeDialog}
+            onClick={() => setIsOpen(false)}
             className="rounded-lg border-2 bg-transparent p-2 hover:bg-black/15"
           >
             <FontAwesomeIcon icon={faXmark} size="xl" />
