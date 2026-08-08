@@ -8,7 +8,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { HTMLAttributes } from 'react'
-import { copyEmail, INSTAGRAM_USERNAME } from '../contants'
+import { INSTAGRAM_USERNAME } from '../contants'
+import { useCopyEmail } from '../hooks/useCopyEmail'
 import { CircleLink } from './primitives/CircleLink'
 import { Dialog } from './primitives/Dialog'
 import { DoubleElement } from './primitives/DoubleElement'
@@ -22,6 +23,8 @@ export const Header = ({
 }: {
   scrollToGrid: HTMLAttributes<HTMLButtonElement>['onClick']
 }) => {
+  const copyEmail = useCopyEmail()
+
   return (
     <header className="relative">
       <div id="header-center">

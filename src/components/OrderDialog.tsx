@@ -1,7 +1,8 @@
 import { faInstagramSquare } from '@fortawesome/free-brands-svg-icons'
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { copyEmail, INSTAGRAM_USERNAME } from '../contants'
+import { INSTAGRAM_USERNAME } from '../contants'
+import { useCopyEmail } from '../hooks/useCopyEmail'
 
 const LINK_BUTTON_CLASSES =
   'w-48 min-w-0 rounded-xl border-4 border-black p-2 hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-purple-900'
@@ -16,34 +17,38 @@ export const OrderDialog = ({
   imgProps: Required<
     Pick<React.ImgHTMLAttributes<HTMLImageElement>, 'src' | 'width' | 'height'>
   >
-}) => (
-  <div className="text-center">
-    {subtitle}
-    <img {...imgProps} aria-labelledby={titleId} className="rounded-2xl" />
-    <div>
-      <p>Order form is in the works! For now, send us a message to order:</p>
+}) => {
+  const copyEmail = useCopyEmail()
 
-      {/** biome-ignore lint/a11y/useSemanticElements: group is fine here */}
-      <div
-        className="mt-3 grid justify-center gap-0.5 font-bold text-2xl"
-        role="group"
-        aria-label="send links"
-      >
-        <a
-          tabIndex={0}
-          className={`bg-instagram ${LINK_BUTTON_CLASSES}`}
-          href={`https://ig.me/m/${INSTAGRAM_USERNAME}`}
+  return (
+    <div className="text-center">
+      {subtitle}
+      <img {...imgProps} aria-labelledby={titleId} className="rounded-2xl" />
+      <div>
+        <p>Order form is in the works! For now, send us a message to order:</p>
+
+        {/** biome-ignore lint/a11y/useSemanticElements: group is fine here */}
+        <div
+          className="mt-3 grid justify-center gap-0.5 font-bold text-2xl"
+          role="group"
+          aria-label="send links"
         >
-          Instagram <FontAwesomeIcon icon={faInstagramSquare} size="xl" />
-        </a>
-        <button
-          className={`bg-sky-400 ${LINK_BUTTON_CLASSES}`}
-          type="button"
-          onClick={copyEmail}
-        >
-          Email <FontAwesomeIcon icon={faEnvelope} size="xl" />
-        </button>
+          <a
+            tabIndex={0}
+            className={`bg-instagram ${LINK_BUTTON_CLASSES}`}
+            href={`https://ig.me/m/${INSTAGRAM_USERNAME}`}
+          >
+            Instagram <FontAwesomeIcon icon={faInstagramSquare} size="xl" />
+          </a>
+          <button
+            className={`bg-sky-400 ${LINK_BUTTON_CLASSES}`}
+            type="button"
+            onClick={copyEmail}
+          >
+            Email <FontAwesomeIcon icon={faEnvelope} size="xl" />
+          </button>
+        </div>
       </div>
     </div>
-  </div>
-)
+  )
+}
