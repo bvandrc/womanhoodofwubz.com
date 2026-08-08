@@ -1,15 +1,60 @@
+## Project
+
+React site for the brand Womanhood of Wubz, deployed to Neocities
+(https://womanhoodofwubz.neocities.org/) by `.github/workflows/deploy.yml`.
+
+- **Stack**: React 18 + Vite + TypeScript, Tailwind v4, Sanity for product
+  content, Playwright for e2e/a11y/Lighthouse. Package manager is **pnpm** —
+  never `npm`/`yarn`.
+- **Layout**: `src/` is the site; `playwright/` is all tests; `studio/` is the
+  Sanity Studio, a **separate pnpm package** with its own eslint/prettier and
+  excluded from this repo's Biome config — don't lint or reformat it from the
+  root.
+- **Sanity coordinates** live in `sanity-constants.ts` at the repo root, shared
+  by the site and the studio. They're public IDs, not secrets; keep the single
+  copy rather than adding env vars.
+
+## Commands
+
+- `pnpm dev` — dev server. `pnpm build`, `pnpm preview`.
+- `pnpm format` — the full gate: Biome check/fix + `tsc` for both the app and
+  `playwright/tsconfig.json`. Run after edits and before every commit.
+- `pnpm test:e2e`, `pnpm test:a11y`, `pnpm test:lighthouse` — Playwright
+  projects, all against the local `vite preview` server. `pnpm pw:open` for the
+  UI runner.
 
 ## Conventions
 
-- **File naming**: kebab-case for utils (`auth-utils.ts`), PascalCase for component primitives (`DropdownMenu.tsx`), camelCase for hooks (`useSession.tsx`, `useSettings.ts`); use `.tsx` when the file exports JSX.
+- **File naming**: kebab-case for utils (`html-utils.ts`), PascalCase for
+  components and component primitives (`CircleLink.tsx`), camelCase for hooks
+  (`useCopyEmail.ts`); use `.tsx` when the file exports JSX.
+- **Exports**: Named exports only — no default exports anywhere in `src/`.
+  Components are arrow-function `const`s; plain utils are `function`
+  declarations.
 - **Constant objects**: UPPER_CASE for names, UPPER_CASE for keys that name entries (namespace/enum-style, e.g. `ROUTES.HOME`, `SELECTORS.TASK_FORM.SUBMIT_BTN`), camelCase for keys that are typed properties of an entry (e.g. `color`, `icon` in `FEATURES`) and for function-valued keys (e.g. `SELECTORS.TASK_CARD.rankFieldBadge(field)`).
 - **Comments/JSDoc**: Describe *what* and *why* from the caller's perspective. Don't restate implementation. Keep to 1–2 lines. No hedge prefixes. Don't repeat what the type signature conveys.
-- **Test IDs**: Use `data-testid` as the HTML attribute and as the prop name in component interfaces (not `testId`). Define all selectors in `playwright/support/constants/selectors.ts` before use.
+- **Test IDs**: Use `data-testid` as the HTML attribute and as the prop name in component interfaces (not `testId`). Define all selectors in `playwright/constants.ts` before use.
+- **Prop types**: Compose from DOM prop types with `Pick`/`Omit` and spread the
+  rest onto the element (see `CircleLink.tsx`) rather than re-declaring
+  `className`, `title`, `href`, etc. Use `import type` for type-only imports.
+- **Styling**: Tailwind v4 is configured **in CSS** — `@theme`, `@custom-variant`
+  and friends in `src/styles/index.css`. There is no `tailwind.config.js` and
+  none should be added. New design tokens (colors, shadows, fonts) go in
+  `@theme`.
+- **Conditional classes**: Use `classnames` (imported as `classNames`), not
+  template-literal concatenation.
 - **Tailwind sizing**: Use `size-X` Tailwind class, not `w-X h-X`.
 - **es-toolkit**: Use `es-toolkit`functions when simpler than using builtin functions-- especially `omit`/`pick`.
 - **usehooks-ts**: Keep in mind that we can use this package for hooks.
-- **Formatting**: Run `npm run format` after making edits and before every commit.
+- **Linting**: Biome is the linter *and* formatter — no eslint/prettier at the
+  root. Style is single quotes, no semicolons, 2-space indent, 80 columns; let
+  `pnpm check` apply it instead of hand-formatting. Notable rules that are
+  errors: `noFloatingPromises`, `noImportCycles`, `noShadow`,
+  `noUndeclaredDependencies`, `noTsIgnore` — fix the cause, don't suppress.
+- **Formatting**: Run `pnpm format` after making edits and before every commit.
 - **Branch naming**: Name work branches `feat/<slug>`, `fix/<slug>`, or `chore/<slug>`, with a short kebab-case slug describing the change. Never use a `claude/` prefix or a random session suffix. This overrides the branch name a session is assigned by default — if you were given one, rename it before the first push.
 - **PR review threads**: Always reply on the thread with what changed (or why it wasn't changed), then mark the thread resolved. Do this for every thread you act on, not just the ones that needed discussion.
 - **Accessible names**: If an `aria-label`'s value would just repeat text already visible in a nearby element (e.g. a row label, column header, or adjacent title), use `aria-labelledby` pointing at that existing element's `id` (add one via React's `useId` if it doesn't have one) instead of duplicating the string. Note: Don't introduce a new `sr-only` element just to make this work — if there's no existing visible text to point to, a plain `aria-label` is fine.
-- **Playwright selectors**: Always add new `data-testid` values to `playwright/support/constants/selectors.ts` before using them in tests.
+- **Accessibility is tested**: `pnpm test:a11y` runs axe over desktop and mobile
+  and CI gates on it, so treat a11y regressions as build failures, not polish.
+- **Playwright selectors**: Always add new `data-testid` values to `playwright/constants.ts` before using them in tests.
