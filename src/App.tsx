@@ -1,4 +1,7 @@
 import '@fontsource/outfit'
+// Sizing/layout styles for the inline SVGs FontAwesomeIcon renders. Without
+// this, icons fall back to their intrinsic viewBox size and blow up the page.
+import '@fortawesome/fontawesome-svg-core/styles.css'
 import './styles/index.css'
 
 import './api/soundcloudWidget'
