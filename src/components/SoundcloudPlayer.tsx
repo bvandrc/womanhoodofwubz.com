@@ -11,7 +11,6 @@ export const SoundcloudPlayer = ({
   src: string
   title: string
 }) => {
-  const id = useId()
   const titleId = useId()
 
   return (
@@ -42,13 +41,10 @@ export const SoundcloudPlayer = ({
           title="SoundCloud Player"
           width="100%"
           height="350"
-          scrolling="no"
-          frameBorder="no"
           allow="autoplay; encrypted-media"
           src={src}
-          id={id}
           aria-labelledby={titleId}
-          className="relative -top-1.25 invert hue-rotate-180"
+          className="relative -top-1.25 border-0 invert hue-rotate-180"
         />
       </div>
     </div>

@@ -131,7 +131,9 @@
     position: fixed;
     inset: 0;
     z-index: -1;
-    background-image: url("/public/background.jpg");
+    /* Served straight out of public/ — a `/public/…` path would make Vite
+       bundle a second copy of the file into dist/assets as well. */
+    background-image: url("/background.jpg");
     background-position: center;
     background-repeat: repeat;
     background-size: min(200vw, 80em);

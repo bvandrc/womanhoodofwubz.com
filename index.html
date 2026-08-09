@@ -14,20 +14,28 @@
 
     <!-- Basic -->
     <meta charset="utf-8" />
-    <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Womanhood of Wubz" />
+    <meta name="description" content="Hats and accessories for bass fans, handmade in Denver, Colorado." />
     <meta name="theme-color" content="violet" />
     <title>Womanhood of Wubz</title>
+    <link rel="canonical" href="https://womanhoodofwubz.neocities.org/" />
 
-    <!-- Preview -->
+    <!-- Product images come from Sanity's image CDN; open the connection early.
+         The data host is project-scoped, so it isn't preconnected here — that
+         would put a second copy of the project ID outside sanity-constants.ts. -->
+    <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
+
+    <!-- Preview. og:image must be absolute — scrapers don't resolve relative URLs. -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Womanhood of Wubz" />
     <meta property="og:title" content="Womanhood of Wubz" />
     <meta property="og:description" content="Hats and accessories for bass fans" />
     <meta property="og:url" content="https://womanhoodofwubz.neocities.org/" />
-    <meta property="og:image" content="/Logo.png" />
+    <meta property="og:image" content="https://womanhoodofwubz.neocities.org/Logo.png" />
+    <meta name="twitter:card" content="summary_large_image" />
 
     <!-- Icon for favorites -->
-    <link rel="icon" type="image/svg+xml" href="/Logo.png" />
+    <link rel="icon" type="image/png" href="/Logo.png" />
 
     <!-- Security Policy -->
     <meta

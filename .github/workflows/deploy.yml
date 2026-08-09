@@ -9,10 +9,9 @@ concurrency: # prevent concurrent deploys doing strange things
   group: deploy-to-neocities
   cancel-in-progress: true
 
+# Neocities is deployed to over its API, so only repo read access is needed.
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 jobs:
   build:
@@ -27,7 +26,7 @@ jobs:
         uses: ./.github/actions/setup
 
       - name: Lint & Type Check
-        run: pnpm run check
+        run: pnpm run format:ci
 
       - name: Build project
         run: pnpm build

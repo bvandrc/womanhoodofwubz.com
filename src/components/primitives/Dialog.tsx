@@ -29,7 +29,16 @@ export const Dialog = ({
     <>
       {cloneElement(target, {
         onClick: () => setIsOpen(true),
+        // The target may be a non-button element carrying role="button", which
+        // browsers don't activate from the keyboard on its own.
+        onKeyDown: (event) => {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
+            setIsOpen(true)
+          }
+        },
         'aria-haspopup': 'dialog',
+        'aria-expanded': isOpen,
         role: 'button',
         tabIndex: 0,
       } satisfies React.HTMLAttributes<HTMLElement>)}

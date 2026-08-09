@@ -5,7 +5,9 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 
 - **Stack**: React 18 + Vite + TypeScript, Tailwind v4, Sanity for product
   content, Playwright for e2e/a11y/Lighthouse.
-- **Layout**: `src/` is the site; `playwright/` is all tests; `studio/` is the
+- **Layout**: `src/` is the site; `playwright/` is all tests, with shared
+  helpers under `playwright/support/` (e.g. `stubSanity`, which serves fixed
+  products so grid tests don't depend on the live dataset); `studio/` is the
   Sanity Studio, a **separate pnpm package** with its own eslint/prettier and
   excluded from this repo's Biome config — don't lint or reformat it from the
   root.
@@ -19,6 +21,9 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 - `pnpm check` — Biome check/fix. `pnpm format` — the full gate: `pnpm check`
   plus `tsc` for the app and for `playwright/tsconfig.json`. Run before every
   commit. (Note the names are the reverse of the template repo's.)
+- `pnpm format:ci` — what CI runs: the same gate, but with `biome ci .` instead
+  of `biome check --fix`, so lint/format problems fail instead of being fixed
+  in place.
 - `pnpm preview:ci` — build and serve on port 4173, which is what the
   Playwright suites expect.
 - `pnpm test:e2e`, `pnpm test:a11y`, `pnpm test:lighthouse` — the Playwright

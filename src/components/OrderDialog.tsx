@@ -34,9 +34,10 @@ export const OrderDialog = ({
           aria-label="send links"
         >
           <a
-            tabIndex={0}
             className={`bg-instagram ${LINK_BUTTON_CLASSES}`}
             href={`https://ig.me/m/${INSTAGRAM_USERNAME}`}
+            target="_blank"
+            rel="noopener"
           >
             Instagram <FontAwesomeIcon icon={faInstagramSquare} size="xl" />
           </a>

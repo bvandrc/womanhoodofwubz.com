@@ -36,9 +36,12 @@ const ProductImageLabeled = ({
   className,
   ...rest
 }: ProductImageLabeledProps & { titleId: string }) => (
-  // biome-ignore lint/a11y/useSemanticElements: group is fine here
+  // Opens the order dialog: this is a Dialog target, which supplies the
+  // click/key handlers to go with the role.
+  // biome-ignore lint/a11y/useSemanticElements: a real button would restyle the tile
   <div
-    role="group"
+    role="button"
+    tabIndex={0}
     className={classNames(
       'relative flex items-center justify-center overflow-hidden',
       className,
@@ -61,15 +64,16 @@ const ProductImageLabeled = ({
         #{number}
       </DoubleElement>
     </div>
-    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]">
+    {/* The id sits out here rather than on the title itself: DoubleElement
+        renders its children twice, so an id inside it would be duplicated.
+        Its back copy is aria-hidden, so only the front copy names the tile. */}
+    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]" id={titleId}>
       <DoubleElement backClassName="text-glow-grid">
         {title && (
-          <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
+          <p className="font-bold text-fuchsia-400 leading-none">
             {title}
             <br />
-            <span className="font-normal text-[80%]" id={titleId}>
-              {type}
-            </span>
+            <span className="font-normal text-[80%]">{type}</span>
           </p>
         )}
         {subtitle && <p className="text-rose-200">{subtitle}</p>}
