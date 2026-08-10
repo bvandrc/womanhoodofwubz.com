@@ -25,10 +25,7 @@ export const DoubleElement = ({
 
   // Duplicating the children duplicates their ids, which breaks any
   // `aria-labelledby` pointing at one. Strip them from the back copy, which is
-  // decorative and aria-hidden, so the front copy keeps the only set. Done
-  // against the DOM rather than the element tree so it also catches ids
-  // rendered by nested components, and in a layout effect so no duplicate is
-  // ever painted.
+  // decorative and aria-hidden, so the front copy keeps the only set.
   useLayoutEffect(() => {
     const back = backRef.current
     if (!back) return
