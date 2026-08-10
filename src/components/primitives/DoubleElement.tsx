@@ -7,7 +7,7 @@ import { useLayoutEffect, useRef } from 'react'
  * shadow) behind a front copy. `el-back`/`el-front` are marker classes so
  * children can style per-copy via `in-[.el-back]:` / `in-[.el-front]:`.
  *
- * Children keep their own ids on the front copy only — see below.
+ * Children keep their own `id` props on the front copy only — see below.
  */
 export const DoubleElement = ({
   children,
