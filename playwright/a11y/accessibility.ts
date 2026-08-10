@@ -17,10 +17,10 @@ export async function checkA11y(
   page: Page,
   options: { disableRules?: string[] } = {},
 ) {
-  // Checked before axe: a duplicated id makes `aria-labelledby` resolve to the
-  // wrong element, which axe would report as a confusing missing-name failure
-  // somewhere else. axe won't catch it itself — `duplicate-id-aria` skips
-  // aria-hidden subtrees, and `duplicate-id` is deprecated and off by default.
+  // Duplicate ids are invalid HTML, and `getElementById` — which is how
+  // `aria-labelledby` and `for` resolve — silently takes the first match. axe
+  // no longer covers this: `duplicate-id` is deprecated and off, and
+  // `duplicate-id-aria` skips the aria-hidden subtrees where copies collect.
   const ids = await page.evaluate(() =>
     [...document.querySelectorAll('[id]')].map((el) => el.id),
   )
