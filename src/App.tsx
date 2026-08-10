@@ -59,8 +59,8 @@ export const App = () => {
         />
         {failed ? (
           <p className="my-8 text-center font-outfit text-lg text-rose-200">
-            Couldn't load the hats right now — please try again later, or reach
-            us on Instagram.
+            Couldn't load the products right now — please try again later, or
+            reach us on Instagram.
           </p>
         ) : (
           <ProductGrid id={GRID_ID}>
