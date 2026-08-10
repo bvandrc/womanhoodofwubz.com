@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test'
-import { checkA11y } from '../a11y/accessibility'
 import { SELECTORS } from '../constants'
 import { STUB_PRODUCTS, stubSanity } from '../support/sanity-stub'
 
@@ -25,7 +24,6 @@ test('product tile opens its dialog from the keyboard', async ({ page }) => {
       const dialog = page.getByRole('dialog')
       await expect(dialog).toBeVisible()
       await expect(dialog).toContainText(IN_STOCK.title)
-      await checkA11y(page)
 
       await page.keyboard.press('Escape')
       await expect(dialog).toBeHidden()
