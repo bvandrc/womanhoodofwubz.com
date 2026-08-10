@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+import { uniq } from 'es-toolkit'
 import { checkA11y } from '../a11y/accessibility'
 import { SELECTORS } from '../constants'
 import { STUB_PRODUCTS, stubSanity } from '../support/sanity-stub'
@@ -36,13 +37,12 @@ test('product tile opens its dialog from the keyboard', async ({ page }) => {
 // DoubleElement renders its children twice, so it's easy to duplicate an id
 // into the DOM and break the aria-labelledby wiring that names each tile.
 test('renders no duplicate element ids', async ({ page }) => {
-  const duplicates = await page.evaluate(() => {
-    const counts = new Map<string, number>()
-    for (const { id } of document.querySelectorAll('[id]')) {
-      counts.set(id, (counts.get(id) ?? 0) + 1)
-    }
-    return [...counts].filter(([, count]) => count > 1).map(([id]) => id)
-  })
+  // page.evaluate runs in the browser, where es-toolkit isn't in scope — so
+  // collect the ids there and work them out here.
+  const ids = await page.evaluate(() =>
+    [...document.querySelectorAll('[id]')].map((el) => el.id),
+  )
+  const duplicated = ids.filter((id, index) => ids.indexOf(id) !== index)
 
-  expect(duplicates).toEqual([])
+  expect(uniq(duplicated)).toEqual([])
 })

@@ -1,9 +1,10 @@
+import { fileURLToPath } from 'node:url'
 import type { Page } from '@playwright/test'
+import type { Product } from '../../src/api/sanity'
 
-/** 1x1 transparent PNG, stood in for every Sanity image asset. */
-const PIXEL_PNG = Buffer.from(
-  'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==',
-  'base64',
+/** Stands in for every Sanity image asset. Any real PNG will do. */
+const STUB_IMAGE = fileURLToPath(
+  new URL('../../public/Logo.png', import.meta.url),
 )
 
 export const STUB_PRODUCTS = [
@@ -31,7 +32,7 @@ export const STUB_PRODUCTS = [
     type: 'Dad Hat',
     soldOut: true,
   },
-]
+] satisfies Product[]
 
 /**
  * Serves fixed products in place of the live Sanity dataset, so tests that
@@ -42,6 +43,6 @@ export async function stubSanity(page: Page) {
     route.fulfill({ json: { result: STUB_PRODUCTS } }),
   )
   await page.route('**/cdn.sanity.io/**', (route) =>
-    route.fulfill({ contentType: 'image/png', body: PIXEL_PNG }),
+    route.fulfill({ path: STUB_IMAGE }),
   )
 }
