@@ -23,9 +23,9 @@ export const DoubleElement = ({
 >) => {
   const backRef = useRef<HTMLSpanElement>(null)
 
-  // Duplicating the children duplicates their ids, which breaks any
-  // `aria-labelledby` pointing at one. Strip them from the back copy, which is
-  // decorative and aria-hidden, so the front copy keeps the only set.
+  // Duplicating the children duplicates their ids, which is invalid HTML and
+  // makes `getElementById` — how `aria-labelledby` and `for` resolve — match
+  // the decorative copy. Strip them so the front copy keeps the only set.
   useLayoutEffect(() => {
     const back = backRef.current
     if (!back) return
