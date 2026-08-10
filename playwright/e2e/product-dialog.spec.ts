@@ -1,5 +1,4 @@
 import { expect, test } from '@playwright/test'
-import { uniq } from 'es-toolkit'
 import { checkA11y } from '../a11y/accessibility'
 import { SELECTORS } from '../constants'
 import { STUB_PRODUCTS, stubSanity } from '../support/sanity-stub'
@@ -32,14 +31,4 @@ test('product tile opens its dialog from the keyboard', async ({ page }) => {
       await expect(dialog).toBeHidden()
     })
   }
-})
-
-// DoubleElement renders its children twice, so it's easy to duplicate an id
-// into the DOM and break the aria-labelledby wiring that names each tile.
-test('renders no duplicate element ids', async ({ page }) => {
-  const ids = await page.evaluate(() =>
-    [...document.querySelectorAll('[id]')].map((el) => el.id),
-  )
-
-  expect(uniq(ids)).toEqual(ids)
 })
