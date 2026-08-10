@@ -33,7 +33,11 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 ## Conventions
 
 - **Package manager**: pnpm. `npm install` writes a competing `package-lock.json` that CI ignores.
-- **package.json**: Key order is enforced in CI by `bvandrc/lint-package-json`. Adding a field in the wrong place fails the lint job.
+- **package.json**: Linted in CI by `bvandrc/lint-package-json`, which covers
+  `studio/package.json` too. It enforces top-level key order, required fields
+  (`name`/`version`/`license`), name and exact-semver version formats, and
+  alphabetically sorted `dependencies`/`devDependencies` — so adding a field in
+  the wrong place, or a dep out of order, fails the lint job.
 - **File naming**: kebab-case for utils (`html-utils.ts`), PascalCase for
   components and component primitives (`CircleLink.tsx`), camelCase for hooks
   (`useCopyEmail.ts`); use `.tsx` when the file exports JSX.
