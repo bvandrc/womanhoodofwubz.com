@@ -37,12 +37,9 @@ test('product tile opens its dialog from the keyboard', async ({ page }) => {
 // DoubleElement renders its children twice, so it's easy to duplicate an id
 // into the DOM and break the aria-labelledby wiring that names each tile.
 test('renders no duplicate element ids', async ({ page }) => {
-  // page.evaluate runs in the browser, where es-toolkit isn't in scope — so
-  // collect the ids there and work them out here.
   const ids = await page.evaluate(() =>
     [...document.querySelectorAll('[id]')].map((el) => el.id),
   )
-  const duplicated = ids.filter((id, index) => ids.indexOf(id) !== index)
 
-  expect(uniq(duplicated)).toEqual([])
+  expect(uniq(ids)).toEqual(ids)
 })

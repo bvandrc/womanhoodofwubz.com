@@ -64,10 +64,10 @@ const ProductImageLabeled = ({
         #{number}
       </DoubleElement>
     </div>
-    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]" id={titleId}>
+    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]">
       <DoubleElement backClassName="text-glow-grid">
         {title && (
-          <p className="font-bold text-fuchsia-400 leading-none">
+          <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
             {title}
             <br />
             <span className="font-normal text-[80%]">{type}</span>

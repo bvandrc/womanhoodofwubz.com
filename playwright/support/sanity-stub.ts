@@ -2,9 +2,9 @@ import { fileURLToPath } from 'node:url'
 import type { Page } from '@playwright/test'
 import type { Product } from '../../src/api/sanity'
 
-/** Stands in for every Sanity image asset. Any real PNG will do. */
+/** Stands in for every Sanity image asset. */
 const STUB_IMAGE = fileURLToPath(
-  new URL('../../public/Logo.png', import.meta.url),
+  new URL('./constants/mock-product-image.png', import.meta.url),
 )
 
 export const STUB_PRODUCTS = [
