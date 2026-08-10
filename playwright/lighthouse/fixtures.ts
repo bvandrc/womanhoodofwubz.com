@@ -21,7 +21,7 @@ export const lighthouseTest = withLighthouse({
     },
   },
   thresholds: {
-    performance: 60, // TODO: improve - The SoundCloud widget's scripting dominates Total Blocking Time-- not ours to fix.
+    performance: 75, // TODO: improve - The SoundCloud widget's scripting dominates Total Blocking Time-- not ours to fix.
     accessibility: 100,
     'best-practices': 100,
     seo: 100,

@@ -36,9 +36,12 @@ const ProductImageLabeled = ({
   className,
   ...rest
 }: ProductImageLabeledProps & { titleId: string }) => (
-  // biome-ignore lint/a11y/useSemanticElements: group is fine here
+  // Opens the order dialog: this is a Dialog target, which supplies the
+  // click/key handlers to go with the role.
+  // biome-ignore lint/a11y/useSemanticElements: a real button would restyle the tile
   <div
-    role="group"
+    role="button"
+    tabIndex={0}
     className={classNames(
       'relative flex items-center justify-center overflow-hidden',
       className,
@@ -67,9 +70,7 @@ const ProductImageLabeled = ({
           <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
             {title}
             <br />
-            <span className="font-normal text-[80%]" id={titleId}>
-              {type}
-            </span>
+            <span className="font-normal text-[80%]">{type}</span>
           </p>
         )}
         {subtitle && <p className="text-rose-200">{subtitle}</p>}

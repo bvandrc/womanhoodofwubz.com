@@ -85,6 +85,8 @@ export const Header = ({
             <b>
               <a
                 href="https://www.instagram.com/p/DDr601Wx6sF/?img_index=1"
+                target="_blank"
+                rel="noopener"
                 className="rounded-2xl bg-purple-900 px-2 py-1 text-lime-400 hover:bg-fuchsia-900"
               >
                 Instagram post{' '}

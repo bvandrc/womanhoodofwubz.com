@@ -5,7 +5,9 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 
 - **Stack**: React 18 + Vite + TypeScript, Tailwind v4, Sanity for product
   content, Playwright for e2e/a11y/Lighthouse.
-- **Layout**: `src/` is the site; `playwright/` is all tests; `studio/` is the
+- **Layout**: `src/` is the site; `playwright/` is all tests, with shared
+  helpers under `playwright/support/` (e.g. `stubSanity`, which serves fixed
+  products so grid tests don't depend on the live dataset); `studio/` is the
   Sanity Studio, a **separate pnpm package** with its own eslint/prettier and
   excluded from this repo's Biome config — don't lint or reformat it from the
   root.
@@ -16,9 +18,10 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 ## Commands
 
 - `pnpm dev` — dev server. `pnpm build`, `pnpm preview`.
-- `pnpm check` — Biome check/fix. `pnpm format` — the full gate: `pnpm check`
-  plus `tsc` for the app and for `playwright/tsconfig.json`. Run before every
-  commit. (Note the names are the reverse of the template repo's.)
+- `pnpm format` — Biome check/fix. `pnpm check` — the full gate, and what CI
+  runs: Biome without `--fix` (so problems fail rather than being repaired in
+  place) plus `tsc` for the app and for `playwright/tsconfig.json`. Run before
+  every commit.
 - `pnpm preview:ci` — build and serve on port 4173, which is what the
   Playwright suites expect.
 - `pnpm test:e2e`, `pnpm test:a11y`, `pnpm test:lighthouse` — the Playwright
@@ -28,7 +31,11 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 ## Conventions
 
 - **Package manager**: pnpm. `npm install` writes a competing `package-lock.json` that CI ignores.
-- **package.json**: Key order is enforced in CI by `bvandrc/lint-package-json`. Adding a field in the wrong place fails the lint job.
+- **package.json**: Linted in CI by `bvandrc/lint-package-json`, which covers
+  `studio/package.json` too. It enforces top-level key order, required fields
+  (`name`/`version`/`license`), name and exact-semver version formats, and
+  alphabetically sorted `dependencies`/`devDependencies` — so adding a field in
+  the wrong place, or a dep out of order, fails the lint job.
 - **File naming**: kebab-case for utils (`html-utils.ts`), PascalCase for
   components and component primitives (`CircleLink.tsx`), camelCase for hooks
   (`useCopyEmail.ts`); use `.tsx` when the file exports JSX.
@@ -53,9 +60,9 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 - **usehooks-ts**: Keep in mind that we can use this package for hooks.
 - **Linting and formatting**: Biome is the linter *and* formatter — no
   eslint/prettier at the root. Style is single quotes, no semicolons, 2-space
-  indent, 80 columns; run `pnpm check` after making edits instead of
-  hand-formatting, and `pnpm format` (check + both type checks) before every
-  commit. Notable rules that are errors: `noFloatingPromises`,
+  indent, 80 columns; run `pnpm format` after making edits instead of
+  hand-formatting, and `pnpm check` (Biome + both type checks) before every
+  commit — it's what CI runs. Notable rules that are errors: `noFloatingPromises`,
   `noImportCycles`, `noShadow`, `noUndeclaredDependencies`, `noTsIgnore` — fix
   the cause, don't suppress.
 - **Test IDs**: Use `data-testid` as the HTML attribute and as the prop name in component interfaces (not `testId`). Define every value in `playwright/constants.ts` before using it in a test.

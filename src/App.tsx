@@ -10,8 +10,6 @@ import './styles/index.css'
 
 config.autoAddCss = false
 
-import './api/soundcloudWidget'
-
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
 import { getProducts, type Product, productImage } from './api/sanity'
@@ -26,13 +24,22 @@ Modal.setAppElement('#root')
 
 export const App = () => {
   const [data, setData] = useState<Product[]>()
+  const [failed, setFailed] = useState(false)
 
   useEffect(() => {
+    let cancelled = false
+
     getProducts()
-      .then((d) => {
-        setData(d)
+      .then((products) => {
+        if (!cancelled) setData(products)
       })
-      .catch((error) => alert(error))
+      .catch(() => {
+        if (!cancelled) setFailed(true)
+      })
+
+    return () => {
+      cancelled = true
+    }
   }, [])
 
   return (
@@ -50,18 +57,25 @@ export const App = () => {
           src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1922773207&color=%23FF69B4&auto_play=true&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"
           title="Womanhood Of Wubz - Volume 3"
         />
-        <ProductGrid id={GRID_ID}>
-          {data?.map((item) => (
-            <ProductListing
-              key={`griditem-${item._id}`}
-              {...item}
-              {...productImage({
-                image: item.image,
-                size: PRODUCT_GRID_IMAGE_SIZE,
-              })}
-            />
-          ))}
-        </ProductGrid>
+        {failed ? (
+          <p className="my-8 text-center font-outfit text-lg text-rose-200">
+            Couldn't load the products right now — please try again later, or
+            reach us on Instagram.
+          </p>
+        ) : (
+          <ProductGrid id={GRID_ID}>
+            {data?.map((item) => (
+              <ProductListing
+                key={item._id}
+                {...item}
+                {...productImage({
+                  image: item.image,
+                  size: PRODUCT_GRID_IMAGE_SIZE,
+                })}
+              />
+            ))}
+          </ProductGrid>
+        )}
       </main>
     </>
   )
