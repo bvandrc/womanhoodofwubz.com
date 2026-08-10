@@ -12,11 +12,8 @@ export const useCopyEmail = () => {
     void copy(EMAIL)
       .catch(() => false)
       .then((copied) => {
-        alert(
-          copied
-            ? `Copied to clipboard: ${EMAIL}\n\nTell us what you want!`
-            : `Email us at: ${EMAIL}\n\nTell us what you want!`,
-        )
+        const label = copied ? 'Copied to clipboard' : 'Email us at'
+        alert(`${label}: ${EMAIL}\n\nTell us what you want!`)
       })
   }
 }

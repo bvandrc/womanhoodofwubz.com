@@ -18,12 +18,10 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 ## Commands
 
 - `pnpm dev` — dev server. `pnpm build`, `pnpm preview`.
-- `pnpm check` — Biome check/fix. `pnpm format` — the full gate: `pnpm check`
-  plus `tsc` for the app and for `playwright/tsconfig.json`. Run before every
-  commit. (Note the names are the reverse of the template repo's.)
-- `pnpm format:ci` — what CI runs: the same gate, but with `biome ci .` instead
-  of `biome check --fix`, so lint/format problems fail instead of being fixed
-  in place.
+- `pnpm format` — Biome check/fix. `pnpm check` — the full gate, and what CI
+  runs: Biome without `--fix` (so problems fail rather than being repaired in
+  place) plus `tsc` for the app and for `playwright/tsconfig.json`. Run before
+  every commit.
 - `pnpm preview:ci` — build and serve on port 4173, which is what the
   Playwright suites expect.
 - `pnpm test:e2e`, `pnpm test:a11y`, `pnpm test:lighthouse` — the Playwright
@@ -62,9 +60,9 @@ React site for the brand Womanhood of Wubz, deployed to Neocities
 - **usehooks-ts**: Keep in mind that we can use this package for hooks.
 - **Linting and formatting**: Biome is the linter *and* formatter — no
   eslint/prettier at the root. Style is single quotes, no semicolons, 2-space
-  indent, 80 columns; run `pnpm check` after making edits instead of
-  hand-formatting, and `pnpm format` (check + both type checks) before every
-  commit. Notable rules that are errors: `noFloatingPromises`,
+  indent, 80 columns; run `pnpm format` after making edits instead of
+  hand-formatting, and `pnpm check` (Biome + both type checks) before every
+  commit — it's what CI runs. Notable rules that are errors: `noFloatingPromises`,
   `noImportCycles`, `noShadow`, `noUndeclaredDependencies`, `noTsIgnore` — fix
   the cause, don't suppress.
 - **Test IDs**: Use `data-testid` as the HTML attribute and as the prop name in component interfaces (not `testId`). Define every value in `playwright/constants.ts` before using it in a test.
