@@ -64,9 +64,6 @@ const ProductImageLabeled = ({
         #{number}
       </DoubleElement>
     </div>
-    {/* The id sits out here rather than on the title itself: DoubleElement
-        renders its children twice, so an id inside it would be duplicated.
-        Its back copy is aria-hidden, so only the front copy names the tile. */}
     <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]" id={titleId}>
       <DoubleElement backClassName="text-glow-grid">
         {title && (
