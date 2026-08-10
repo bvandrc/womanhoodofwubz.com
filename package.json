@@ -69,6 +69,7 @@
     "lighthouse": "^13",
     "lighthouse-audit-utils": "^1",
     "tailwindcss": "^4.3",
+    "type-fest": "^5",
     "typescript": "^7",
     "vite": "^8"
   }
