@@ -38,7 +38,7 @@ export const getProducts = (): Promise<Product[]> =>
           subtitle,
           price,
           soldOut
-        }`,
+        }`
   )
 
 /** Sized to the grid rather than shipping the originals at full camera resolution. */

@@ -21,8 +21,7 @@ export const ProductGrid = ({
   <Grid
     {...props}
     minColumnWidth={MIN_COLUMN_WIDTH}
-    className={cn('justify-center gap-6 max-md:mx-2 max-md:gap-2', className)}
-  >
+    className={cn('justify-center gap-6 max-md:mx-2 max-md:gap-2', className)}>
     {Children.map(children, (child) => (
       <div className="@container z-1 aspect-square overflow-hidden rounded-3xl border-4 border-purple-900 hover:border-yellow-300 hover:shadow-glow-grid-item">
         {child}

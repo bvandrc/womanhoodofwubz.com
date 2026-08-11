@@ -51,12 +51,6 @@ own tooling — leave it alone.
 - **Conditional classes**: Use `cn` from `src/utils/cn.ts` (clsx +
   tailwind-merge), not template-literal concatenation. Don't import `clsx` or
   `classnames` directly.
-- **Linting and formatting**: Biome is the linter *and* formatter — no
-  eslint/prettier at the root. Style is single quotes, no semicolons, 2-space
-  indent, 80 columns — don't hand-format. Notable rules that are
-  errors: `noFloatingPromises`,
-  `noImportCycles`, `noShadow`, `noUndeclaredDependencies`, `noTsIgnore` — fix
-  the cause, don't suppress.
 - **Convention files**: `conventions/` is synced from
   https://github.com/bvandrc/bvandrc-conventions and overwritten on every
   sync. Edit a rule upstream, never in that directory.

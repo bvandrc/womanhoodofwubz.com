@@ -6,7 +6,7 @@ test('home page loads', async ({ page }) => {
 
   await expect(page).toHaveTitle('Womanhood of Wubz')
   await expect(
-    page.getByRole('img', { name: 'Womanhood of Wubz' }),
+    page.getByRole('img', { name: 'Womanhood of Wubz' })
   ).toBeVisible()
   await expect(page.locator(SELECTORS.HEADER.DESIGNED_HATS_BTN)).toBeVisible()
 

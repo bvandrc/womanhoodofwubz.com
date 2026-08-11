@@ -23,8 +23,7 @@ export const Grid = ({
         ...style,
       } as CSSProperties
     }
-    className={cn('grid grid-cols-fit', className)}
-  >
+    className={cn('grid grid-cols-fit', className)}>
     {children}
   </div>
 )
