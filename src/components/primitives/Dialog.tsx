@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import type { PropsWithChildren } from 'react'
 import { cloneElement, useId, useState } from 'react'
 import Modal from 'react-modal'
-import { cn } from '../../utils/cn'
+import { cn } from '@/utils/cn'
 
 export const Dialog = ({
   children,

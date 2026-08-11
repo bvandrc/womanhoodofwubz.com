@@ -5,6 +5,9 @@ import { defineConfig } from 'vite'
 export default defineConfig({
   base: '/',
   plugins: [react(), tailwindcss()],
+  resolve: {
+    tsconfigPaths: true,
+  },
   build: {
     target: 'esnext',
     modulePreload: false,
