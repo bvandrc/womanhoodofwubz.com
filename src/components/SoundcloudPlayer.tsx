@@ -1,6 +1,6 @@
+import { useId } from 'react'
 import { faSoundcloud } from '@fortawesome/free-brands-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useId } from 'react'
 
 export const SoundcloudPlayer = ({
   href,

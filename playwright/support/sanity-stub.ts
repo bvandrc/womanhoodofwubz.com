@@ -1,6 +1,7 @@
 import { fileURLToPath } from 'node:url'
 import type { Page } from '@playwright/test'
-import type { Product } from '../../src/api/sanity'
+
+import type { Product } from '@/api/sanity'
 
 /** Stands in for every Sanity image asset. */
 const STUB_IMAGE = fileURLToPath(

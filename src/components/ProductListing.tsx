@@ -1,7 +1,8 @@
-import { pick } from 'es-toolkit'
 import type { ReactNode } from 'react'
 import { useId } from 'react'
-import { cn } from '../utils/cn'
+import { pick } from 'es-toolkit'
+
+import { cn } from '@/utils'
 import { OrderDialog } from './OrderDialog'
 import { Dialog } from './primitives/Dialog'
 import { DoubleElement } from './primitives/DoubleElement'

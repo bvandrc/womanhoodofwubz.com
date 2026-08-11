@@ -1,5 +1,6 @@
 import type { CSSProperties, HTMLAttributes, PropsWithChildren } from 'react'
-import { cn } from '../../utils/cn'
+
+import { cn } from '@/utils'
 
 /**
  * Fits as many columns as will hold `minColumnWidth`, then shares the leftover

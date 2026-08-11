@@ -12,6 +12,7 @@ config.autoAddCss = false
 
 import { useEffect, useState } from 'react'
 import Modal from 'react-modal'
+
 import { getProducts, type Product, productImage } from './api/sanity'
 import { Header } from './components/Header'
 import { PRODUCT_GRID_IMAGE_SIZE, ProductGrid } from './components/ProductGrid'
