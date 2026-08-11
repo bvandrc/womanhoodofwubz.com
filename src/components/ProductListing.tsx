@@ -47,6 +47,7 @@ const ProductImageLabeled = ({
       className,
     )}
     aria-labelledby={titleId}
+    data-testid="product-grid-tile"
     {...rest}
   >
     <img

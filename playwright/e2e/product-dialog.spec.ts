@@ -14,7 +14,7 @@ test.describe('Product Dialog', () => {
   })
 
   test('product tile opens its dialog from the keyboard', async ({ page }) => {
-    const tile = page.getByRole('button', { name: new RegExp(IN_STOCK.title) })
+    const tile = page.locator(SELECTORS.PRODUCT_GRID.TILE).first()
     await expect(tile).toHaveAttribute('aria-expanded', 'false')
 
     for (const key of ['Enter', ' ']) {
@@ -22,7 +22,7 @@ test.describe('Product Dialog', () => {
         await tile.focus()
         await page.keyboard.press(key)
 
-        const dialog = page.getByRole('dialog')
+        const dialog = page.locator(SELECTORS.DIALOG.SELF)
         await expect(dialog).toBeVisible()
         await expect(dialog).toContainText(IN_STOCK.title)
 

@@ -52,6 +52,7 @@ export const Dialog = ({
         )}
         aria={{ labelledby: titleId }}
         id={dialogId}
+        testId="dialog"
       >
         <div className={cn('mb-2 flex justify-between gap-4', headerClassName)}>
           <h3 id={titleId} className="text-lg font-bold">

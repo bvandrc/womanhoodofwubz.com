@@ -16,15 +16,15 @@ test('Home page', async ({ page }) => {
   await checkA11y(page)
 
   await test.step('Custom Hats Dialog', async () => {
-    await page.getByRole('button', { name: 'Custom Hats' }).click()
-    await page.getByRole('dialog', { name: 'Custom Designs' }).waitFor()
+    await page.locator(SELECTORS.HEADER.CUSTOM_HATS).click()
+    await page.locator(SELECTORS.DIALOG.SELF).waitFor()
     await checkA11y(page)
     await page.keyboard.press('Escape')
   })
 
   await test.step('Order Dialog', async () => {
     await page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first().click()
-    const dialog = page.getByRole('dialog')
+    const dialog = page.locator(SELECTORS.DIALOG.SELF)
     await dialog.waitFor()
     // dialog image loads from Sanity
     await expect(dialog.locator('img')).toBeVisible({ timeout: 15_000 })
