@@ -53,8 +53,7 @@ own tooling — leave it alone.
   `classnames` directly.
 - **Linting and formatting**: Biome is the linter *and* formatter — no
   eslint/prettier at the root. Style is single quotes, no semicolons, 2-space
-  indent, 80 columns — don't hand-format. Run `pnpm check` (Biome + both type
-  checks) before every commit; it's what CI runs. Notable rules that are
+  indent, 80 columns — don't hand-format. Notable rules that are
   errors: `noFloatingPromises`,
   `noImportCycles`, `noShadow`, `noUndeclaredDependencies`, `noTsIgnore` — fix
   the cause, don't suppress.
