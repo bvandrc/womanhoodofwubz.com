@@ -15,7 +15,7 @@ export const CircleLink = ({
 }: CircleLinkProps) => {
   const sharedClassName = cn(
     'group flex size-12 items-center justify-center rounded-full border-3 border-black shadow-glow-30 shadow-black transition-shadow duration-100 hover:shadow-glow-40 hover:shadow-yellow-300',
-    className,
+    className
   )
   const inner = (
     <FontAwesomeIcon
@@ -31,8 +31,7 @@ export const CircleLink = ({
       rel="noopener"
       href={href}
       {...props}
-      className={sharedClassName}
-    >
+      className={sharedClassName}>
       {inner}
     </a>
   ) : (

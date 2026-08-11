@@ -31,21 +31,18 @@ export const OrderDialog = ({
         <div
           className="mt-3 grid justify-center gap-0.5 font-bold text-2xl"
           role="group"
-          aria-label="send links"
-        >
+          aria-label="send links">
           <a
             className={`bg-instagram ${LINK_BUTTON_CLASSES}`}
             href={`https://ig.me/m/${INSTAGRAM_USERNAME}`}
             target="_blank"
-            rel="noopener"
-          >
+            rel="noopener">
             Instagram <FontAwesomeIcon icon={faInstagramSquare} size="xl" />
           </a>
           <button
             className={`bg-sky-400 ${LINK_BUTTON_CLASSES}`}
             type="button"
-            onClick={copyEmail}
-          >
+            onClick={copyEmail}>
             Email <FontAwesomeIcon icon={faEnvelope} size="xl" />
           </button>
         </div>

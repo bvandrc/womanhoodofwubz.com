@@ -50,12 +50,11 @@ export const Dialog = ({
         overlayClassName="fixed inset-0 z-5 bg-neutral-700/70"
         className={cn(
           'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-1/2 overflow-auto rounded-2xl border-2 border-purple-900 bg-amber-300 p-4 font-outfit outline-none',
-          className,
+          className
         )}
         aria={{ labelledby: titleId }}
         id={dialogId}
-        testId={dataTestId}
-      >
+        testId={dataTestId}>
         <div className={cn('mb-2 flex justify-between gap-4', headerClassName)}>
           <h3 id={titleId} className="text-lg font-bold">
             {title}
@@ -65,8 +64,7 @@ export const Dialog = ({
             type="button"
             aria-controls={dialogId}
             onClick={() => setIsOpen(false)}
-            className="rounded-lg border-2 bg-transparent p-2 hover:bg-black/15"
-          >
+            className="rounded-lg border-2 bg-transparent p-2 hover:bg-black/15">
             <FontAwesomeIcon icon={faXmark} size="xl" />
           </button>
         </div>

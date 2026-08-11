@@ -18,16 +18,14 @@ export const SoundcloudPlayer = ({
     <div
       className="group -mt-3 mb-2.5 max-2xl:-mt-1.5"
       role="group"
-      aria-label="soundcloud player"
-    >
+      aria-label="soundcloud player">
       <a
         className="inline-flex rounded-t-2xl bg-black px-4 pt-1 font-bold text-pink-400 italic group-hover:text-shadow-glow-blue"
         href={href}
         target="_blank"
         title="SoundCloud playlist"
         id={titleId}
-        rel="noopener"
-      >
+        rel="noopener">
         <p>
           <FontAwesomeIcon
             icon={faSoundcloud}

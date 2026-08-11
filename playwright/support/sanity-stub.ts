@@ -4,7 +4,7 @@ import type { Product } from '../../src/api/sanity'
 
 /** Stands in for every Sanity image asset. */
 const STUB_IMAGE = fileURLToPath(
-  new URL('./constants/mock-product-image.png', import.meta.url),
+  new URL('./constants/mock-product-image.png', import.meta.url)
 )
 
 export const STUB_PRODUCTS = [
@@ -40,9 +40,9 @@ export const STUB_PRODUCTS = [
  */
 export async function stubSanity(page: Page) {
   await page.route('**/*.sanity.io/**/data/query/**', (route) =>
-    route.fulfill({ json: { result: STUB_PRODUCTS } }),
+    route.fulfill({ json: { result: STUB_PRODUCTS } })
   )
   await page.route('**/cdn.sanity.io/**', (route) =>
-    route.fulfill({ path: STUB_IMAGE }),
+    route.fulfill({ path: STUB_IMAGE })
   )
 }

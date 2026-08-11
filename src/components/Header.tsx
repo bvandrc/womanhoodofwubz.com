@@ -59,13 +59,11 @@ export const Header = ({
           <button
             type="button"
             onClick={scrollToGrid}
-            data-testid="header-designed-hats-btn"
-          >
+            data-testid="header-designed-hats-btn">
             <DoubleElement
               className={BUTTON_CLASSES}
               frontClassName={`${BUTTON_FRONT_CLASSES} border-cyan-300 text-cyan-300`}
-              backClassName="shadow-glow-header"
-            >
+              backClassName="shadow-glow-header">
               Designed Hats <FontAwesomeIcon icon={faCircleArrowDown} />
             </DoubleElement>
           </button>
@@ -75,8 +73,7 @@ export const Header = ({
                 <DoubleElement
                   className={BUTTON_CLASSES}
                   frontClassName={`${BUTTON_FRONT_CLASSES} border-amber-500 text-amber-500`}
-                  backClassName="shadow-glow-header"
-                >
+                  backClassName="shadow-glow-header">
                   Custom Hats{' '}
                   <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
                 </DoubleElement>
@@ -84,16 +81,14 @@ export const Header = ({
             }
             title="Custom Designs"
             className="w-75 leading-loose"
-            data-testid="custom-designs-dialog"
-          >
+            data-testid="custom-designs-dialog">
             Custom designs page is in the works! For now, see our{' '}
             <b>
               <a
                 href="https://www.instagram.com/p/DDr601Wx6sF/?img_index=1"
                 target="_blank"
                 rel="noopener"
-                className="rounded-2xl bg-purple-900 px-2 py-1 text-lime-400 hover:bg-fuchsia-900"
-              >
+                className="rounded-2xl bg-purple-900 px-2 py-1 text-lime-400 hover:bg-fuchsia-900">
                 Instagram post{' '}
                 <FontAwesomeIcon icon={faExternalLink} size="xs" />
               </a>
@@ -108,8 +103,7 @@ export const Header = ({
           <span className="mb-1 inline-block text-emerald-200 italic max-2xl:absolute max-2xl:left-1/2 max-2xl:m-0 max-2xl:max-w-16 max-2xl:-translate-x-40 max-2xl:translate-y-3 max-2xl:text-right">
             <DoubleElement
               className="flex items-center justify-center"
-              backClassName="text-glow-header"
-            >
+              backClassName="text-glow-header">
               Connect with us!
             </DoubleElement>
           </span>

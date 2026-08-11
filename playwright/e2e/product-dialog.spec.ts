@@ -9,7 +9,7 @@ test.describe('Product Dialog', () => {
     await stubSanity(page)
     await page.goto('/')
     await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE)).toHaveCount(
-      STUB_PRODUCTS.length,
+      STUB_PRODUCTS.length
     )
   })
 

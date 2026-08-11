@@ -43,10 +43,9 @@ export const DoubleElement = ({
         className={cn(
           'el-back col-start-1 row-start-1 z-1 text-transparent border-transparent bg-transparent',
           className,
-          backClassName,
+          backClassName
         )}
-        aria-hidden={true}
-      >
+        aria-hidden={true}>
         {children}
       </span>
       <span
@@ -54,9 +53,8 @@ export const DoubleElement = ({
         className={cn(
           'el-front col-start-1 row-start-1 z-2',
           className,
-          frontClassName,
-        )}
-      >
+          frontClassName
+        )}>
         {children}
       </span>
     </div>

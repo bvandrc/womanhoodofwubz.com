@@ -44,12 +44,11 @@ const ProductImageLabeled = ({
     tabIndex={0}
     className={cn(
       'relative flex items-center justify-center overflow-hidden',
-      className,
+      className
     )}
     aria-labelledby={titleId}
     data-testid="product-grid-tile"
-    {...rest}
-  >
+    {...rest}>
     <img
       src={src}
       width={width}
@@ -61,8 +60,7 @@ const ProductImageLabeled = ({
     <div className="absolute top-0 left-3 text-[11cqw]">
       <DoubleElement
         frontClassName="text-sky-300"
-        backClassName="text-glow-grid"
-      >
+        backClassName="text-glow-grid">
         #{number}
       </DoubleElement>
     </div>
@@ -83,16 +81,14 @@ const ProductImageLabeled = ({
         <DoubleElement
           className="italic"
           frontClassName="text-amber-500"
-          backClassName="text-glow-grid"
-        >
+          backClassName="text-glow-grid">
           Sold!
         </DoubleElement>
       ) : (
         price && (
           <DoubleElement
             frontClassName="text-sky-300"
-            backClassName="text-glow-grid"
-          >
+            backClassName="text-glow-grid">
             ${price}
           </DoubleElement>
         )
@@ -119,8 +115,7 @@ export const ProductListing = (props: ProductImageLabeledProps) => {
       target={<ProductImageLabeled {...props} titleId={titleId} />}
       className="w-75 text-xl"
       headerClassName="items-start"
-      data-testid="product-dialog"
-    >
+      data-testid="product-dialog">
       <OrderDialog
         imgProps={pick(props, ['src', 'width', 'height'])}
         titleId={titleId}
