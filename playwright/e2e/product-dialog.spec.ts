@@ -22,7 +22,7 @@ test.describe('Product Dialog', () => {
         await tile.focus()
         await page.keyboard.press(key)
 
-        const dialog = page.locator(SELECTORS.DIALOG.SELF)
+        const dialog = page.locator(SELECTORS.PRODUCT_DIALOG)
         await expect(dialog).toBeVisible()
         await expect(dialog).toContainText(IN_STOCK.title)
 

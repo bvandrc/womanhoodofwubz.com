@@ -119,6 +119,7 @@ export const ProductListing = (props: ProductImageLabeledProps) => {
       target={<ProductImageLabeled {...props} titleId={titleId} />}
       className="w-75 text-xl"
       headerClassName="items-start"
+      data-testid="product-dialog"
     >
       <OrderDialog
         imgProps={pick(props, ['src', 'width', 'height'])}

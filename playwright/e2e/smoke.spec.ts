@@ -8,7 +8,7 @@ test('home page loads', async ({ page }) => {
   await expect(
     page.getByRole('img', { name: 'Womanhood of Wubz' }),
   ).toBeVisible()
-  await expect(page.locator(SELECTORS.HEADER.DESIGNED_HATS)).toBeVisible()
+  await expect(page.locator(SELECTORS.HEADER.DESIGNED_HATS_BTN)).toBeVisible()
 
   // product grid populates from Sanity
   await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first()).toBeVisible({

@@ -11,6 +11,7 @@ export const Dialog = ({
   target,
   className,
   headerClassName = 'items-center',
+  'data-testid': dataTestId,
 }: PropsWithChildren<
   {
     title: React.ReactNode
@@ -19,6 +20,7 @@ export const Dialog = ({
      * @default 'items-center'
      */
     headerClassName?: string
+    'data-testid'?: string
   } & Pick<React.HTMLAttributes<HTMLElement>, 'className'>
 >) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -52,7 +54,7 @@ export const Dialog = ({
         )}
         aria={{ labelledby: titleId }}
         id={dialogId}
-        testId="dialog"
+        testId={dataTestId}
       >
         <div className={cn('mb-2 flex justify-between gap-4', headerClassName)}>
           <h3 id={titleId} className="text-lg font-bold">
