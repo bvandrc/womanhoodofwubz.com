@@ -1,6 +1,6 @@
 import { expect } from '@playwright/test'
 import { desktopConfig } from 'lighthouse'
-import { SELECTORS } from '../constants'
+import { SELECTORS } from '../support/constants/selectors'
 import { lighthouseTest as test } from './fixtures'
 
 test('Home page', async ({ page, runAudit }) => {
@@ -20,7 +20,7 @@ test('Home page', async ({ page, runAudit }) => {
   })
 
   // product grid populates from Sanity
-  await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES).first()).toBeVisible({
+  await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first()).toBeVisible({
     timeout: 15_000,
   })
 

@@ -63,7 +63,7 @@ export const App = () => {
             reach us on Instagram.
           </p>
         ) : (
-          <ProductGrid id={GRID_ID}>
+          <ProductGrid id={GRID_ID} data-testid="product-grid">
             {data?.map((item) => (
               <ProductListing
                 key={item._id}

@@ -55,6 +55,7 @@ const ProductImageLabeled = ({
       height={height}
       aria-labelledby={titleId}
       className="max-h-full"
+      data-testid="product-grid-image"
     />
     <div className="absolute top-0 left-3 text-[11cqw]">
       <DoubleElement

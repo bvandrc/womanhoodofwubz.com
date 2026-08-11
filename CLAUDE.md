@@ -64,9 +64,6 @@ own tooling — leave it alone.
   commit — it's what CI runs. Notable rules that are errors: `noFloatingPromises`,
   `noImportCycles`, `noShadow`, `noUndeclaredDependencies`, `noTsIgnore` — fix
   the cause, don't suppress.
-- **Test IDs**: This repo's registry is a flat `playwright/constants.ts`, not
-  the nested `support/constants/selectors.ts` that
-  `conventions/playwright.md` describes.
 - **Convention files**: `conventions/` is synced from
   https://github.com/bvandrc/bvandrc-conventions and overwritten on every
   sync. Edit a rule upstream, never in that directory.

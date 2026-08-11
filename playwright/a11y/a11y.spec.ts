@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { SELECTORS } from '../constants'
+import { SELECTORS } from '../support/constants/selectors'
 import { checkA11y } from './accessibility'
 
 // One "workflow" test: the page itself, plus every dialog reachable from it —
@@ -10,7 +10,7 @@ test('Home page', async ({ page }) => {
   await checkA11y(page)
 
   // product grid populates from Sanity
-  await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES).first()).toBeVisible({
+  await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first()).toBeVisible({
     timeout: 15_000,
   })
   await checkA11y(page)
@@ -23,7 +23,7 @@ test('Home page', async ({ page }) => {
   })
 
   await test.step('Order Dialog', async () => {
-    await page.locator(SELECTORS.MAIN_GRID_IMAGES).first().click()
+    await page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first().click()
     const dialog = page.getByRole('dialog')
     await dialog.waitFor()
     // dialog image loads from Sanity

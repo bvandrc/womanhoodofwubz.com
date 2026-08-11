@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { SELECTORS } from '../constants'
+import { SELECTORS } from '../support/constants/selectors'
 import { STUB_PRODUCTS, stubSanity } from '../support/sanity-stub'
 
 const [IN_STOCK] = STUB_PRODUCTS
@@ -8,7 +8,7 @@ test.describe('Product Dialog', () => {
   test.beforeEach(async ({ page }) => {
     await stubSanity(page)
     await page.goto('/')
-    await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES)).toHaveCount(
+    await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE)).toHaveCount(
       STUB_PRODUCTS.length,
     )
   })

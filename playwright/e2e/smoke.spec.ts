@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test'
-import { SELECTORS } from '../constants'
+import { SELECTORS } from '../support/constants/selectors'
 
 test('home page loads', async ({ page }) => {
   await page.goto('/')
@@ -13,7 +13,7 @@ test('home page loads', async ({ page }) => {
   ).toBeVisible()
 
   // product grid populates from Sanity
-  await expect(page.locator(SELECTORS.MAIN_GRID_IMAGES).first()).toBeVisible({
+  await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first()).toBeVisible({
     timeout: 15_000,
   })
 })
