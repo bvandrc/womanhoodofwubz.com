@@ -1,6 +1,6 @@
 import type { FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import classNames from 'classnames'
+import { cn } from '../../utils/cn'
 
 type CircleLinkProps = Pick<FontAwesomeIconProps, 'icon'> &
   React.HTMLAttributes<HTMLElement> &
@@ -13,7 +13,7 @@ export const CircleLink = ({
   href,
   ...props
 }: CircleLinkProps) => {
-  const sharedClassName = classNames(
+  const sharedClassName = cn(
     'group flex size-12 items-center justify-center rounded-full border-3 border-black shadow-glow-30 shadow-black transition-shadow duration-100 hover:shadow-glow-40 hover:shadow-yellow-300',
     className,
   )

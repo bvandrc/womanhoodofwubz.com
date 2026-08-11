@@ -1,7 +1,7 @@
-import classNames from 'classnames'
 import { pick } from 'es-toolkit'
 import type { ReactNode } from 'react'
 import { useId } from 'react'
+import { cn } from '../utils/cn'
 import { OrderDialog } from './OrderDialog'
 import { Dialog } from './primitives/Dialog'
 import { DoubleElement } from './primitives/DoubleElement'
@@ -42,11 +42,12 @@ const ProductImageLabeled = ({
   <div
     role="button"
     tabIndex={0}
-    className={classNames(
+    className={cn(
       'relative flex items-center justify-center overflow-hidden',
       className,
     )}
     aria-labelledby={titleId}
+    data-testid="product-grid-tile"
     {...rest}
   >
     <img
@@ -55,6 +56,7 @@ const ProductImageLabeled = ({
       height={height}
       aria-labelledby={titleId}
       className="max-h-full"
+      data-testid="product-grid-image"
     />
     <div className="absolute top-0 left-3 text-[11cqw]">
       <DoubleElement
@@ -117,6 +119,7 @@ export const ProductListing = (props: ProductImageLabeledProps) => {
       target={<ProductImageLabeled {...props} titleId={titleId} />}
       className="w-75 text-xl"
       headerClassName="items-start"
+      data-testid="product-dialog"
     >
       <OrderDialog
         imgProps={pick(props, ['src', 'width', 'height'])}

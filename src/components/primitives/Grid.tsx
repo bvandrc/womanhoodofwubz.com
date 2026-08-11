@@ -1,5 +1,5 @@
-import classNames from 'classnames'
 import type { CSSProperties, HTMLAttributes, PropsWithChildren } from 'react'
+import { cn } from '../../utils/cn'
 
 /**
  * Fits as many columns as will hold `minColumnWidth`, then shares the leftover
@@ -23,7 +23,7 @@ export const Grid = ({
         ...style,
       } as CSSProperties
     }
-    className={classNames('grid grid-cols-fit', className)}
+    className={cn('grid grid-cols-fit', className)}
   >
     {children}
   </div>

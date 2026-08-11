@@ -1,6 +1,6 @@
-import classNames from 'classnames'
 import type { HTMLAttributes, PropsWithChildren } from 'react'
 import { useLayoutEffect, useRef } from 'react'
+import { cn } from '../../utils/cn'
 
 /**
  * Renders children twice, stacked: a back copy (usually carrying a glow
@@ -40,7 +40,7 @@ export const DoubleElement = ({
       <span
         {...props}
         ref={backRef}
-        className={classNames(
+        className={cn(
           'el-back col-start-1 row-start-1 z-1 text-transparent border-transparent bg-transparent',
           className,
           backClassName,
@@ -51,7 +51,7 @@ export const DoubleElement = ({
       </span>
       <span
         {...props}
-        className={classNames(
+        className={cn(
           'el-front col-start-1 row-start-1 z-2',
           className,
           frontClassName,

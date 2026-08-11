@@ -56,7 +56,11 @@ export const Header = ({
           </DoubleElement>
         </div>
         <div className="flex items-center justify-center gap-2.5 pt-0.5 text-center">
-          <button type="button" onClick={scrollToGrid}>
+          <button
+            type="button"
+            onClick={scrollToGrid}
+            data-testid="header-designed-hats-btn"
+          >
             <DoubleElement
               className={BUTTON_CLASSES}
               frontClassName={`${BUTTON_FRONT_CLASSES} border-cyan-300 text-cyan-300`}
@@ -67,7 +71,7 @@ export const Header = ({
           </button>
           <Dialog
             target={
-              <button type="button">
+              <button type="button" data-testid="header-custom-hats-btn">
                 <DoubleElement
                   className={BUTTON_CLASSES}
                   frontClassName={`${BUTTON_FRONT_CLASSES} border-amber-500 text-amber-500`}
@@ -80,6 +84,7 @@ export const Header = ({
             }
             title="Custom Designs"
             className="w-75 leading-loose"
+            data-testid="custom-designs-dialog"
           >
             Custom designs page is in the works! For now, see our{' '}
             <b>

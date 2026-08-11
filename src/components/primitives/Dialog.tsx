@@ -1,9 +1,9 @@
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import classNames from 'classnames'
 import type { PropsWithChildren } from 'react'
 import { cloneElement, useId, useState } from 'react'
 import Modal from 'react-modal'
+import { cn } from '../../utils/cn'
 
 export const Dialog = ({
   children,
@@ -11,6 +11,7 @@ export const Dialog = ({
   target,
   className,
   headerClassName = 'items-center',
+  'data-testid': dataTestId,
 }: PropsWithChildren<
   {
     title: React.ReactNode
@@ -19,6 +20,7 @@ export const Dialog = ({
      * @default 'items-center'
      */
     headerClassName?: string
+    'data-testid'?: string
   } & Pick<React.HTMLAttributes<HTMLElement>, 'className'>
 >) => {
   const [isOpen, setIsOpen] = useState(false)
@@ -46,19 +48,15 @@ export const Dialog = ({
         isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
         overlayClassName="fixed inset-0 z-5 bg-neutral-700/70"
-        className={classNames(
+        className={cn(
           'absolute top-1/2 left-1/2 mr-[-50%] max-w-[80%] -translate-1/2 overflow-auto rounded-2xl border-2 border-purple-900 bg-amber-300 p-4 font-outfit outline-none',
           className,
         )}
         aria={{ labelledby: titleId }}
         id={dialogId}
+        testId={dataTestId}
       >
-        <div
-          className={classNames(
-            'mb-2 flex justify-between gap-4',
-            headerClassName,
-          )}
-        >
+        <div className={cn('mb-2 flex justify-between gap-4', headerClassName)}>
           <h3 id={titleId} className="text-lg font-bold">
             {title}
           </h3>
