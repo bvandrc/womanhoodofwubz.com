@@ -1,6 +1,6 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react'
 import { Children } from 'react'
-import { cn } from '@/utils/cn'
+import { cn } from '@/utils'
 import { Grid } from './primitives/Grid'
 
 const MIN_COLUMN_WIDTH = 280

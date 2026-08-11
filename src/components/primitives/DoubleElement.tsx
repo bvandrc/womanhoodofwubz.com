@@ -1,6 +1,6 @@
 import type { HTMLAttributes, PropsWithChildren } from 'react'
 import { useLayoutEffect, useRef } from 'react'
-import { cn } from '@/utils/cn'
+import { cn } from '@/utils'
 
 /**
  * Renders children twice, stacked: a back copy (usually carrying a glow
