@@ -44,13 +44,6 @@ own tooling — leave it alone.
 ## Conventions
 
 - **Package manager**: pnpm. `npm install` writes a competing `package-lock.json` that CI ignores.
-- **package.json**: Linted in CI by `bvandrc/lint-package-json`, which covers
-  `studio/package.json` too. It enforces top-level key order, required fields
-  (`name`/`version`/`license`), name and exact-semver version formats, and
-  alphabetically sorted `dependencies`/`devDependencies` — so adding a field in
-  the wrong place, or a dep out of order, fails the lint job.
-- **Exports**: No default exports anywhere in `src/`, not even the exceptions
-  `conventions/typescript.md` allows. Plain utils are `function` declarations.
 - **Styling**: Tailwind v4 is configured **in CSS** — `@theme`, `@custom-variant`
   and friends in `src/styles/index.css`. There is no `tailwind.config.js` and
   none should be added. New design tokens (colors, shadows, fonts) go in
@@ -60,9 +53,9 @@ own tooling — leave it alone.
   `classnames` directly.
 - **Linting and formatting**: Biome is the linter *and* formatter — no
   eslint/prettier at the root. Style is single quotes, no semicolons, 2-space
-  indent, 80 columns; run `pnpm format` after making edits instead of
-  hand-formatting, and `pnpm check` (Biome + both type checks) before every
-  commit — it's what CI runs. Notable rules that are errors: `noFloatingPromises`,
+  indent, 80 columns — don't hand-format. Run `pnpm check` (Biome + both type
+  checks) before every commit; it's what CI runs. Notable rules that are
+  errors: `noFloatingPromises`,
   `noImportCycles`, `noShadow`, `noUndeclaredDependencies`, `noTsIgnore` — fix
   the cause, don't suppress.
 - **Convention files**: `conventions/` is synced from
