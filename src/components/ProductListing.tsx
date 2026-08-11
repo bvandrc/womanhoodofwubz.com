@@ -1,7 +1,7 @@
-import classNames from 'classnames'
 import { pick } from 'es-toolkit'
 import type { ReactNode } from 'react'
 import { useId } from 'react'
+import { cn } from '../utils/cn'
 import { OrderDialog } from './OrderDialog'
 import { Dialog } from './primitives/Dialog'
 import { DoubleElement } from './primitives/DoubleElement'
@@ -42,7 +42,7 @@ const ProductImageLabeled = ({
   <div
     role="button"
     tabIndex={0}
-    className={classNames(
+    className={cn(
       'relative flex items-center justify-center overflow-hidden',
       className,
     )}

@@ -55,8 +55,9 @@ own tooling — leave it alone.
   and friends in `src/styles/index.css`. There is no `tailwind.config.js` and
   none should be added. New design tokens (colors, shadows, fonts) go in
   `@theme`.
-- **Conditional classes**: Use `classnames` (imported as `classNames`), not
-  template-literal concatenation.
+- **Conditional classes**: Use `cn` from `src/utils/cn.ts` (clsx +
+  tailwind-merge), not template-literal concatenation. Don't import `clsx` or
+  `classnames` directly.
 - **Linting and formatting**: Biome is the linter *and* formatter — no
   eslint/prettier at the root. Style is single quotes, no semicolons, 2-space
   indent, 80 columns; run `pnpm format` after making edits instead of
