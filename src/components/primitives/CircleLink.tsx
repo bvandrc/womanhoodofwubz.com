@@ -1,5 +1,6 @@
 import type { FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import { cn } from '@/utils'
 
 type CircleLinkProps = Pick<FontAwesomeIconProps, 'icon'> &

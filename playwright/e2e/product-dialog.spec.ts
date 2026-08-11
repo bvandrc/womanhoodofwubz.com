@@ -1,4 +1,5 @@
 import { expect, test } from '@playwright/test'
+
 import { SELECTORS } from '../support/constants/selectors'
 import { STUB_PRODUCTS, stubSanity } from '../support/sanity-stub'
 

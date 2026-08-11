@@ -1,3 +1,4 @@
+import type { HTMLAttributes } from 'react'
 import { faInstagram, faSoundcloud } from '@fortawesome/free-brands-svg-icons'
 import {
   faArrowUpRightFromSquare,
@@ -7,7 +8,7 @@ import {
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import type { HTMLAttributes } from 'react'
+
 import { INSTAGRAM_USERNAME } from '@/constants'
 import { useCopyEmail } from '@/hooks/useCopyEmail'
 import { CircleLink } from './primitives/CircleLink'

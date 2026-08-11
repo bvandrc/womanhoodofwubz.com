@@ -1,5 +1,6 @@
 import { fileURLToPath } from 'node:url'
 import type { Page } from '@playwright/test'
+
 import type { Product } from '../../src/api/sanity'
 
 /** Stands in for every Sanity image asset. */
