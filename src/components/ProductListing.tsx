@@ -108,7 +108,7 @@ export const ProductListing = (props: ProductImageLabeledProps) => {
           <span className="font-black text-3xl">{props.title}</span>
           <br />
           <span className="text-base">{props.type}</span>
-          <span className="ml-2 text-neutral-500 text-sm italic">
+          <span className="ml-2 text-neutral-700 text-sm italic">
             (#{props.number})
           </span>
         </>
