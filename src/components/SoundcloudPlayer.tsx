@@ -16,11 +16,11 @@ export const SoundcloudPlayer = ({
   return (
     // biome-ignore lint/a11y/useSemanticElements: group is fine here
     <div
-      className="group -mt-3 mb-2.5 max-2xl:-mt-1.5"
+      className="group flex h-full flex-col bg-black"
       role="group"
       aria-label="soundcloud player">
       <a
-        className="inline-flex rounded-t-2xl bg-black px-4 pt-1 font-bold text-pink-400 italic group-hover:text-shadow-glow-blue"
+        className="inline-flex px-4 pt-1 font-bold text-pink-400 italic group-hover:text-shadow-glow-blue"
         href={href}
         target="_blank"
         title="SoundCloud playlist"
@@ -34,15 +34,17 @@ export const SoundcloudPlayer = ({
           {title}
         </p>
       </a>
-      <div className="h-73.75 w-full overflow-hidden rounded-2xl rounded-tl-none">
+      {/* Oversize the widget inside a clipping box: it draws a light border on
+          its top edge and a SoundCloud footer bar at the bottom, both of which
+          we'd rather crop than show. */}
+      <div className="w-full min-h-0 flex-1 overflow-hidden">
         <iframe
           title="SoundCloud Player"
           width="100%"
-          height="350"
           allow="autoplay; encrypted-media"
           src={src}
           aria-labelledby={titleId}
-          className="relative -top-1.25 border-0 invert hue-rotate-180"
+          className="relative -top-1.25 h-[calc(100%+65px)] border-0 invert hue-rotate-180"
         />
       </div>
     </div>

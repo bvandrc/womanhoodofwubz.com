@@ -15,7 +15,11 @@ import Modal from 'react-modal'
 
 import { getProducts, type Product, productImage } from './api/sanity'
 import { Header } from './components/Header'
-import { PRODUCT_GRID_IMAGE_SIZE, ProductGrid } from './components/ProductGrid'
+import {
+  MAIN_GRID_IMAGE_SIZE,
+  MainGrid,
+  MainGridCell,
+} from './components/MainGrid'
 import { ProductListing } from './components/ProductListing'
 import { SoundcloudPlayer } from './components/SoundcloudPlayer'
 
@@ -53,29 +57,32 @@ export const App = () => {
         }
       />
       <main>
-        <SoundcloudPlayer
-          href="https://soundcloud.com/marisa-kerstanski/sets/womanhood-of-wubz-vol-3"
-          src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1922773207&color=%23FF69B4&auto_play=true&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"
-          title="Womanhood Of Wubz - Volume 3"
-        />
-        {failed ? (
+        <MainGrid id={GRID_ID} data-testid="product-grid">
+          <MainGridCell span={2}>
+            <SoundcloudPlayer
+              href="https://soundcloud.com/marisa-kerstanski/sets/womanhood-of-wubz-vol-3"
+              src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/1922773207&color=%23FF69B4&auto_play=true&hide_related=true&show_comments=true&show_user=true&show_reposts=false&show_teaser=false"
+              title="Womanhood Of Wubz - Volume 3"
+            />
+          </MainGridCell>
+          {!failed &&
+            data?.map((item) => (
+              <MainGridCell key={item._id}>
+                <ProductListing
+                  {...item}
+                  {...productImage({
+                    image: item.image,
+                    size: MAIN_GRID_IMAGE_SIZE,
+                  })}
+                />
+              </MainGridCell>
+            ))}
+        </MainGrid>
+        {failed && (
           <p className="my-8 text-center font-outfit text-lg text-rose-200">
             Couldn't load the products right now — please try again later, or
             reach us on Instagram.
           </p>
-        ) : (
-          <ProductGrid id={GRID_ID} data-testid="product-grid">
-            {data?.map((item) => (
-              <ProductListing
-                key={item._id}
-                {...item}
-                {...productImage({
-                  image: item.image,
-                  size: PRODUCT_GRID_IMAGE_SIZE,
-                })}
-              />
-            ))}
-          </ProductGrid>
         )}
       </main>
     </>
