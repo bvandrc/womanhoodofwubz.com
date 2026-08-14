@@ -15,7 +15,8 @@ import { CircleLink } from './primitives/CircleLink'
 import { Dialog } from './primitives/Dialog'
 import { DoubleElement } from './primitives/DoubleElement'
 
-const BUTTON_CLASSES = 'w-32 rounded-lg border-2 p-2'
+// Wide enough to keep each label and its icon on one line.
+const BUTTON_CLASSES = 'w-40 whitespace-nowrap rounded-lg border-2 p-2'
 const BUTTON_FRONT_CLASSES =
   'bg-black hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-yellow-300'
 
@@ -35,7 +36,7 @@ export const Header = ({
             alt="Womanhood of Wubz"
             width={422}
             height={423}
-            className="mx-auto -mb-2 h-auto max-h-45 w-auto px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
+            className="mx-auto -mb-2 h-auto max-h-36 w-auto px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
           />
         </h1>
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">

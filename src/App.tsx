@@ -57,7 +57,10 @@ export const App = () => {
         }
       />
       <main>
-        <MainGrid id={GRID_ID} data-testid="product-grid">
+        <MainGrid
+          id={GRID_ID}
+          className="mt-4 max-md:mt-2"
+          data-testid="product-grid">
           <MainGridCell span={2}>
             <SoundcloudPlayer
               href="https://soundcloud.com/marisa-kerstanski/sets/womanhood-of-wubz-vol-3"
