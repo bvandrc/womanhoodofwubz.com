@@ -3,7 +3,12 @@ import type { HTMLAttributes, PropsWithChildren } from 'react'
 import { cn } from '@/utils'
 import { Grid as GridBase } from './primitives/Grid'
 
-const MIN_COLUMN_WIDTH = 280
+/**
+ * Also sets how large cells get: `auto-fit` adds a column as soon as one more
+ * fits at this width, so a cell tops out around 1.5x it (at two columns) and
+ * less the more columns there are. Lower this to keep cells smaller.
+ */
+const MIN_COLUMN_WIDTH = 240
 
 /**
  * Product shots are square, and `auto-fit` adds columns rather than stretching
@@ -32,7 +37,7 @@ const SPAN_CLASSES = {
   2: 'col-span-2 aspect-2/1',
 } satisfies Record<number, string>
 
-/** A grid cell with the tile chrome. Every `ProductGrid` child should be one. */
+/** A grid cell with the tile chrome. Every `MainGrid` child should be one. */
 export const MainGridCell = ({
   span = 1,
   children,
