@@ -94,6 +94,22 @@
     border-box;
 }
 
+/*
+ * Gradient-filled text, keyed off `--gradient-accent` like `gradient-border`.
+ * Clipping to the glyphs leaves the element's alpha glyph-shaped, so an
+ * ancestor's drop-shadow glow still tracks the letterforms. Any icon inside
+ * needs its own color — an <svg> filled with currentcolor goes invisible.
+ */
+@utility text-gradient {
+  background-image: linear-gradient(
+    180deg,
+    var(--gradient-accent),
+    var(--gradient-accent-end, var(--color-fuchsia-400))
+  );
+  background-clip: text;
+  color: transparent;
+}
+
 /* Layered glow shadows — too long to inline as arbitrary values */
 
 @utility shadow-glow-header {

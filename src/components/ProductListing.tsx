@@ -57,24 +57,36 @@ const ProductImageLabeled = ({
       className="max-h-full"
       data-testid="product-grid-image"
     />
-    <div className="absolute top-0 left-3 text-[11cqw] text-sky-300 filter-(--filter-glow-grid)">
+    <div className="absolute top-0 left-3 text-[11cqw] filter-(--filter-glow-grid) text-gradient [--gradient-accent-end:var(--color-fuchsia-300)] [--gradient-accent:var(--color-sky-300)]">
       #{number}
     </div>
-    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw] filter-(--filter-glow-grid)">
+    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw] filter-(--filter-glow-grid) [--gradient-accent-end:var(--color-fuchsia-300)]">
       {title && (
-        <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
+        <p
+          className="font-bold leading-none text-gradient [--gradient-accent:var(--color-fuchsia-200)]"
+          id={titleId}>
           {title}
           <br />
           <span className="font-normal text-[80%]">{type}</span>
         </p>
       )}
-      {subtitle && <p className="text-rose-200">{subtitle}</p>}
+      {subtitle && (
+        <p className="text-gradient [--gradient-accent:var(--color-rose-200)]">
+          {subtitle}
+        </p>
+      )}
     </div>
-    <div className="absolute right-3 bottom-2 text-[10cqw] filter-(--filter-glow-grid)">
+    <div className="absolute right-3 bottom-2 text-[10cqw] filter-(--filter-glow-grid) [--gradient-accent-end:var(--color-fuchsia-300)]">
       {soldOut ? (
-        <span className="text-amber-500 italic">Sold!</span>
+        <span className="italic text-gradient [--gradient-accent:var(--color-amber-500)]">
+          Sold!
+        </span>
       ) : (
-        price && <span className="text-sky-300">${price}</span>
+        price && (
+          <span className="text-gradient [--gradient-accent:var(--color-sky-300)]">
+            ${price}
+          </span>
+        )
       )}
     </div>
   </div>

@@ -45,12 +45,21 @@ export const Header = ({
             className="mx-auto -mb-2 h-auto max-h-36 w-auto px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
           />
         </h1>
-        <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl filter-(--filter-glow-header)">
-          <p className="mb-1 -translate-x-1 text-sky-300">
-            <FontAwesomeIcon icon={faLocationDot} size="sm" className="pr-2" />
+        {/* One sweep across both lines: sky at the top falling into fuchsia at
+            the bottom, which is where the two flat colours already sat. */}
+        <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl filter-(--filter-glow-header) text-gradient [--gradient-accent:var(--color-sky-300)]">
+          {/* Offsets the icon's trailing padding so the line reads centred. A
+              margin rather than a translate: a transform would paint the line
+              separately and the clipped gradient could not reach it. */}
+          <p className="mr-2 mb-1">
+            <FontAwesomeIcon
+              icon={faLocationDot}
+              size="sm"
+              className="pr-2 text-sky-300"
+            />
             Denver, CO
           </p>
-          <p className="text-fuchsia-400">
+          <p>
             Bringing you the accessories that celebrate the magic of good music
             and the power of connection
           </p>
