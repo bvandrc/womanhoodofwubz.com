@@ -5,7 +5,6 @@ import { pick } from 'es-toolkit'
 import { cn } from '@/utils'
 import { OrderDialog } from './OrderDialog'
 import { Dialog } from './primitives/Dialog'
-import { DoubleElement } from './primitives/DoubleElement'
 
 export interface ProductImageLabeledProps
   extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'>,
@@ -58,41 +57,24 @@ const ProductImageLabeled = ({
       className="max-h-full"
       data-testid="product-grid-image"
     />
-    <div className="absolute top-0 left-3 text-[11cqw]">
-      <DoubleElement
-        frontClassName="text-sky-300"
-        backClassName="text-glow-grid">
-        #{number}
-      </DoubleElement>
+    <div className="absolute top-0 left-3 text-[11cqw] text-sky-300 filter-(--filter-glow-grid)">
+      #{number}
     </div>
-    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]">
-      <DoubleElement backClassName="text-glow-grid">
-        {title && (
-          <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
-            {title}
-            <br />
-            <span className="font-normal text-[80%]">{type}</span>
-          </p>
-        )}
-        {subtitle && <p className="text-rose-200">{subtitle}</p>}
-      </DoubleElement>
+    <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw] filter-(--filter-glow-grid)">
+      {title && (
+        <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
+          {title}
+          <br />
+          <span className="font-normal text-[80%]">{type}</span>
+        </p>
+      )}
+      {subtitle && <p className="text-rose-200">{subtitle}</p>}
     </div>
-    <div className="absolute right-3 bottom-2 text-[10cqw]">
+    <div className="absolute right-3 bottom-2 text-[10cqw] filter-(--filter-glow-grid)">
       {soldOut ? (
-        <DoubleElement
-          className="italic"
-          frontClassName="text-amber-500"
-          backClassName="text-glow-grid">
-          Sold!
-        </DoubleElement>
+        <span className="text-amber-500 italic">Sold!</span>
       ) : (
-        price && (
-          <DoubleElement
-            frontClassName="text-sky-300"
-            backClassName="text-glow-grid">
-            ${price}
-          </DoubleElement>
-        )
+        price && <span className="text-sky-300">${price}</span>
       )}
     </div>
   </div>

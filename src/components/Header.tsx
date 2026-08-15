@@ -11,14 +11,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { INSTAGRAM_USERNAME } from '@/constants'
 import { useCopyEmail } from '@/hooks/useCopyEmail'
+import { cn } from '@/utils'
 import { CircleLink } from './primitives/CircleLink'
 import { Dialog } from './primitives/Dialog'
-import { DoubleElement } from './primitives/DoubleElement'
 
-// Wide enough to keep each label and its icon on one line.
-const BUTTON_CLASSES = 'w-40 whitespace-nowrap rounded-lg border-2 p-2'
-const BUTTON_FRONT_CLASSES =
-  'bg-black hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-yellow-300'
+// Wide enough to keep each label and its icon on one line. The purple glow is
+// a filter so the yellow hover glow can own box-shadow — two box-shadows on
+// one element would replace each other rather than stack.
+const BUTTON_CLASSES =
+  'w-40 whitespace-nowrap rounded-lg border-2 bg-black p-2 filter-(--filter-glow-button) hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-yellow-300'
 
 export const Header = ({
   scrollToGrid,
@@ -39,46 +40,40 @@ export const Header = ({
             className="mx-auto -mb-2 h-auto max-h-36 w-auto px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
           />
         </h1>
-        <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
-          <DoubleElement backClassName="text-glow-header">
-            <p className="mb-1 -translate-x-1 el-front:text-sky-300">
-              <span className="el-back:rounded-full el-back:bg-purple-950 el-back:shadow-glow-icon">
-                <FontAwesomeIcon
-                  icon={faLocationDot}
-                  size="sm"
-                  className="pr-2"
-                />
-              </span>
-              Denver, CO
-            </p>
-            <p className="el-front:text-fuchsia-400">
-              Bringing you the accessories that celebrate the magic of good
-              music and the power of connection
-            </p>
-          </DoubleElement>
+        <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl filter-(--filter-glow-header)">
+          <p className="mb-1 -translate-x-1 text-sky-300">
+            <span className="rounded-full bg-purple-950 shadow-glow-icon">
+              <FontAwesomeIcon
+                icon={faLocationDot}
+                size="sm"
+                className="pr-2"
+              />
+            </span>
+            Denver, CO
+          </p>
+          <p className="text-fuchsia-400">
+            Bringing you the accessories that celebrate the magic of good music
+            and the power of connection
+          </p>
         </div>
         <div className="flex items-center justify-center gap-2.5 pt-0.5 text-center">
           <button
             type="button"
             onClick={scrollToGrid}
+            className={cn(BUTTON_CLASSES, 'border-cyan-300 text-cyan-300')}
             data-testid="header-designed-hats-btn">
-            <DoubleElement
-              className={BUTTON_CLASSES}
-              frontClassName={`${BUTTON_FRONT_CLASSES} border-cyan-300 text-cyan-300`}
-              backClassName="shadow-glow-header">
-              Designed Hats <FontAwesomeIcon icon={faCircleArrowDown} />
-            </DoubleElement>
+            Designed Hats <FontAwesomeIcon icon={faCircleArrowDown} />
           </button>
           <Dialog
             target={
-              <button type="button" data-testid="header-custom-hats-btn">
-                <DoubleElement
-                  className={BUTTON_CLASSES}
-                  frontClassName={`${BUTTON_FRONT_CLASSES} border-amber-500 text-amber-500`}
-                  backClassName="shadow-glow-header">
-                  Custom Hats{' '}
-                  <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
-                </DoubleElement>
+              <button
+                type="button"
+                className={cn(
+                  BUTTON_CLASSES,
+                  'border-amber-500 text-amber-500'
+                )}
+                data-testid="header-custom-hats-btn">
+                Custom Hats <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </button>
             }
             title="Custom Designs"
@@ -103,11 +98,9 @@ export const Header = ({
       <div className="absolute right-25 bottom-0 text-right max-2xl:relative max-2xl:right-auto max-2xl:mx-auto max-2xl:my-3 max-2xl:text-center max-2xl:leading-none">
         <section className="text-center" aria-label="links and social media">
           <span className="mb-1 inline-block text-emerald-200 italic max-2xl:absolute max-2xl:left-1/2 max-2xl:m-0 max-2xl:max-w-16 max-2xl:-translate-x-40 max-2xl:translate-y-3 max-2xl:text-right">
-            <DoubleElement
-              className="flex items-center justify-center"
-              backClassName="text-glow-header">
+            <span className="flex items-center justify-center filter-(--filter-glow-header)">
               Connect with us!
-            </DoubleElement>
+            </span>
           </span>
           <div className="flex items-center justify-center gap-0.5">
             <CircleLink
