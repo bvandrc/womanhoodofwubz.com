@@ -17,27 +17,39 @@
   /* Neon glow behind an element and everything in it. drop-shadow() blurs the
      whole subtree's alpha and paints the result underneath it, so the glow
      never lands on top of a neighbouring line or sibling the way a stacked
-     text-shadow does. Chained rather than comma-listed (see --filter-logo);
-     each pass blurs the previous result, so a few compound into a wide halo
-     where text-shadow would need a dozen flat copies. */
-  --filter-glow-header: drop-shadow(0 0 0.28em var(--color-purple-950))
-    drop-shadow(0 0 0.28em var(--color-purple-950))
-    drop-shadow(0 0 0.28em var(--color-purple-950))
-    drop-shadow(0 0 0.28em var(--color-purple-950))
-    drop-shadow(0 0 0.35em black) drop-shadow(0 0 0.35em black)
-    drop-shadow(0 0 0.35em black);
+     text-shadow does. Chained rather than comma-listed (see --filter-logo).
+     Each pass blurs the previous result, so the radii here are a fraction of
+     the text-shadow ones they replace: compounding builds density but also
+     carries the tail much further, and an over-large radius washes over
+     whatever sits next to it. Keep anything opaque out of the subtree for the
+     same reason — a solid shape blurs into a far heavier cloud than glyphs. */
+  --filter-glow-header: drop-shadow(0 0 0.15em var(--color-purple-950))
+    drop-shadow(0 0 0.15em var(--color-purple-950))
+    drop-shadow(0 0 0.15em var(--color-purple-950))
+    drop-shadow(0 0 0.15em var(--color-purple-950)) drop-shadow(0 0 0.2em black)
+    drop-shadow(0 0 0.2em black);
 
-  /* Button variant: sized in px so it tracks the border box, not the text. */
-  --filter-glow-button: drop-shadow(0 0 3px var(--color-purple-950))
-    drop-shadow(0 0 6px var(--color-purple-950))
-    drop-shadow(0 0 12px var(--color-purple-950))
-    drop-shadow(0 0 20px var(--color-purple-950));
+  /* Header button glow. A box-shadow, not a filter: the button is a solid box,
+     so nothing inside it needs the subtree treatment, and chained drop-shadows
+     compound outwards far enough to wash over the tagline sitting above.
+     Held as a var so the hover state can prepend to the same list — a second
+     box-shadow declaration would replace these layers rather than add to them. */
+  --glow-header-layers:
+    0 0 5px var(--color-purple-950),
+    0 0 10px var(--color-purple-950), 0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950), 0 0 10px var(--color-purple-950),
+    0 0 10px var(--color-purple-950), 0 0 10px var(--color-purple-950),
+    0 0 15px var(--color-purple-950), 0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950), 0 0 15px var(--color-purple-950),
+    0 0 15px var(--color-purple-950), 0 0 30px var(--color-purple-950),
+    0 0 50px var(--color-purple-950);
 
-  --filter-glow-grid: drop-shadow(0 0 4px var(--color-purple-900))
-    drop-shadow(0 0 4px var(--color-purple-900))
-    drop-shadow(0 0 4px var(--color-purple-900))
-    drop-shadow(0 0 6px var(--color-fuchsia-900))
-    drop-shadow(0 0 6px var(--color-fuchsia-900));
+  --filter-glow-grid: drop-shadow(0 0 2px var(--color-purple-900))
+    drop-shadow(0 0 2px var(--color-purple-900))
+    drop-shadow(0 0 2px var(--color-purple-900))
+    drop-shadow(0 0 2px var(--color-purple-900))
+    drop-shadow(0 0 3px var(--color-fuchsia-900))
+    drop-shadow(0 0 3px var(--color-fuchsia-900));
 
   /* SoundCloud player title hover glow */
   --text-shadow-glow-blue:
@@ -65,13 +77,15 @@
 
 /* Layered glow shadows — too long to inline as arbitrary values */
 
-@utility shadow-glow-icon {
+@utility shadow-glow-header {
+  box-shadow: var(--glow-header-layers);
+}
+
+/* Yellow first so it paints above the resting purple layers. */
+@utility shadow-glow-header-hover {
   box-shadow:
-    0 0 5px var(--color-purple-950),
-    0 0 10px var(--color-purple-950),
-    0 0 10px var(--color-purple-950),
-    0 0 10px var(--color-purple-950),
-    0 0 10px var(--color-purple-950);
+    0 0 40px var(--color-yellow-300),
+    var(--glow-header-layers);
 }
 
 @utility shadow-glow-grid-item {

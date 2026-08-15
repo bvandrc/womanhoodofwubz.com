@@ -15,11 +15,9 @@ import { cn } from '@/utils'
 import { CircleLink } from './primitives/CircleLink'
 import { Dialog } from './primitives/Dialog'
 
-// Wide enough to keep each label and its icon on one line. The purple glow is
-// a filter so the yellow hover glow can own box-shadow — two box-shadows on
-// one element would replace each other rather than stack.
+// Wide enough to keep each label and its icon on one line.
 const BUTTON_CLASSES =
-  'w-40 whitespace-nowrap rounded-lg border-2 bg-black p-2 filter-(--filter-glow-button) hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-yellow-300'
+  'w-40 whitespace-nowrap rounded-lg border-2 bg-black p-2 shadow-glow-header hover:border-yellow-300 hover:shadow-glow-header-hover'
 
 export const Header = ({
   scrollToGrid,
@@ -42,13 +40,7 @@ export const Header = ({
         </h1>
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl filter-(--filter-glow-header)">
           <p className="mb-1 -translate-x-1 text-sky-300">
-            <span className="rounded-full bg-purple-950 shadow-glow-icon">
-              <FontAwesomeIcon
-                icon={faLocationDot}
-                size="sm"
-                className="pr-2"
-              />
-            </span>
+            <FontAwesomeIcon icon={faLocationDot} size="sm" className="pr-2" />
             Denver, CO
           </p>
           <p className="text-fuchsia-400">
