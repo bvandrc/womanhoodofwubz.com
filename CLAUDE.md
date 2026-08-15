@@ -51,6 +51,19 @@ own tooling — leave it alone.
 - **Conditional classes**: Use `cn` from `src/utils/cn.ts` (clsx +
   tailwind-merge), not template-literal concatenation. Don't import `clsx` or
   `classnames` directly.
+- **Icons**: FontAwesome, deliberately. Treat a swap as a layout change, not a
+  dependency change.
+  - The four `@fortawesome/*` entries are one vendor sharing one transitive
+    package, and they tree-shake — only the icons actually imported reach the
+    bundle.
+  - Don't swap in Lucide: it ships no brand logos, so Instagram and SoundCloud
+    would need a second package anyway.
+  - The FA wiring in `src/App.tsx` is load-bearing, not cruft — importing FA's
+    stylesheet is what keeps it from injecting a `<style>` tag that
+    `style-src 'self'` blocks.
+  - Its sizing model (icons are `1em` tall in a `1.25em` box; `size` props are
+    multipliers that compound with the parent font-size) is what every icon
+    call site is tuned against.
 - **Convention files**: `conventions/` is synced from
   https://github.com/bvandrc/bvandrc-conventions and overwritten on every
   sync. Edit a rule upstream, never in that directory.
