@@ -75,6 +75,25 @@
     var(--tw-shadow-color, currentcolor);
 }
 
+/*
+ * Neon edge. The fill paints to the padding box and the gradient to the border
+ * box, so a transparent border shows the gradient through it — a border-image
+ * would do the same but forfeits the rounded corners. Both layers key off
+ * `--gradient-accent`, so a button re-skins by setting that one var.
+ */
+@utility gradient-border {
+  border-color: transparent;
+  background:
+    linear-gradient(
+      180deg,
+      color-mix(in oklab, var(--gradient-accent) 30%, black),
+      black 62%
+    )
+    padding-box,
+    linear-gradient(180deg, var(--gradient-accent), var(--color-fuchsia-400))
+    border-box;
+}
+
 /* Layered glow shadows — too long to inline as arbitrary values */
 
 @utility shadow-glow-header {

@@ -15,9 +15,16 @@ import { cn } from '@/utils'
 import { CircleLink } from './primitives/CircleLink'
 import { Dialog } from './primitives/Dialog'
 
-// Wide enough to keep each label and its icon on one line.
+// Wide enough to keep each label and its icon on one line. Hover swaps the one
+// var the gradient keys off, so the edge and the fill turn yellow together.
 const BUTTON_CLASSES =
-  'w-40 whitespace-nowrap rounded-lg border-2 bg-black p-2 shadow-glow-header hover:border-yellow-300 hover:shadow-glow-header-hover'
+  'w-40 whitespace-nowrap rounded-lg border-2 p-2 gradient-border shadow-glow-header hover:[--gradient-accent:var(--color-yellow-300)] hover:text-yellow-300 hover:shadow-glow-header-hover'
+
+// One var drives both the edge gradient and the fill tint.
+const BUTTON_ACCENTS = {
+  DESIGNED_HATS: '[--gradient-accent:var(--color-cyan-300)] text-cyan-300',
+  CUSTOM_HATS: '[--gradient-accent:var(--color-amber-500)] text-amber-500',
+}
 
 export const Header = ({
   scrollToGrid,
@@ -52,7 +59,7 @@ export const Header = ({
           <button
             type="button"
             onClick={scrollToGrid}
-            className={cn(BUTTON_CLASSES, 'border-cyan-300 text-cyan-300')}
+            className={cn(BUTTON_CLASSES, BUTTON_ACCENTS.DESIGNED_HATS)}
             data-testid="header-designed-hats-btn">
             Designed Hats <FontAwesomeIcon icon={faCircleArrowDown} />
           </button>
@@ -60,10 +67,7 @@ export const Header = ({
             target={
               <button
                 type="button"
-                className={cn(
-                  BUTTON_CLASSES,
-                  'border-amber-500 text-amber-500'
-                )}
+                className={cn(BUTTON_CLASSES, BUTTON_ACCENTS.CUSTOM_HATS)}
                 data-testid="header-custom-hats-btn">
                 Custom Hats <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
               </button>
