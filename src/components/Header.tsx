@@ -109,7 +109,7 @@ export const Header = ({
               Connect with us!
             </DoubleElement>
           </span>
-          <div className="flex items-center justify-center gap-0.5">
+          <div className="flex items-center justify-center gap-1">
             <CircleLink
               className="bg-instagram"
               title="Instagram"

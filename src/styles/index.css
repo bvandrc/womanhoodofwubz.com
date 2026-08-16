@@ -13,11 +13,6 @@
      list, so multi-shadow --drop-shadow-* theme tokens compile broken. */
   --filter-logo: drop-shadow(0 0 30px var(--color-purple-950))
     drop-shadow(0 0 50px black) drop-shadow(0 0 30px black);
-
-  /* SoundCloud player title hover glow */
-  --text-shadow-glow-blue:
-    0 0 5px var(--color-blue-700), 0 0 10px var(--color-blue-700),
-    0 0 15px var(--color-blue-700);
 }
 
 /* Style the back/front copy of a DoubleElement from within its children */
