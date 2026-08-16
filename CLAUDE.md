@@ -56,8 +56,8 @@ own tooling — leave it alone.
   - The four `@fortawesome/*` entries are one vendor sharing one transitive
     package, and they tree-shake — only the icons actually imported reach the
     bundle.
-  - Don't swap in Lucide: it ships no brand logos, so Instagram and SoundCloud
-    would need a second package anyway.
+  - Other icon sets don't ship the brand logos we need (Instagram and
+    SoundCloud), so a swap would mean adding a second package anyway.
   - The FA wiring in `src/App.tsx` is load-bearing, not cruft — importing FA's
     stylesheet is what keeps it from injecting a `<style>` tag that
     `style-src 'self'` blocks.
