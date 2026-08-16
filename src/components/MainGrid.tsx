@@ -8,7 +8,7 @@ import { Grid as GridBase } from './primitives/Grid'
  * fits at this width, so a cell tops out around 1.5x it (at two columns) and
  * less the more columns there are. Lower this to keep cells smaller.
  */
-const MIN_COLUMN_WIDTH = 240
+const MIN_COLUMN_WIDTH = 200
 
 /**
  * Product shots are square, and `auto-fit` adds columns rather than stretching

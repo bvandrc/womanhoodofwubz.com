@@ -58,7 +58,7 @@ const ProductImageLabeled = ({
       className="max-h-full"
       data-testid="product-grid-image"
     />
-    <div className="absolute top-0 left-3 text-[11cqw]">
+    <div className="absolute top-0 left-3 text-[8cqw]">
       <DoubleElement
         frontClassName="text-sky-300"
         backClassName="text-glow-grid">
@@ -68,10 +68,12 @@ const ProductImageLabeled = ({
     <div className="absolute left-0 bottom-1 ml-2.5 text-[10cqw]">
       <DoubleElement backClassName="text-glow-grid">
         {title && (
-          <p className="font-bold text-fuchsia-400 leading-none" id={titleId}>
+          <p className="font-bold text-yellow-300 leading-none" id={titleId}>
             {title}
             <br />
-            <span className="font-normal text-[80%]">{type}</span>
+            <span className="font-normal text-pink-400  text-[80%]">
+              {type}
+            </span>
           </p>
         )}
         {subtitle && <p className="text-rose-200">{subtitle}</p>}
@@ -81,7 +83,7 @@ const ProductImageLabeled = ({
       {soldOut ? (
         <DoubleElement
           className="italic"
-          frontClassName="text-amber-500"
+          frontClassName="text-orange-500"
           backClassName="text-glow-grid">
           Sold!
         </DoubleElement>

@@ -41,7 +41,7 @@ export const Header = ({
         </h1>
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
           <DoubleElement backClassName="text-glow-header">
-            <p className="mb-1 -translate-x-1 el-front:text-sky-300">
+            <p className="mb-1 -translate-x-1 el-front:text-pink-400 font-semibold">
               <span className="el-back:rounded-full el-back:bg-purple-950 el-back:shadow-glow-icon">
                 <FontAwesomeIcon
                   icon={faLocationDot}
@@ -51,7 +51,7 @@ export const Header = ({
               </span>
               Denver, CO
             </p>
-            <p className="el-front:text-fuchsia-400">
+            <p className="el-front:text-yellow-300">
               Bringing you the accessories that celebrate the magic of good
               music and the power of connection
             </p>
@@ -102,14 +102,14 @@ export const Header = ({
       </div>
       <div className="absolute right-25 bottom-0 text-right max-2xl:relative max-2xl:right-auto max-2xl:mx-auto max-2xl:my-3 max-2xl:text-center max-2xl:leading-none">
         <section className="text-center" aria-label="links and social media">
-          <span className="mb-1 inline-block text-emerald-200 italic max-2xl:absolute max-2xl:left-1/2 max-2xl:m-0 max-2xl:max-w-16 max-2xl:-translate-x-40 max-2xl:translate-y-3 max-2xl:text-right">
+          <span className="mb-1 inline-block text-yellow-300 italic max-2xl:absolute max-2xl:top-1/2 max-2xl:left-1/2 max-2xl:m-0 max-2xl:max-w-16 max-2xl:-translate-x-38 max-2xl:-translate-y-1/2 max-2xl:text-right">
             <DoubleElement
               className="flex items-center justify-center"
               backClassName="text-glow-header">
               Connect with us!
             </DoubleElement>
           </span>
-          <div className="flex items-center justify-center gap-0.5">
+          <div className="flex items-center justify-center gap-1">
             <CircleLink
               className="bg-instagram"
               title="Instagram"

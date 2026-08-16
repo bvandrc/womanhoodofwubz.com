@@ -2,6 +2,7 @@ import type { FontAwesomeIconProps } from '@fortawesome/react-fontawesome'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { cn } from '@/utils'
+import { DoubleElement } from './DoubleElement'
 
 type CircleLinkProps = Pick<FontAwesomeIconProps, 'icon'> &
   React.HTMLAttributes<HTMLElement> &
@@ -14,29 +15,28 @@ export const CircleLink = ({
   href,
   ...props
 }: CircleLinkProps) => {
-  const sharedClassName = cn(
-    'group flex size-12 items-center justify-center rounded-full border-3 border-black shadow-glow-30 shadow-black transition-shadow duration-100 hover:shadow-glow-40 hover:shadow-yellow-300',
-    className
-  )
   const inner = (
-    <FontAwesomeIcon
-      icon={icon}
-      className="text-2xl group-hover:text-3xl"
-      aria-label={props['aria-label'] ?? props.title}
-    />
+    <DoubleElement
+      className="flex size-12 items-center justify-center rounded-full border-3"
+      frontClassName={cn(
+        'border-black transition-[box-shadow,border-color] duration-100 group-hover:border-yellow-300 group-hover:shadow-glow-40 group-hover:shadow-yellow-300',
+        className
+      )}
+      backClassName="shadow-glow-icon">
+      <FontAwesomeIcon
+        icon={icon}
+        className="text-2xl group-hover:text-3xl"
+        aria-label={props['aria-label'] ?? props.title}
+      />
+    </DoubleElement>
   )
 
   return href !== undefined ? (
-    <a
-      target="_blank"
-      rel="noopener"
-      href={href}
-      {...props}
-      className={sharedClassName}>
+    <a target="_blank" rel="noopener" href={href} {...props} className="group">
       {inner}
     </a>
   ) : (
-    <button type="button" {...props} className={sharedClassName}>
+    <button type="button" {...props} className="group">
       {inner}
     </button>
   )
