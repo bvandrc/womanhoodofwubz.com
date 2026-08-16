@@ -41,7 +41,7 @@ export const Header = ({
         </h1>
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
           <DoubleElement backClassName="text-glow-header">
-            <p className="mb-1 -translate-x-1 el-front:text-pink-400">
+            <p className="mb-1 -translate-x-1 el-front:text-pink-400 font-semibold">
               <span className="el-back:rounded-full el-back:bg-purple-950 el-back:shadow-glow-icon">
                 <FontAwesomeIcon
                   icon={faLocationDot}
