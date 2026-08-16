@@ -41,7 +41,7 @@ export const Header = ({
         </h1>
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
           <DoubleElement backClassName="text-glow-header">
-            <p className="mb-1 -translate-x-1 el-front:text-sky-300">
+            <p className="mb-1 -translate-x-1 el-front:text-pink-400">
               <span className="el-back:rounded-full el-back:bg-purple-950 el-back:shadow-glow-icon">
                 <FontAwesomeIcon
                   icon={faLocationDot}
@@ -51,7 +51,7 @@ export const Header = ({
               </span>
               Denver, CO
             </p>
-            <p className="el-front:text-pink-400">
+            <p className="el-front:text-yellow-300">
               Bringing you the accessories that celebrate the magic of good
               music and the power of connection
             </p>
