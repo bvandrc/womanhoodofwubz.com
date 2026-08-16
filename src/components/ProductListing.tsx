@@ -83,7 +83,7 @@ const ProductImageLabeled = ({
       {soldOut ? (
         <DoubleElement
           className="italic"
-          frontClassName="text-amber-500"
+          frontClassName="text-orange-500"
           backClassName="text-glow-grid">
           Sold!
         </DoubleElement>
