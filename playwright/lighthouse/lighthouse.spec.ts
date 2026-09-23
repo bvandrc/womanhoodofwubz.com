@@ -21,9 +21,9 @@ test('Home page', async ({ page, runAudit }) => {
   })
 
   // product grid populates from Sanity
-  await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first()).toBeVisible({
-    timeout: 15_000,
-  })
+  await expect(
+    page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE).first()
+  ).toBeVisible({ timeout: 15_000 })
 
   await test.step('loaded', async () => {
     await runAudit({

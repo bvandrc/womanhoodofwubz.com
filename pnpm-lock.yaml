@@ -42,7 +42,7 @@ importers:
         specifier: ^18
         version: 18.3.1(react@18.3.1)
       react-modal:
-        specifier: ^3.16
+        specifier: ^3
         version: 3.16.3(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       tailwind-merge:
         specifier: ^3
@@ -88,7 +88,7 @@ importers:
         specifier: ^1
         version: 1.2.4(@playwright/test@1.62.0)(lighthouse@13.4.1(@opentelemetry/core@2.10.0(@opentelemetry/api@1.9.1)))
       tailwindcss:
-        specifier: ^4.3
+        specifier: ^4
         version: 4.3.3
       type-fest:
         specifier: ^5
@@ -1334,6 +1334,9 @@ packages:
   third-party-web@0.29.2:
     resolution: {integrity: sha512-fegtha91tq2DHphyoiBXVHjVi2YG9zFaRnboT9C28tO1en9Y3wJsfspuy40F+u5wl3hHVbw7cnd1b67kEGHb8g==}
 
+  third-party-web@0.30.0:
+    resolution: {integrity: sha512-p+PfyL5U0ediGzvwPzMSdD9MnC8rHW6nWJJVLIQvqN7RsSqfaZ+7n4c9GILqH36EYR0eXB9CzAeCRnKFr/9uJg==}
+
   through2@4.0.2:
     resolution: {integrity: sha512-iOqSav00cVxEEICeD7TjLB1sueEL+81Wpzp2bY17uZjZN0pWZPuo4suZ/61VujxmqSGFfgOcNuTZ85QJwNZQpw==}
 
@@ -1702,7 +1705,7 @@ snapshots:
   '@paulirish/trace_engine@0.0.65':
     dependencies:
       legacy-javascript: 0.0.1
-      third-party-web: 0.29.2
+      third-party-web: 0.30.0
 
   '@playwright/test@1.62.0':
     dependencies:
@@ -2542,6 +2545,8 @@ snapshots:
   tapable@2.3.3: {}
 
   third-party-web@0.29.2: {}
+
+  third-party-web@0.30.0: {}
 
   through2@4.0.2:
     dependencies:

@@ -4,9 +4,11 @@ import { useLayoutEffect, useRef } from 'react'
 import { cn } from '@/utils'
 
 /**
- * Renders children twice, stacked: a back copy (usually carrying a glow
- * shadow) behind a front copy. `el-back`/`el-front` are marker classes so
- * children can style per-copy via `in-[.el-back]:` / `in-[.el-front]:`.
+ * Renders children twice, stacked: a back copy (usually carrying a glow shadow)
+ * behind a front copy.
+ *
+ * `el-back`/`el-front` are marker classes so children can style per-copy via
+ * `in-[.el-back]:` / `in-[.el-front]:`.
  *
  * Children keep their own `id` props on the front copy only — see below.
  */

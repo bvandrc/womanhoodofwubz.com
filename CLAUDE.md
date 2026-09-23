@@ -27,8 +27,8 @@ They cover `src/` and `playwright/`. `studio/` is a separate package with its ow
 ## Conventions
 
 - **Package manager**: pnpm. `npm install` writes a competing `package-lock.json` that CI ignores.
-- **Styling**: Tailwind v4 is configured **in CSS** — `@theme`, `@custom-variant` and friends in `src/styles/index.css`. There is no `tailwind.config.js` and none should be added. New design tokens (colors, shadows, fonts) go in `@theme`.
-- **Conditional classes**: Use `cn` from `src/utils/cn.ts` (clsx + tailwind-merge), not template-literal concatenation. Don't import `clsx` or `classnames` directly.
+- **Styling**: Tailwind v4 is configured **in CSS** — `@theme`, `@custom-variant`, and friends in `src/styles/index.css`. There is no `tailwind.config.js` and none should be added. New design tokens (colors, shadows, fonts) go in `@theme`.
+- **Conditional classes**: Use `cn` from `src/utils/index.ts` (clsx + tailwind-merge), not template-literal concatenation. Don't import `clsx` or `classnames` directly.
 - **Icons**: FontAwesome, deliberately. Treat a swap as a layout change, not a dependency change.
   - The four `@fortawesome/*` entries are one vendor sharing one transitive package, and they tree-shake — only the icons actually imported reach the bundle.
   - Other icon sets don't ship the brand logos we need (Instagram and SoundCloud), so a swap would mean adding a second package anyway.
