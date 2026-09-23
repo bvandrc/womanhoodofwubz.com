@@ -9,13 +9,13 @@ test.describe('Product Dialog', () => {
   test.beforeEach(async ({ page }) => {
     await stubSanity(page)
     await page.goto('/')
-    await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE)).toHaveCount(
+    await expect(page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE)).toHaveCount(
       STUB_PRODUCTS.length
     )
   })
 
   test('product tile opens its dialog from the keyboard', async ({ page }) => {
-    const tile = page.locator(SELECTORS.PRODUCT_GRID.TILE).first()
+    const tile = page.getByTestId(SELECTORS.PRODUCT_GRID.TILE).first()
     await expect(tile).toHaveAttribute('aria-expanded', 'false')
 
     for (const key of ['Enter', ' ']) {
@@ -23,7 +23,7 @@ test.describe('Product Dialog', () => {
         await tile.focus()
         await page.keyboard.press(key)
 
-        const dialog = page.locator(SELECTORS.PRODUCT_DIALOG)
+        const dialog = page.getByTestId(SELECTORS.PRODUCT_DIALOG)
         await expect(dialog).toBeVisible()
         await expect(dialog).toContainText(IN_STOCK.title)
 

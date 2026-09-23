@@ -11,21 +11,23 @@ test('Home page', async ({ page }) => {
   await checkA11y(page)
 
   // product grid populates from Sanity
-  await expect(page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first()).toBeVisible({
+  await expect(
+    page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE).first()
+  ).toBeVisible({
     timeout: 15_000,
   })
   await checkA11y(page)
 
   await test.step('Custom Hats Dialog', async () => {
-    await page.locator(SELECTORS.HEADER.CUSTOM_HATS_BTN).click()
-    await page.locator(SELECTORS.CUSTOM_DESIGNS_DIALOG).waitFor()
+    await page.getByTestId(SELECTORS.HEADER.CUSTOM_HATS_BTN).click()
+    await page.getByTestId(SELECTORS.CUSTOM_DESIGNS_DIALOG).waitFor()
     await checkA11y(page)
     await page.keyboard.press('Escape')
   })
 
   await test.step('Order Dialog', async () => {
-    await page.locator(SELECTORS.PRODUCT_GRID.IMAGE).first().click()
-    const dialog = page.locator(SELECTORS.PRODUCT_DIALOG)
+    await page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE).first().click()
+    const dialog = page.getByTestId(SELECTORS.PRODUCT_DIALOG)
     await dialog.waitFor()
     // dialog image loads from Sanity
     await expect(dialog.locator('img')).toBeVisible({ timeout: 15_000 })
