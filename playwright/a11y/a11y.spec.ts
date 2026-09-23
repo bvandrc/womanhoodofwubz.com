@@ -13,9 +13,7 @@ test('Home page', async ({ page }) => {
   // product grid populates from Sanity
   await expect(
     page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE).first()
-  ).toBeVisible({
-    timeout: 15_000,
-  })
+  ).toBeVisible({ timeout: 15_000 })
   await checkA11y(page)
 
   await test.step('Custom Hats Dialog', async () => {
