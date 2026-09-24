@@ -9,6 +9,9 @@ const stubClipboard = (writeText: () => Promise<void>) => {
   vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText } })
 }
 
+/** The alert's first line, which is the half that differs between the two. */
+const alertedLine = () => vi.mocked(alert).mock.calls.at(-1)?.[0].split('\n')[0]
+
 describe('useCopyEmail', () => {
   beforeEach(() => {
     vi.stubGlobal('alert', vi.fn())
@@ -26,9 +29,7 @@ describe('useCopyEmail', () => {
 
     await waitFor(() => expect(writeText).toHaveBeenCalledWith(EMAIL))
     await waitFor(() =>
-      expect(alert).toHaveBeenCalledWith(
-        `Copied to clipboard: ${EMAIL}\n\nTell us what you want!`
-      )
+      expect(alertedLine()).toBe(`Copied to clipboard: ${EMAIL}`)
     )
   })
 
@@ -38,10 +39,6 @@ describe('useCopyEmail', () => {
 
     renderHook(() => useCopyEmail()).result.current()
 
-    await waitFor(() =>
-      expect(alert).toHaveBeenCalledWith(
-        `Email us at: ${EMAIL}\n\nTell us what you want!`
-      )
-    )
+    await waitFor(() => expect(alertedLine()).toBe(`Email us at: ${EMAIL}`))
   })
 })

@@ -15,11 +15,16 @@ const IMAGE = {
 describe('productImage', () => {
   it('requests a square of the grid size, in the format the browser prefers', () => {
     expect(productImage({ image: IMAGE, size: 400 })).toEqual({
-      // `rect` squares off the 2000x3000 original, `fit=max` holds the result
-      // inside the box rather than scaling up to it, and `auto=format` lets
-      // the CDN serve whatever the browser takes. The reported width and
-      // height are what let the `img` reserve the space before it loads.
-      src: `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${ASSET_ID}.jpg?rect=0,500,2000,2000&w=400&h=400&fit=max&auto=format`,
+      src:
+        `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/${ASSET_ID}.jpg` +
+        // Squares off the 2000x3000 original.
+        '?rect=0,500,2000,2000' +
+        '&w=400&h=400' +
+        // Holds the result inside that box rather than scaling up to it.
+        '&fit=max' +
+        // Lets the CDN serve whatever the browser takes.
+        '&auto=format',
+      // What lets the `img` reserve the space before it loads.
       width: 400,
       height: 400,
     })
