@@ -30,7 +30,6 @@ They cover `src/` and `playwright/`. `studio/` is a separate package with its ow
 - **Package manager**: pnpm. `npm install` writes a competing `package-lock.json` that CI ignores.
 - **Styling**: Tailwind v4 is configured **in CSS** — `@theme`, `@custom-variant`, and friends in `src/styles/index.css`. There is no `tailwind.config.js` and none should be added. New design tokens (colors, shadows, fonts) go in `@theme`.
 - **Conditional classes**: Use `cn` from `src/utils/index.ts` (clsx + tailwind-merge), not template-literal concatenation. Don't import `clsx` or `classnames` directly.
-- **Unit vs Playwright**: `cn`, the Sanity image URL, and the primitives have unit tests in a `__tests__` folder beside them — `DoubleElement`'s id stripping in particular, since a duplicated id breaks `aria-labelledby` in a way the rendered page still looks right with. Playwright keeps the wiring and the axe scans.
 - **Icons**: FontAwesome, deliberately. Treat a swap as a layout change, not a dependency change.
   - The four `@fortawesome/*` entries are one vendor sharing one transitive package, and they tree-shake — only the icons actually imported reach the bundle.
   - Other icon sets don't ship the brand logos we need (Instagram and SoundCloud), so a swap would mean adding a second package anyway.
