@@ -2,7 +2,7 @@ import { renderHook, waitFor } from '@testing-library/react'
 
 import { useCopyEmail } from '../useCopyEmail'
 
-const EMAIL = 'WomanhoodOfWubz1@gmail.com'
+const EMAIL = 'test.email@gmail.com'
 
 /** The clipboard the `useCopyToClipboard` hook writes through. */
 const stubClipboard = (writeText: () => Promise<void>) => {
