@@ -21,16 +21,5 @@ export default defineConfig({
       '**/playwright/**',
       '**/studio/**',
     ],
-    coverage: {
-      exclude: [
-        '**/__*__/**',
-        '**/dist/**',
-        '**/playwright/**',
-        '**/studio/**',
-        '**/*.d.ts',
-        '*.config.ts',
-      ],
-      reporter: ['text', 'html', 'json', 'lcov'],
-    },
   },
 })

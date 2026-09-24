@@ -21,7 +21,7 @@ They cover `src/` and `playwright/`. `studio/` is a separate package with its ow
 
 - `pnpm dev` — dev server. `pnpm build`, `pnpm preview`.
 - `pnpm format` — Biome check/fix. `pnpm check` — the full gate, and what CI runs: Biome without `--fix` (so problems fail rather than being repaired in place) plus `tsc` for the app and for `playwright/tsconfig.json`. Run before every commit.
-- `pnpm test` — Vitest unit tests over `src/`. `pnpm test:watch`, `pnpm test:coverage`; CI runs `pnpm test:unit`, which is the coverage run.
+- `pnpm test` — Vitest unit tests over `src/`. `pnpm test:watch` to re-run on a change; CI runs `pnpm test:unit`.
 - `pnpm preview:ci` — build and serve on port 4173, which is what the Playwright suites expect.
 - `pnpm test:e2e`, `pnpm test:a11y`, `pnpm test:lighthouse` — the Playwright projects, all against a running preview server. `pnpm pw:open` for the UI runner.
 
