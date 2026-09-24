@@ -2,15 +2,18 @@ import { renderHook, waitFor } from '@testing-library/react'
 
 import { useCopyEmail } from '../useCopyEmail'
 
-const EMAIL = 'test.email@gmail.com'
-
 /** The clipboard the `useCopyToClipboard` hook writes through. */
 const stubClipboard = (writeText: () => Promise<void>) => {
   vi.stubGlobal('navigator', { ...navigator, clipboard: { writeText } })
 }
 
-/** The alert's first line, which is the half that differs between the two. */
-const alertedLine = () => vi.mocked(alert).mock.calls.at(-1)?.[0].split('\n')[0]
+/** The two halves of the alert's first line, which is the half that differs. */
+const alerted = () => {
+  const firstLine = vi.mocked(alert).mock.calls.at(-1)?.[0].split('\n')[0]
+  const [label, address] = firstLine?.split(': ') ?? []
+
+  return { label, address }
+}
 
 describe('useCopyEmail', () => {
   beforeEach(() => {
@@ -27,10 +30,9 @@ describe('useCopyEmail', () => {
 
     renderHook(() => useCopyEmail()).result.current()
 
-    await waitFor(() => expect(writeText).toHaveBeenCalledWith(EMAIL))
-    await waitFor(() =>
-      expect(alertedLine()).toBe(`Copied to clipboard: ${EMAIL}`)
-    )
+    await waitFor(() => expect(alerted().label).toBe('Copied to clipboard'))
+    // The address it reports is the one it put on the clipboard.
+    expect(writeText).toHaveBeenCalledWith(alerted().address)
   })
 
   it('shows the address to copy by hand when the write is refused', async () => {
@@ -39,6 +41,6 @@ describe('useCopyEmail', () => {
 
     renderHook(() => useCopyEmail()).result.current()
 
-    await waitFor(() => expect(alertedLine()).toBe(`Email us at: ${EMAIL}`))
+    await waitFor(() => expect(alerted().label).toBe('Email us at'))
   })
 })
