@@ -1,3 +1,4 @@
+import { SANITY_DATASET, SANITY_PROJECT_ID } from '../../../sanity-constants'
 import { productImage } from '../sanity'
 
 const IMAGE = {
@@ -9,38 +10,19 @@ const IMAGE = {
 }
 
 describe('productImage', () => {
-  it('reports the size it asked for, so the img reserves that box', () => {
-    expect(productImage({ image: IMAGE, size: 400 })).toMatchObject({
+  it('requests a square of the grid size, in the format the browser prefers', () => {
+    expect(productImage({ image: IMAGE, size: 400 })).toEqual({
+      // `rect` squares off the 2000x3000 original, `fit=max` holds the result
+      // inside the box rather than scaling up to it, and `auto=format` lets
+      // the CDN serve whatever the browser takes. The reported width and
+      // height are what let the `img` reserve the space before it loads.
+      src: `https://cdn.sanity.io/images/${SANITY_PROJECT_ID}/${SANITY_DATASET}/Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000.jpg?rect=0,500,2000,2000&w=400&h=400&fit=max&auto=format`,
       width: 400,
       height: 400,
     })
   })
 
-  it('asks the CDN for the grid size rather than the original', () => {
-    const { src } = productImage({ image: IMAGE, size: 400 })
-
-    expect(src).toContain('w=400')
-    expect(src).toContain('h=400')
-  })
-
-  it('fits within the box instead of cropping to it', () => {
-    // `max` keeps the whole product in frame; `crop` would cut it to a square.
-    expect(productImage({ image: IMAGE, size: 400 }).src).toContain('fit=max')
-  })
-
-  it('lets the CDN pick the format the browser prefers', () => {
-    expect(productImage({ image: IMAGE, size: 400 }).src).toContain(
-      'auto=format'
-    )
-  })
-
-  it('builds a URL against the project the site reads from', () => {
-    expect(productImage({ image: IMAGE, size: 400 }).src).toMatch(
-      /^https:\/\/cdn\.sanity\.io\/images\//
-    )
-  })
-
-  it('varies the request with the size', () => {
+  it('varies the request with the size, rather than serving one crop for all', () => {
     const sizes = [200, 800]
     const urls = sizes.map((size) => productImage({ image: IMAGE, size }).src)
 
