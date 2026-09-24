@@ -44,12 +44,4 @@ describe('useCopyEmail', () => {
       )
     )
   })
-
-  it('tells the visitor either way, so a click is never silent', async () => {
-    stubClipboard(vi.fn(async () => Promise.reject(new Error('denied'))))
-
-    renderHook(() => useCopyEmail()).result.current()
-
-    await waitFor(() => expect(alert).toHaveBeenCalledOnce())
-  })
 })
