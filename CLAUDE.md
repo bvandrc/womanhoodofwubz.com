@@ -35,4 +35,5 @@ They cover `src/` and `playwright/`. `studio/` is a separate package with its ow
   - Other icon sets don't ship the brand logos we need (Instagram and SoundCloud), so a swap would mean adding a second package anyway.
   - The FA wiring in `src/App.tsx` is load-bearing, not cruft — importing FA's stylesheet is what keeps it from injecting a `<style>` tag that `style-src 'self'` blocks.
   - Its sizing model (icons are `1em` tall in a `1.25em` box; `size` props are multipliers that compound with the parent font-size) is what every icon call site is tuned against.
+- **Typed `Object` walks**: `typedKeys`, `typedEntries`, and `typedFromEntries`, exported from `src/utils/index.ts`, are ours. They are the builtins with the cast a call site would otherwise write by hand, so reach for one instead of asserting the result -- and leave `Object.keys`/`entries`/`fromEntries` alone where the widened type is what's wanted.
 - **Convention files**: `conventions/` is synced from https://github.com/bvandrc/bvandrc-conventions and overwritten on every sync. Edit a rule upstream, never in that directory.
