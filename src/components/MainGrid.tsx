@@ -1,9 +1,9 @@
-import type { HTMLAttributes, PropsWithChildren } from 'react'
-
 import { cn } from '@/utils'
 import { Grid as GridBase } from './primitives/Grid'
 
 /**
+ * The narrowest a grid column gets, in px.
+ *
  * Also sets how large cells get: `auto-fit` adds a column as soon as one more
  * fits at this width, so a cell tops out around 1.5x it (at two columns) and
  * less the more columns there are.
@@ -13,11 +13,11 @@ import { Grid as GridBase } from './primitives/Grid'
 const MIN_COLUMN_WIDTH = 200
 
 /**
+ * The size to request product images at and give their `img`, so the grid
+ * doesn't reflow as they arrive.
+ *
  * Product shots are square, and `auto-fit` adds columns rather than stretching
  * them, so cells stay near their minimum width — 2x covers retina.
- *
- * Request images at this size and give the `img` these dimensions, so the grid
- * doesn't reflow as they arrive.
  */
 export const MAIN_GRID_IMAGE_SIZE = MIN_COLUMN_WIDTH * 2
 
@@ -25,7 +25,7 @@ export const MainGrid = ({
   children,
   className,
   ...props
-}: PropsWithChildren<HTMLAttributes<HTMLDivElement>>) => (
+}: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => (
   <GridBase
     {...props}
     minColumnWidth={MIN_COLUMN_WIDTH}
@@ -46,8 +46,8 @@ export const MainGridCell = ({
   children,
   className,
   ...props
-}: PropsWithChildren<
-  HTMLAttributes<HTMLDivElement> & { span?: keyof typeof SPAN_CLASSES }
+}: React.PropsWithChildren<
+  React.HTMLAttributes<HTMLDivElement> & { span?: keyof typeof SPAN_CLASSES }
 >) => (
   <div
     {...props}

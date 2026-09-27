@@ -3,6 +3,9 @@ import { expect, test } from '@playwright/test'
 import { SELECTORS } from '~/pw/support/constants/selectors'
 import { checkA11y } from './accessibility'
 
+const { CUSTOM_DESIGNS_DIALOG, HEADER, PRODUCT_DIALOG, PRODUCT_GRID } =
+  SELECTORS
+
 // One "workflow" test: the page itself, plus every dialog reachable from it —
 // scanned once each.
 test('Home page', async ({ page }) => {
@@ -11,24 +14,26 @@ test('Home page', async ({ page }) => {
   await checkA11y(page)
 
   // product grid populates from Sanity
-  await expect(
-    page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE).first()
-  ).toBeVisible({ timeout: 15_000 })
+  await expect(page.getByTestId(PRODUCT_GRID.IMAGE).first()).toBeVisible({
+    timeout: 15_000,
+  })
   await checkA11y(page)
 
   await test.step('Custom Hats Dialog', async () => {
-    await page.getByTestId(SELECTORS.HEADER.CUSTOM_HATS_BTN).click()
-    await page.getByTestId(SELECTORS.CUSTOM_DESIGNS_DIALOG).waitFor()
+    await page.getByTestId(HEADER.CUSTOM_HATS_BTN).click()
+    await page.getByTestId(CUSTOM_DESIGNS_DIALOG).waitFor()
     await checkA11y(page)
     await page.keyboard.press('Escape')
   })
 
   await test.step('Order Dialog', async () => {
-    await page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE).first().click()
-    const dialog = page.getByTestId(SELECTORS.PRODUCT_DIALOG)
+    await page.getByTestId(PRODUCT_GRID.IMAGE).first().click()
+    const dialog = page.getByTestId(PRODUCT_DIALOG.SELF)
     await dialog.waitFor()
     // dialog image loads from Sanity
-    await expect(dialog.locator('img')).toBeVisible({ timeout: 15_000 })
+    await expect(dialog.getByTestId(PRODUCT_DIALOG.IMAGE)).toBeVisible({
+      timeout: 15_000,
+    })
     await checkA11y(page)
     await page.keyboard.press('Escape')
   })

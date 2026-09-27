@@ -1,4 +1,3 @@
-import type { HTMLAttributes, PropsWithChildren } from 'react'
 import { useLayoutEffect, useRef } from 'react'
 
 import { cn } from '@/utils'
@@ -18,8 +17,8 @@ export const DoubleElement = ({
   frontClassName,
   backClassName,
   ...props
-}: PropsWithChildren<
-  HTMLAttributes<HTMLSpanElement> & {
+}: React.PropsWithChildren<
+  React.HTMLAttributes<HTMLSpanElement> & {
     frontClassName?: string
     backClassName?: string
   }

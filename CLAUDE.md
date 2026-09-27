@@ -12,7 +12,9 @@ Conventions live outside this file, synced from https://github.com/bvandrc/bvand
 
 @conventions/typescript.md — language-level TypeScript/JavaScript rules
 @conventions/react.md — component, JSX, and accessibility rules
+@conventions/ts-testing-all.md — testing rules shared by every TypeScript suite: test IDs, naming, assertions
 @conventions/playwright.md — test layout, test IDs, and accessibility scans
+@conventions/ts-unit-testing.md — TypeScript unit test layout, naming, fixtures, and assertions
 @conventions/all.md — practice for every repo: branches, formatting, markdown, PR reviews
 
 They cover `src/` and `playwright/`. `studio/` is a separate package with its own tooling — leave it alone.

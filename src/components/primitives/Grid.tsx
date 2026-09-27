@@ -1,5 +1,3 @@
-import type { CSSProperties, HTMLAttributes, PropsWithChildren } from 'react'
-
 import { cn } from '@/utils'
 
 /**
@@ -14,8 +12,8 @@ export const Grid = ({
   style,
   minColumnWidth,
   ...props
-}: PropsWithChildren<
-  HTMLAttributes<HTMLDivElement> & { minColumnWidth: number }
+}: React.PropsWithChildren<
+  React.HTMLAttributes<HTMLDivElement> & { minColumnWidth: number }
 >) => (
   <div
     {...props}
@@ -23,7 +21,7 @@ export const Grid = ({
       {
         '--grid-min-column': `${minColumnWidth}px`,
         ...style,
-      } as CSSProperties
+      } as React.CSSProperties
     }
     className={cn('grid grid-cols-fit', className)}>
     {children}

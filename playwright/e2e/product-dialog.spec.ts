@@ -3,19 +3,21 @@ import { expect, test } from '@playwright/test'
 import { SELECTORS } from '~/pw/support/constants/selectors'
 import { STUB_PRODUCTS, stubSanity } from '~/pw/support/sanity-stub'
 
+const { PRODUCT_DIALOG, PRODUCT_GRID } = SELECTORS
+
 const [IN_STOCK] = STUB_PRODUCTS
 
 test.describe('Product Dialog', () => {
   test.beforeEach(async ({ page }) => {
     await stubSanity(page)
     await page.goto('/')
-    await expect(page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE)).toHaveCount(
+    await expect(page.getByTestId(PRODUCT_GRID.IMAGE)).toHaveCount(
       STUB_PRODUCTS.length
     )
   })
 
   test('product tile opens its dialog from the keyboard', async ({ page }) => {
-    const tile = page.getByTestId(SELECTORS.PRODUCT_GRID.TILE).first()
+    const tile = page.getByTestId(PRODUCT_GRID.TILE).first()
     await expect(tile).toHaveAttribute('aria-expanded', 'false')
 
     for (const key of ['Enter', ' ']) {
@@ -23,7 +25,7 @@ test.describe('Product Dialog', () => {
         await tile.focus()
         await page.keyboard.press(key)
 
-        const dialog = page.getByTestId(SELECTORS.PRODUCT_DIALOG)
+        const dialog = page.getByTestId(PRODUCT_DIALOG.SELF)
         await expect(dialog).toBeVisible()
         await expect(dialog).toContainText(IN_STOCK.title)
 
