@@ -1,4 +1,3 @@
-import type { PropsWithChildren } from 'react'
 import { cloneElement, useId, useState } from 'react'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,7 +12,7 @@ export const Dialog = ({
   className,
   headerClassName = 'items-center',
   'data-testid': dataTestId,
-}: PropsWithChildren<
+}: React.PropsWithChildren<
   {
     title: React.ReactNode
     target: React.ReactElement

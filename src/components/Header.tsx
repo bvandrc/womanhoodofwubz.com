@@ -1,4 +1,3 @@
-import type { HTMLAttributes } from 'react'
 import { faInstagram, faSoundcloud } from '@fortawesome/free-brands-svg-icons'
 import {
   faArrowUpRightFromSquare,
@@ -23,7 +22,7 @@ const BUTTON_FRONT_CLASSES =
 export const Header = ({
   scrollToGrid,
 }: {
-  scrollToGrid: HTMLAttributes<HTMLButtonElement>['onClick']
+  scrollToGrid: React.HTMLAttributes<HTMLButtonElement>['onClick']
 }) => {
   const copyEmail = useCopyEmail()
 
