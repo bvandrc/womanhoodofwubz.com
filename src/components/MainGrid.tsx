@@ -1,5 +1,3 @@
-import type { HTMLAttributes, PropsWithChildren } from 'react'
-
 import { cn } from '@/utils'
 import { Grid as GridBase } from './primitives/Grid'
 
@@ -25,7 +23,7 @@ export const MainGrid = ({
   children,
   className,
   ...props
-}: PropsWithChildren<HTMLAttributes<HTMLDivElement>>) => (
+}: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => (
   <GridBase
     {...props}
     minColumnWidth={MIN_COLUMN_WIDTH}
@@ -46,8 +44,8 @@ export const MainGridCell = ({
   children,
   className,
   ...props
-}: PropsWithChildren<
-  HTMLAttributes<HTMLDivElement> & { span?: keyof typeof SPAN_CLASSES }
+}: React.PropsWithChildren<
+  React.HTMLAttributes<HTMLDivElement> & { span?: keyof typeof SPAN_CLASSES }
 >) => (
   <div
     {...props}
