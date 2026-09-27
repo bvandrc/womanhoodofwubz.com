@@ -9,5 +9,8 @@ export const SELECTORS = {
     IMAGE: 'product-grid-image',
   },
   CUSTOM_DESIGNS_DIALOG: 'custom-designs-dialog',
-  PRODUCT_DIALOG: 'product-dialog',
+  PRODUCT_DIALOG: {
+    SELF: 'product-dialog',
+    IMAGE: 'product-dialog-image',
+  },
 } as const

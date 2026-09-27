@@ -2,6 +2,8 @@ import { expect, test } from '@playwright/test'
 
 import { SELECTORS } from '~/pw/support/constants/selectors'
 
+const { HEADER, PRODUCT_GRID } = SELECTORS
+
 test('home page loads', async ({ page }) => {
   await page.goto('/')
 
@@ -9,12 +11,10 @@ test('home page loads', async ({ page }) => {
   await expect(
     page.getByRole('img', { name: 'Womanhood of Wubz' })
   ).toBeVisible()
-  await expect(
-    page.getByTestId(SELECTORS.HEADER.DESIGNED_HATS_BTN)
-  ).toBeVisible()
+  await expect(page.getByTestId(HEADER.DESIGNED_HATS_BTN)).toBeVisible()
 
   // product grid populates from Sanity
-  await expect(
-    page.getByTestId(SELECTORS.PRODUCT_GRID.IMAGE).first()
-  ).toBeVisible({ timeout: 15_000 })
+  await expect(page.getByTestId(PRODUCT_GRID.IMAGE).first()).toBeVisible({
+    timeout: 15_000,
+  })
 })
