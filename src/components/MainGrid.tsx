@@ -25,7 +25,7 @@ export const MainGrid = ({
   children,
   className,
   ...props
-}: React.PropsWithChildren<React.HTMLAttributes<HTMLDivElement>>) => (
+}: React.HTMLAttributes<HTMLDivElement> & { children: React.ReactNode }) => (
   <GridBase
     {...props}
     minColumnWidth={MIN_COLUMN_WIDTH}
@@ -46,9 +46,10 @@ export const MainGridCell = ({
   children,
   className,
   ...props
-}: React.PropsWithChildren<
-  React.HTMLAttributes<HTMLDivElement> & { span?: keyof typeof SPAN_CLASSES }
->) => (
+}: React.HTMLAttributes<HTMLDivElement> & {
+  span?: keyof typeof SPAN_CLASSES
+  children: React.ReactNode
+}) => (
   <div
     {...props}
     className={cn(

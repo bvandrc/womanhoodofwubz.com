@@ -12,17 +12,16 @@ export const Dialog = ({
   className,
   headerClassName = 'items-center',
   'data-testid': dataTestId,
-}: React.PropsWithChildren<
-  {
-    title: React.ReactNode
-    target: React.ReactElement
-    /**
-     * @default 'items-center'
-     */
-    headerClassName?: string
-    'data-testid'?: string
-  } & Pick<React.HTMLAttributes<HTMLElement>, 'className'>
->) => {
+}: {
+  title: React.ReactNode
+  target: React.ReactElement
+  /**
+   * @default 'items-center'
+   */
+  headerClassName?: string
+  'data-testid'?: string
+  children: React.ReactNode
+} & Pick<React.HTMLAttributes<HTMLElement>, 'className'>) => {
   const [isOpen, setIsOpen] = useState(false)
   const dialogId = useId()
   const titleId = useId()

@@ -17,12 +17,11 @@ export const DoubleElement = ({
   frontClassName,
   backClassName,
   ...props
-}: React.PropsWithChildren<
-  React.HTMLAttributes<HTMLSpanElement> & {
-    frontClassName?: string
-    backClassName?: string
-  }
->) => {
+}: React.HTMLAttributes<HTMLSpanElement> & {
+  frontClassName?: string
+  backClassName?: string
+  children: React.ReactNode
+}) => {
   const backRef = useRef<HTMLSpanElement>(null)
 
   // Duplicating the children duplicates their ids, which is invalid HTML and

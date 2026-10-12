@@ -12,9 +12,10 @@ export const Grid = ({
   style,
   minColumnWidth,
   ...props
-}: React.PropsWithChildren<
-  React.HTMLAttributes<HTMLDivElement> & { minColumnWidth: number }
->) => (
+}: React.HTMLAttributes<HTMLDivElement> & {
+  minColumnWidth: number
+  children: React.ReactNode
+}) => (
   <div
     {...props}
     style={
