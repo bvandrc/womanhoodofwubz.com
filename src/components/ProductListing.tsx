@@ -1,4 +1,3 @@
-import type { ReactNode } from 'react'
 import { useId } from 'react'
 import { pick } from 'es-toolkit'
 
@@ -15,11 +14,11 @@ export interface ProductImageLabeledProps
         'src' | 'width' | 'height'
       >
     > {
-  title?: ReactNode
-  type?: ReactNode
-  subtitle?: ReactNode
-  number?: ReactNode
-  price?: ReactNode
+  title?: React.ReactNode
+  type?: React.ReactNode
+  subtitle?: React.ReactNode
+  number?: React.ReactNode
+  price?: React.ReactNode
   soldOut?: boolean
 }
 

@@ -1,5 +1,5 @@
 import { SANITY_DATASET, SANITY_PROJECT_ID } from '../../../sanity-constants'
-import { productImage } from '../sanity'
+import { type Product, productImage } from '../sanity'
 
 /** The same id the CDN path carries, spelled the way a `_ref` spells it. */
 const ASSET_ID = 'Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000'
@@ -10,7 +10,7 @@ const IMAGE = {
     _ref: `image-${ASSET_ID}-jpg`,
     _type: 'reference',
   },
-}
+} satisfies Product['image']
 
 describe('productImage', () => {
   it('requests a square of the grid size, in the format the browser prefers', () => {

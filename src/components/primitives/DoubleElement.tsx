@@ -1,4 +1,3 @@
-import type { HTMLAttributes, PropsWithChildren } from 'react'
 import { useLayoutEffect, useRef } from 'react'
 
 import { cn } from '@/utils'
@@ -18,12 +17,11 @@ export const DoubleElement = ({
   frontClassName,
   backClassName,
   ...props
-}: PropsWithChildren<
-  HTMLAttributes<HTMLSpanElement> & {
-    frontClassName?: string
-    backClassName?: string
-  }
->) => {
+}: React.HTMLAttributes<HTMLSpanElement> & {
+  frontClassName?: string
+  backClassName?: string
+  children: React.ReactNode
+}) => {
   const backRef = useRef<HTMLSpanElement>(null)
 
   // Duplicating the children duplicates their ids, which is invalid HTML and

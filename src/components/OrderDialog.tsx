@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { INSTAGRAM_USERNAME } from '@/constants'
 import { useCopyEmail } from '@/hooks/useCopyEmail'
+import { cn } from '@/utils'
 
 const LINK_BUTTON_CLASSES =
   'w-48 min-w-0 rounded-xl border-4 border-black p-2 hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-purple-900'
@@ -24,7 +25,12 @@ export const OrderDialog = ({
   return (
     <div className="text-center">
       {subtitle}
-      <img {...imgProps} aria-labelledby={titleId} className="rounded-2xl" />
+      <img
+        {...imgProps}
+        aria-labelledby={titleId}
+        className="rounded-2xl"
+        data-testid="product-dialog-image"
+      />
       <div>
         <p>Order form is in the works! For now, send us a message to order:</p>
 
@@ -34,14 +40,14 @@ export const OrderDialog = ({
           role="group"
           aria-label="send links">
           <a
-            className={`bg-instagram ${LINK_BUTTON_CLASSES}`}
+            className={cn('bg-instagram', LINK_BUTTON_CLASSES)}
             href={`https://ig.me/m/${INSTAGRAM_USERNAME}`}
             target="_blank"
             rel="noopener">
             Instagram <FontAwesomeIcon icon={faInstagramSquare} size="xl" />
           </a>
           <button
-            className={`bg-sky-400 ${LINK_BUTTON_CLASSES}`}
+            className={cn('bg-sky-400', LINK_BUTTON_CLASSES)}
             type="button"
             onClick={copyEmail}>
             Email <FontAwesomeIcon icon={faEnvelope} size="xl" />
