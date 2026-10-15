@@ -1,4 +1,3 @@
-import type { HTMLAttributes } from 'react'
 import { faInstagram, faSoundcloud } from '@fortawesome/free-brands-svg-icons'
 import {
   faArrowUpRightFromSquare,
@@ -11,19 +10,23 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import { INSTAGRAM_USERNAME } from '@/constants'
 import { useCopyEmail } from '@/hooks/useCopyEmail'
+import { cn } from '@/utils'
 import { CircleLink } from './primitives/CircleLink'
 import { Dialog } from './primitives/Dialog'
 import { DoubleElement } from './primitives/DoubleElement'
 
-// Wide enough to keep each label and its icon on one line.
-const BUTTON_CLASSES = 'w-40 whitespace-nowrap rounded-lg border-2 p-2'
+const BUTTON_CLASSES = cn(
+  'rounded-lg border-2 p-2',
+  // Wide enough to keep each label and its icon on one line.
+  'w-40 whitespace-nowrap'
+)
 const BUTTON_FRONT_CLASSES =
   'bg-black hover:border-yellow-300 hover:shadow-glow-40 hover:shadow-yellow-300'
 
 export const Header = ({
   scrollToGrid,
 }: {
-  scrollToGrid: HTMLAttributes<HTMLButtonElement>['onClick']
+  scrollToGrid: React.HTMLAttributes<HTMLButtonElement>['onClick']
 }) => {
   const copyEmail = useCopyEmail()
 
@@ -36,7 +39,7 @@ export const Header = ({
             alt="Womanhood of Wubz"
             width={422}
             height={423}
-            className="mx-auto -mb-2 h-auto max-h-36 w-auto px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
+            className="mx-auto -mb-2 size-auto max-h-36 px-2.5 pt-1.25 filter-(--filter-logo) max-2xl:max-w-5/6"
           />
         </h1>
         <div className="my-2.5 flex flex-col items-center justify-center text-balance text-center font-outfit text-xl">
@@ -64,7 +67,10 @@ export const Header = ({
             data-testid="header-designed-hats-btn">
             <DoubleElement
               className={BUTTON_CLASSES}
-              frontClassName={`${BUTTON_FRONT_CLASSES} border-cyan-300 text-cyan-300`}
+              frontClassName={cn(
+                BUTTON_FRONT_CLASSES,
+                'border-cyan-300 text-cyan-300'
+              )}
               backClassName="shadow-glow-header">
               Designed Hats <FontAwesomeIcon icon={faCircleArrowDown} />
             </DoubleElement>
@@ -74,7 +80,10 @@ export const Header = ({
               <button type="button" data-testid="header-custom-hats-btn">
                 <DoubleElement
                   className={BUTTON_CLASSES}
-                  frontClassName={`${BUTTON_FRONT_CLASSES} border-amber-500 text-amber-500`}
+                  frontClassName={cn(
+                    BUTTON_FRONT_CLASSES,
+                    'border-amber-500 text-amber-500'
+                  )}
                   backClassName="shadow-glow-header">
                   Custom Hats{' '}
                   <FontAwesomeIcon icon={faArrowUpRightFromSquare} />

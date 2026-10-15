@@ -1,4 +1,3 @@
-import type { PropsWithChildren } from 'react'
 import { cloneElement, useId, useState } from 'react'
 import { faXmark } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -13,17 +12,16 @@ export const Dialog = ({
   className,
   headerClassName = 'items-center',
   'data-testid': dataTestId,
-}: PropsWithChildren<
-  {
-    title: React.ReactNode
-    target: React.ReactElement
-    /**
-     * @default 'items-center'
-     */
-    headerClassName?: string
-    'data-testid'?: string
-  } & Pick<React.HTMLAttributes<HTMLElement>, 'className'>
->) => {
+}: {
+  title: React.ReactNode
+  target: React.ReactElement
+  /**
+   * @default 'items-center'
+   */
+  headerClassName?: string
+  'data-testid'?: string
+  children: React.ReactNode
+} & Pick<React.HTMLAttributes<HTMLElement>, 'className'>) => {
   const [isOpen, setIsOpen] = useState(false)
   const dialogId = useId()
   const titleId = useId()

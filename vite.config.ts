@@ -3,6 +3,8 @@ import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
 
 /**
+ * Lets the dev server's injected `<style>` tags past the CSP.
+ *
  * Neocities can't set response headers, so the CSP ships as a meta tag in
  * `index.html` — which the dev server serves too.
  *
