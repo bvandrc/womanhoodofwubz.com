@@ -1,3 +1,5 @@
+import fs from 'node:fs'
+import path from 'node:path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
@@ -19,9 +21,30 @@ const relaxCspForDev = (): Plugin => ({
     html.replace("style-src 'self'", "style-src 'self' 'unsafe-inline'"),
 })
 
+/**
+ * Has `vite preview` answer a `/.well-known/` path with no file behind it with
+ * a 404, as Neocities does.
+ *
+ * The preview server's SPA fallback otherwise serves `index.html` with a 200,
+ * which Lighthouse's `ai-catalog.json` audit reads as a broken manifest.
+ */
+const notFoundForWellKnown = (): Plugin => ({
+  name: 'not-found-for-well-known',
+  configurePreviewServer: (server) => {
+    const { outDir } = server.config.build
+    server.middlewares.use('/.well-known/', (req, res, next) => {
+      // `req.url` is relative to the mount path here.
+      const file = path.join(outDir, '.well-known', req.url ?? '')
+      if (fs.existsSync(file)) return next()
+      res.statusCode = 404
+      res.end()
+    })
+  },
+})
+
 export default defineConfig({
   base: '/',
-  plugins: [react(), tailwindcss(), relaxCspForDev()],
+  plugins: [react(), tailwindcss(), relaxCspForDev(), notFoundForWellKnown()],
   resolve: {
     tsconfigPaths: true,
   },

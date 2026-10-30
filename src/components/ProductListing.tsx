@@ -37,7 +37,8 @@ const ProductImageLabeled = ({
   ...rest
 }: ProductImageLabeledProps & { titleId: string }) => (
   // Opens the order dialog: this is a Dialog target, which supplies the
-  // click/key handlers to go with the role.
+  // click/key handlers to go with the role. It takes its accessible name from
+  // its visible text, so the name matches what a voice-control user reads.
   // biome-ignore lint/a11y/useSemanticElements: a real button would restyle the tile
   <div
     role="button"
@@ -46,14 +47,15 @@ const ProductImageLabeled = ({
       'relative flex items-center justify-center overflow-hidden',
       className
     )}
-    aria-labelledby={titleId}
     data-testid="product-grid-tile"
     {...rest}>
     <img
       src={src}
       width={width}
       height={height}
-      aria-labelledby={titleId}
+      // Decorative here: the tile is named by its visible text, which already
+      // carries the title, so labelling the image too would read it twice.
+      alt=""
       className="max-h-full"
       data-testid="product-grid-image"
     />
