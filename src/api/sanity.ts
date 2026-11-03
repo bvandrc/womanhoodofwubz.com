@@ -1,5 +1,6 @@
 import { createClient } from '@sanity/client'
 import { createImageUrlBuilder } from '@sanity/image-url'
+import { isNotNil } from 'es-toolkit'
 import { z } from 'zod/mini'
 
 import { SANITY_DATASET, SANITY_PROJECT_ID } from '../../sanity-constants'
@@ -32,14 +33,32 @@ const productSchema = z.object({
 
 export type Product = z.infer<typeof productSchema>
 
+// A product that doesn't match is logged and dropped, rather than failing the
+// whole list; a response that isn't a list still throws.
+const productsSchema = z.pipe(
+  z.array(
+    z.catch(z.nullable(productSchema), (ctx) => {
+      console.error(
+        'Skipping a malformed product from Sanity:',
+        ctx.value,
+        // `ctx.issues` are still raw, without the messages `prettifyError`
+        // prints; `ctx.error` carries them finalized.
+        z.prettifyError(ctx.error)
+      )
+      return null
+    })
+  ),
+  z.transform((products) => products.filter(isNotNil))
+)
+
 /**
  * The published products, newest first.
  *
  * A product that doesn't match the shape the grid renders is logged and left
  * out, so one bad document can't take down the page with it.
  */
-export const getProducts = async (): Promise<Product[]> => {
-  const products = z.array(z.unknown()).parse(
+export const getProducts = async (): Promise<Product[]> =>
+  productsSchema.parse(
     await sanityClient.fetch(
       `*[_type == "product"] | order(number desc) {
           _id,
@@ -53,18 +72,6 @@ export const getProducts = async (): Promise<Product[]> => {
         }`
     )
   )
-
-  return products.flatMap((product) => {
-    const result = productSchema.safeParse(product)
-    if (result.success) return [result.data]
-    console.error(
-      'Skipping a malformed product from Sanity:',
-      product,
-      z.prettifyError(result.error)
-    )
-    return []
-  })
-}
 
 /** Sized to the grid rather than shipping the originals at full camera resolution. */
 export const productImage = ({
