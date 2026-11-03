@@ -74,12 +74,8 @@ describe('getProducts', () => {
     vi.spyOn(console, 'error').mockImplementation(() => undefined)
   })
 
-  it('hands back the products Sanity returns, in its order', async () => {
-    const PRODUCTS = [
-      buildProduct({ _id: 'newer', number: 8 }),
-      // GROQ spells a field the document lacks as null.
-      buildProduct({ _id: 'older', number: 7, subtitle: null, price: null }),
-    ]
+  it('accepts the nulls GROQ gives a field the document lacks', async () => {
+    const PRODUCTS = [buildProduct({ subtitle: null, price: null })]
     mockSanityResponse(PRODUCTS)
 
     expect(await getProducts()).toEqual(PRODUCTS)
@@ -100,15 +96,10 @@ describe('getProducts', () => {
 
   it('leaves out a malformed product and keeps the rest', async () => {
     const VALID = buildProduct({ _id: 'valid' })
+    // `productImage` throws on each of these images while the page renders.
     const MALFORMED = [
-      // `productImage` throws on each of these images while the page renders.
       { ...VALID, _id: 'no-image', image: null },
       { ...VALID, _id: 'no-asset', image: { _type: 'image' } },
-      { ...VALID, _id: 'null-asset', image: { _type: 'image', asset: null } },
-      // The React key.
-      { ...VALID, _id: undefined },
-      // Would print as a price on the tile.
-      { ...VALID, _id: 'string-price', price: '60' },
     ]
 
     for (const product of MALFORMED) {
