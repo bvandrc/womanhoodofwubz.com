@@ -12,7 +12,8 @@ export const STUB_PRODUCTS = [
   {
     _id: 'stub-in-stock',
     image: {
-      asset: { _ref: 'image-abc-100x100-png' },
+      _type: 'image',
+      asset: { _ref: 'image-abc-100x100-png', _type: 'reference' },
     },
     number: 7,
     title: 'Sunrise Bucket',
@@ -24,7 +25,8 @@ export const STUB_PRODUCTS = [
   {
     _id: 'stub-sold-out',
     image: {
-      asset: { _ref: 'image-def-100x100-png' },
+      _type: 'image',
+      asset: { _ref: 'image-def-100x100-png', _type: 'reference' },
     },
     number: 6,
     title: 'Midnight Cap',
