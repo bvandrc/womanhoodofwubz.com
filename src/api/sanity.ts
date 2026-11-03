@@ -1,5 +1,8 @@
 import { createClient } from '@sanity/client'
-import { createImageUrlBuilder } from '@sanity/image-url'
+import {
+  createImageUrlBuilder,
+  type SanityImageObject,
+} from '@sanity/image-url'
 import { isNotNil } from 'es-toolkit'
 import { z } from 'zod/mini'
 
@@ -16,13 +19,33 @@ const sanityClient = createClient({
 
 const builder = createImageUrlBuilder(sanityClient)
 
+// The parts of an image the builder reads: an image with no asset is what it
+// can't resolve, and the crop and hotspot are what it squares off by.
+const imageSchema = z.object({
+  asset: z.object({ _ref: z.string() }),
+  crop: z.optional(
+    z.object({
+      top: z.number(),
+      bottom: z.number(),
+      left: z.number(),
+      right: z.number(),
+    })
+  ),
+  hotspot: z.optional(
+    z.object({
+      x: z.number(),
+      y: z.number(),
+      width: z.number(),
+      height: z.number(),
+    })
+  ),
+}) satisfies z.ZodMiniType<SanityImageObject>
+
 // GROQ projects a field the document lacks as `null`, so the optional fields
 // take `null` as well as a missing key.
 const productSchema = z.object({
   _id: z.string(),
-  // Loose so the crop and hotspot reach the image builder rather than being
-  // stripped; an image with no asset is what the builder can't resolve.
-  image: z.looseObject({ asset: z.looseObject({ _ref: z.string() }) }),
+  image: imageSchema,
   number: z.nullish(z.number()),
   title: z.nullish(z.string()),
   type: z.nullish(z.string()),

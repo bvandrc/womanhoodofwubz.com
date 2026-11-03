@@ -18,11 +18,7 @@ vi.mock('@sanity/client', async (importOriginal) => {
 const ASSET_ID = 'Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000'
 
 const IMAGE = {
-  _type: 'image',
-  asset: {
-    _ref: `image-${ASSET_ID}-jpg`,
-    _type: 'reference',
-  },
+  asset: { _ref: `image-${ASSET_ID}-jpg` },
 } satisfies Product['image']
 
 describe('productImage', () => {
