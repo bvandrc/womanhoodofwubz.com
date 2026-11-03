@@ -208,6 +208,9 @@ importers:
       usehooks-ts:
         specifier: ^3
         version: 3.1.1(react@18.3.1)
+      zod:
+        specifier: ^4
+        version: 4.6.7
     devDependencies:
       '@axe-core/playwright':
         specifier: ^4

@@ -58,7 +58,8 @@
     "react-dom": "^18",
     "react-modal": "^3",
     "tailwind-merge": "^3",
-    "usehooks-ts": "^3"
+    "usehooks-ts": "^3",
+    "zod": "^4"
   },
   "devDependencies": {
     "@axe-core/playwright": "^4",

@@ -1,5 +1,18 @@
 import { SANITY_DATASET, SANITY_PROJECT_ID } from '../../../sanity-constants'
-import { type Product, productImage } from '../sanity'
+import { getProducts, type Product, productImage } from '../sanity'
+
+const sanityFetch = vi.hoisted(() => vi.fn())
+
+// The real client, so the image builder still reads its project and dataset;
+// only the query goes to the mock.
+vi.mock('@sanity/client', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@sanity/client')>()
+  return {
+    ...actual,
+    createClient: (...args: Parameters<typeof actual.createClient>) =>
+      Object.assign(actual.createClient(...args), { fetch: sanityFetch }),
+  }
+})
 
 /** The same id the CDN path carries, spelled the way a `_ref` spells it. */
 const ASSET_ID = 'Tb9Ew8CXIwaY6R1kjMvI0uRR-2000x3000'
@@ -35,5 +48,75 @@ describe('productImage', () => {
     const urls = SIZES.map((size) => productImage({ image: IMAGE, size }).src)
 
     expect(new Set(urls).size).toBe(SIZES.length)
+  })
+})
+
+/** A product as the GROQ projection returns it, with every field filled. */
+const buildProduct = (overrides: Partial<Product> = {}) =>
+  ({
+    _id: 'product-1',
+    image: IMAGE,
+    number: 7,
+    title: 'Sunrise Bucket',
+    type: 'Bucket Hat',
+    subtitle: 'one of one',
+    price: 60,
+    soldOut: false,
+    ...overrides,
+  }) satisfies Product
+
+const mockSanityResponse = (result: unknown) => {
+  sanityFetch.mockResolvedValue(result)
+}
+
+describe('getProducts', () => {
+  beforeEach(() => {
+    vi.spyOn(console, 'error').mockImplementation(() => undefined)
+  })
+
+  it('accepts the nulls GROQ gives a field the document lacks', async () => {
+    const PRODUCTS = [buildProduct({ subtitle: null, price: null })]
+    mockSanityResponse(PRODUCTS)
+
+    expect(await getProducts()).toEqual(PRODUCTS)
+  })
+
+  it('keeps the crop and hotspot, which the image builder squares off by', async () => {
+    const IMAGE_WITH_CROP = {
+      ...IMAGE,
+      crop: { top: 0.1, bottom: 0, left: 0, right: 0 },
+      hotspot: { x: 0.5, y: 0.4, width: 0.5, height: 0.5 },
+    }
+    mockSanityResponse([buildProduct({ image: IMAGE_WITH_CROP })])
+
+    const [product] = await getProducts()
+
+    expect(product?.image).toEqual(IMAGE_WITH_CROP)
+  })
+
+  it('leaves out a malformed product and keeps the rest', async () => {
+    const VALID = buildProduct({ _id: 'valid' })
+    // `productImage` throws on each of these images while the page renders.
+    const MALFORMED = [
+      { ...VALID, _id: 'no-image', image: null },
+      { ...VALID, _id: 'no-asset', image: { _type: 'image' } },
+    ]
+
+    for (const product of MALFORMED) {
+      mockSanityResponse([product, VALID])
+
+      expect(await getProducts(), product._id).toEqual([VALID])
+      expect(console.error, product._id).toHaveBeenCalledWith(
+        expect.any(String),
+        product,
+        expect.any(String)
+      )
+    }
+  })
+
+  it('throws when the response is not a list, so the page can say so', async () => {
+    mockSanityResponse({ error: 'unexpected' })
+
+    await expect(getProducts()).rejects.toThrow()
   })
 })
