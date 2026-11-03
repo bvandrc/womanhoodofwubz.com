@@ -38,10 +38,15 @@ export const STUB_PRODUCTS = [
 /**
  * Serves fixed products in place of the live Sanity dataset, so tests that
  * exercise the grid don't depend on network or on what's currently for sale.
+ *
+ * `products` is untyped so a test can serve a document the site has to reject.
  */
-export async function stubSanity(page: Page) {
+export async function stubSanity(
+  page: Page,
+  products: unknown[] = STUB_PRODUCTS
+) {
   await page.route('**/*.sanity.io/**/data/query/**', (route) =>
-    route.fulfill({ json: { result: STUB_PRODUCTS } })
+    route.fulfill({ json: { result: products } })
   )
   await page.route('**/cdn.sanity.io/**', (route) =>
     route.fulfill({ path: STUB_IMAGE })
