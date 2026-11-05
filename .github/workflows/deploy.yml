@@ -1,29 +1,36 @@
 name: Deploy
 
+# Deploys to Cloudflare Pages once CI passes on main. Needs the repo secrets
+# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID.
+
 on:
   workflow_run:
     workflows: ['CI']
     types: [completed]
     branches: [main]
 
-concurrency: # prevent concurrent deploys doing strange things
-  group: deploy-to-neocities
-  cancel-in-progress: true
-
-# Neocities is deployed to over its API, so only repo read access is needed.
 permissions:
   contents: read
 
+# Let a running deploy finish rather than cancelling it mid-publish.
+concurrency:
+  group: deploy
+  cancel-in-progress: false
+
 jobs:
-  build:
-    name: Build
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
     if: github.event.workflow_run.conclusion == 'success'
+    environment:
+      name: production
+      url: https://womanhoodofwubz.pages.dev/
 
     steps:
       - name: Checkout repo
         uses: actions/checkout@v7
         with:
+          # The commit CI passed on, not whatever main has moved to since.
           ref: ${{ github.event.workflow_run.head_sha }}
 
       - name: Setup
@@ -32,29 +39,12 @@ jobs:
       - name: Build project
         run: pnpm build
 
-      - name: Upload production-ready build files
-        uses: actions/upload-artifact@v7
+      - name: Deploy to Cloudflare
+        uses: cloudflare/wrangler-action@v3
         with:
-          name: production-files
-          path: ./dist
-
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Download artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: production-files
-          path: ./dist
-
-      - name: Deploy to neocities
-        uses: bcomnes/deploy-to-neocities@v3
-        with:
-          api_key: ${{ secrets.NEOCITIES_API_TOKEN }}
-          cleanup: false
-          neocities_supporter: false # set this to true if you have a supporter account and want to bypass unsuported files filter.
-          preview_before_deploy: true # print a deployment plan prior to waiting for files to upload.
-          dist_dir: dist
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          packageManager: pnpm
+          # The checkout is a detached SHA, so name the production branch
+          # rather than leave wrangler to read it from git.
+          command: pages deploy --branch=main

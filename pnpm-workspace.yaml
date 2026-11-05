@@ -1,0 +1,5 @@
+# Both ship their binary as a platform-specific optional dependency, so their
+# postinstall checks aren't needed for wrangler to run.
+allowBuilds:
+  esbuild: false
+  workerd: false

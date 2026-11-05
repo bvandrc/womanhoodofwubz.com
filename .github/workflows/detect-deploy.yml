@@ -26,7 +26,7 @@ jobs:
         id: detect-deploy
         uses: bvandrc/detect-deploy@v1
         with:
-          url: https://womanhoodofwubz.neocities.org/
+          url: https://womanhoodofwubz.pages.dev/
           interval-seconds: 20
           max-seconds: 300 # 5 minutes
 
