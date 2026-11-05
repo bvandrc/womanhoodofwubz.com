@@ -1,52 +1,39 @@
-import fs from 'node:fs'
-import path from 'node:path'
 import tailwindcss from '@tailwindcss/vite'
 import react from '@vitejs/plugin-react'
 import { defineConfig, type Plugin } from 'vite'
 
-/**
- * Lets the dev server's injected `<style>` tags past the CSP.
- *
- * Neocities can't set response headers, so the CSP ships as a meta tag in
- * `index.html` — which the dev server serves too.
- *
- * A build links its CSS as a file, but the dev server injects it as <style>
- * tags, which `style-src 'self'` blocks, leaving the dev site unstyled. Keep
- * this in sync with that meta tag.
- */
-const relaxCspForDev = (): Plugin => ({
-  name: 'relax-csp-for-dev',
-  apply: 'serve',
-  transformIndexHtml: (html) =>
-    html.replace("style-src 'self'", "style-src 'self' 'unsafe-inline'"),
-})
+import { SECURITY_HEADERS } from './site.config'
 
-/**
- * Has `vite preview` answer a `/.well-known/` path with no file behind it with
- * a 404, as Neocities does.
- *
- * The preview server's SPA fallback otherwise serves `index.html` with a 200,
- * which Lighthouse's `ai-catalog.json` audit reads as a broken manifest.
- */
-const notFoundForWellKnown = (): Plugin => ({
-  name: 'not-found-for-well-known',
-  configurePreviewServer: (server) => {
-    const { outDir } = server.config.build
-    server.middlewares.use('/.well-known/', (req, res, next) => {
-      // `req.url` is relative to the mount path here.
-      const file = path.join(outDir, '.well-known', req.url ?? '')
-      if (fs.existsSync(file)) return next()
-      res.statusCode = 404
-      res.end()
+/** Writes `SECURITY_HEADERS` to `dist/_headers`, which Cloudflare applies to every path. */
+const securityHeadersFile = (): Plugin => ({
+  name: 'security-headers-file',
+  apply: 'build',
+  generateBundle() {
+    const lines = Object.entries(SECURITY_HEADERS).map(
+      ([name, value]) => `  ${name}: ${value}`
+    )
+    this.emitFile({
+      type: 'asset',
+      fileName: '_headers',
+      source: ['/*', ...lines, ''].join('\n'),
     })
   },
 })
 
 export default defineConfig({
   base: '/',
-  plugins: [react(), tailwindcss(), relaxCspForDev(), notFoundForWellKnown()],
+  // Unknown paths 404 instead of falling back to index.html, as on Cloudflare
+  // (whose fallback `public/404.html` turns off). Lighthouse probes
+  // `/.well-known/` files and fails on an HTML 200.
+  appType: 'mpa',
+  plugins: [react(), tailwindcss(), securityHeadersFile()],
   resolve: {
     tsconfigPaths: true,
+  },
+  // Only preview: the dev server injects CSS as inline <style> tags, which the
+  // CSP's `style-src 'self'` would block.
+  preview: {
+    headers: SECURITY_HEADERS,
   },
   build: {
     target: 'esnext',

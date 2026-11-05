@@ -1,9 +1,12 @@
 import { defineConfig, devices, type Project } from '@playwright/test'
 
+import { SITE_URL } from './site.config'
+
 const RESULTS_FOLDER = 'playwright/results'
 
 const PORT = process.env.PORT || 4173 // vite preview default port
 const BASE_URL = process.env.PLAYWRIGHT_BASE_URL ?? `http://localhost:${PORT}`
+const PRODUCTION_URL = process.env.PLAYWRIGHT_BASE_URL ?? SITE_URL
 
 const E2E_TEST_REGEX = /e2e\/.*\.spec\.ts/
 const A11Y_TEST_REGEX = /a11y\/.*\.spec\.ts/
@@ -65,7 +68,7 @@ export default defineConfig({
       // audits the deployed site instead of the local preview server
       ...LIGHTHOUSE_PROJECT,
       name: 'lighthouse:production',
-      use: { baseURL: 'https://womanhoodofwubz.neocities.org/' },
+      use: { baseURL: PRODUCTION_URL },
     },
   ],
 })

@@ -6,8 +6,8 @@ The site is a single page. Every designed hat is listed in the product grid, eac
 
 ## Pages
 
-- [Home](https://womanhoodofwubz.neocities.org/): the full product grid, plus contact links and a SoundCloud mix player.
-- [Sitemap](https://womanhoodofwubz.neocities.org/sitemap.xml): canonical URL list.
+- [Home](https://womanhoodofwubz.pages.dev/): the full product grid, plus contact links and a SoundCloud mix player.
+- [Sitemap](https://womanhoodofwubz.pages.dev/sitemap.xml): canonical URL list.
 
 ## Elsewhere
 

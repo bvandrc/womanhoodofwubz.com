@@ -1,0 +1,8 @@
+// Cloudflare Pages config: serves the Vite build from womanhoodofwubz.pages.dev,
+// deployed by .github/workflows/deploy.yml and previewed per PR by preview.yml.
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "womanhoodofwubz",
+  "compatibility_date": "2026-11-01",
+  "pages_build_output_dir": "./dist"
+}

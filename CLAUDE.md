@@ -1,10 +1,11 @@
 ## Project
 
-React site for the brand Womanhood of Wubz, deployed to Neocities (https://womanhoodofwubz.neocities.org/) by `.github/workflows/deploy.yml`.
+React site for the brand Womanhood of Wubz, deployed to Cloudflare Pages (https://womanhoodofwubz.pages.dev/, configured in `wrangler.jsonc`) by `.github/workflows/deploy.yml`. Every PR also gets a preview at `pr-<number>.womanhoodofwubz.pages.dev`, linked from its "View deployment" button by `.github/workflows/preview.yml`.
 
 - **Stack**: React 18 + Vite + TypeScript, Tailwind v4, Sanity for product content, Playwright for e2e/a11y/Lighthouse.
 - **Layout**: `src/` is the site; `playwright/` is all tests, with shared helpers under `playwright/support/` (e.g. `stubSanity`, which serves fixed products so grid tests don't depend on the live dataset); `studio/` is the Sanity Studio, a **separate pnpm package** with its own eslint/prettier and excluded from this repo's Biome config — don't lint or reformat it from the root.
 - **Sanity coordinates** live in `sanity-constants.ts` at the repo root, shared by the site and the studio. They're public IDs, not secrets; keep the single copy rather than adding env vars.
+- **Site URL and security headers**: `site.config.ts` holds `SITE_URL` and `SECURITY_HEADERS`, the one source for the CSP and other headers. The build writes them to `dist/_headers` for Cloudflare, and `vite preview` sends them, so CI's Playwright suites and ZAP scan check them; the dev server doesn't. A new third-party script, image, frame, or request origin must be added to the CSP there, or the browser blocks it in production.
 
 ## Code conventions
 
