@@ -45,6 +45,7 @@
     "pw:report": "playwright show-report playwright/results/html"
   },
   "dependencies": {
+    "@bvandrc/react-toolkit": "^2.5",
     "@fontsource/outfit": "^5",
     "@fortawesome/fontawesome-svg-core": "^7",
     "@fortawesome/free-brands-svg-icons": "^7",
