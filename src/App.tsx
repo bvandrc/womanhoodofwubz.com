@@ -10,10 +10,11 @@ import './styles/index.css'
 
 config.autoAddCss = false
 
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
+import { createLazyLoad } from '@bvandrc/react-toolkit'
 import Modal from 'react-modal'
 
-import { getProducts, type Product, productImage } from './api/sanity'
+import { getProducts, productImage } from './api/sanity'
 import { Header } from './components/Header'
 import {
   MAIN_GRID_IMAGE_SIZE,
@@ -27,25 +28,12 @@ const GRID_ID = 'main-grid'
 
 Modal.setAppElement('#root')
 
+const useProducts = createLazyLoad(getProducts)
+
 export const App = () => {
-  const [data, setData] = useState<Product[]>()
-  const [failed, setFailed] = useState(false)
+  const { value: data, isFailed: failed, prefetch } = useProducts()
 
-  useEffect(() => {
-    let cancelled = false
-
-    getProducts()
-      .then((products) => {
-        if (!cancelled) setData(products)
-      })
-      .catch(() => {
-        if (!cancelled) setFailed(true)
-      })
-
-    return () => {
-      cancelled = true
-    }
-  }, [])
+  useEffect(prefetch, [prefetch])
 
   return (
     <>
