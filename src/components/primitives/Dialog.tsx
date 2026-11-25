@@ -14,7 +14,7 @@ export const Dialog = ({
   'data-testid': dataTestId,
 }: {
   title: React.ReactNode
-  target: React.ReactElement
+  target: React.ReactElement<React.HTMLAttributes<HTMLElement>>
   /**
    * @default 'items-center'
    */
